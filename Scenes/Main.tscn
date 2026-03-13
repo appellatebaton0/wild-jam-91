@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bqkgcup7e7ey5"]
+
+[ext_resource type="Script" uid="uid://dpsjn1iw0qhsq" path="res://Scripts/Card.gd" id="1_r150o"]
+
+[node name="Main" type="Node" unique_id=1786674721]
+
+[node name="Card" type="Control" parent="." unique_id=1215579097]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r150o")
+
+[node name="Control" type="Control" parent="." unique_id=2029051819]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
