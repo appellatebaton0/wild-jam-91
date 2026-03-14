@@ -1,4 +1,4 @@
-class_name Card extends Control
+class_name Card extends Resource
 ## The class for all cards.
 
 var value:int:
