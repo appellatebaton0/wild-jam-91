@@ -27,11 +27,11 @@ func is_winning() -> bool: return (high() == 21) or (low() == 21)
 func is_over() -> bool: return low() > 21
 
 ## The running high and low totals of the hand.
-func high() -> int:
+func high(visible_only := false) -> int:
 	var total := 0
-	for card in cards: total += card.high()
+	for card in cards: if card.visible or not visible_only: total += card.high()
 	return total
-func low() -> int:
+func low(visible_only := false) -> int:
 	var total := 0
-	for card in cards: total += card.low()
+	for card in cards: if card.visible or not visible_only: total += card.low()
 	return total

@@ -8,7 +8,7 @@ class_name Table extends Control
 @onready var cont_button := %ContinueButton # The button to continue.
 @onready var next_card   := %NextCard       # The next card to be dealt.
 @onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
-var deal_hand := Hand.new()
+
 
 @export var players:Dictionary[StringName, Player] = {
 	&"Player1": null
@@ -48,14 +48,32 @@ func _on_next_pressed() -> void:
 	print(deal_index)
 	
 	
+	# If just dealt to the dealer,
+	if deal_cycle[deal_index] == &"Dealer":
+		
+		
+		pass
+	
 	cycle_deal_index()
 
 func cycle_deal_index() -> void: 
 	while true:
+		# Cycle the deal index until a new valid target is found.
 		deal_index = wrap(deal_index + 1, 0, len(deal_cycle))
 		
-		if deal_cycle[deal_index] == &"Dealer" and 
+		# If the next player's intent is to HIT, it'll be their turn to draw, duh.
+		if deal_cycle[deal_index] != &"Dealer" and players[deal_cycle[deal_index]].intent == Player.INTENT.HIT:
+			break 
+		
+		# If the dealer has an ace, and counting it as 11 would bring
+		# the total to 17 or more (but not over 21), the dealer must 
+		# count the ace as 11 and stand.
+		
+		# IE, if the HIGH is under 17, the dealer hits.
+		
+		if deal_cycle[deal_index] == &"Dealer" and Global.dealer_hand.high() < 17:
+			break # The next turn belongs to the dealer.
 
 ## -- MANAGING DEALER's HAND -- ## 
 
-func _on_new_
+# func _on_new_

@@ -2,8 +2,15 @@ class_name Card extends Resource
 ## The class for all cards.
 
 signal value_changed(from:int, to:int)
+signal visibility_changed(to:bool)
 
-var value:int:
+## If the card is face up or not.
+@export var visible := true:
+	set(to):
+		visibility_changed.emit(to)
+		visible = to
+
+@export var value:int:
 	set(to):
 		value_changed.emit(value, to)
 		
