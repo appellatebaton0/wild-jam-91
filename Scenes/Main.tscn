@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bqkgcup7e7ey5"]
 
 [ext_resource type="Script" uid="uid://c7etl1ys6nxhx" path="res://Scripts/Table.gd" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
+[ext_resource type="Resource" uid="uid://56pix6fkijvu" path="res://Assets/Chips/DoubleChip.tres" id="3_rgh2o"]
+[ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 
 [sub_resource type="Gradient" id="Gradient_c1w88"]
 
@@ -14,13 +17,6 @@ colors = PackedColorArray(0, 1, 1, 1, 1, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kln2b"]
 gradient = SubResource("Gradient_idj7w")
-width = 32
-height = 32
-
-[sub_resource type="Gradient" id="Gradient_rgh2o"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pbw6q"]
-gradient = SubResource("Gradient_rgh2o")
 width = 32
 height = 32
 
@@ -76,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_r150o")
 
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
@@ -127,12 +124,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 7
 
-[node name="TextureRect" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=739535538]
+[node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 2
-texture = SubResource("GradientTexture2D_pbw6q")
-stretch_mode = 5
+chip = ExtResource("3_rgh2o")
+count = 6
 
 [node name="Spacer" type="Control" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1223161513]
 layout_mode = 2
@@ -162,7 +157,10 @@ theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 7
 
-[node name="Score" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar/MarginContainer" unique_id=2056116340]
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar/MarginContainer" unique_id=304767522]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar/MarginContainer/VBoxContainer" unique_id=2056116340]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -226,6 +224,7 @@ theme_override_constants/separation = 10
 [node name="Ex-card" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/PlayerBox/Player/HBoxContainer" unique_id=1311126176]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_rgh2o")
+script = ExtResource("4_rgh2o")
 
 [node name="DealerHand" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/VBoxContainer" unique_id=597211976]
 unique_name_in_owner = true
@@ -236,6 +235,7 @@ alignment = 1
 [node name="Ex-card" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/DealerHand" unique_id=1541194853]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_rgh2o")
+script = ExtResource("4_rgh2o")
 
 [node name="ContinueButton" type="TextureButton" parent="Table/MarginContainer" unique_id=95721931]
 unique_name_in_owner = true
@@ -307,6 +307,7 @@ rotation = 0.29793882
 pivot_offset = Vector2(108, 178)
 texture = SubResource("GradientTexture2D_50glp")
 stretch_mode = 4
+script = ExtResource("4_rgh2o")
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
 visible = false

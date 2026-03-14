@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bkxoekvv2efke"]
+
+[ext_resource type="Script" uid="uid://drogxsvxw33t6" path="res://Scripts/ChipSlot.gd" id="1_587vt"]
+
+[sub_resource type="Gradient" id="Gradient_y0qro"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dnpdf"]
+gradient = SubResource("Gradient_y0qro")
+
+[node name="ChipSlot" type="TextureRect" unique_id=1352684153]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_dnpdf")
+expand_mode = 1
+script = ExtResource("1_587vt")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

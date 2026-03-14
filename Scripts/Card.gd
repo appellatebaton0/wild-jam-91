@@ -1,9 +1,11 @@
 class_name Card extends Resource
 ## The class for all cards.
 
+signal value_changed(from:int, to:int)
+
 var value:int:
 	set(to):
-		# Run whatever animation there is to run...
+		value_changed.emit(value, to)
 		
 		# Set the value to its new one.
 		value = to

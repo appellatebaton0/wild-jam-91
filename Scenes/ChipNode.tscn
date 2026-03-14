@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://057rk5n5tpl7"]
+
+[ext_resource type="Script" uid="uid://jyrnh4a77shn" path="res://Scripts/ChipNode.gd" id="1_kbyqg"]
+
+[sub_resource type="Gradient" id="Gradient_y0qro"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dnpdf"]
+gradient = SubResource("Gradient_y0qro")
+
+[node name="ChipNode" type="TextureRect" unique_id=1352684153]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_dnpdf")
+script = ExtResource("1_kbyqg")
