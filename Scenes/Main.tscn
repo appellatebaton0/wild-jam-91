@@ -320,18 +320,20 @@ texture = SubResource("GradientTexture2D_50glp")
 
 [node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 175)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 37.560547
 offset_top = -289.95215
-offset_right = 167.939
-offset_bottom = -114.76738
+offset_right = 167.56055
+offset_bottom = -114.95215
 grow_vertical = 0
 rotation = 0.29793882
 pivot_offset = Vector2(108, 178)
 texture = SubResource("GradientTexture2D_50glp")
+expand_mode = 1
 stretch_mode = 4
 script = ExtResource("4_rgh2o")
 modifiable = true

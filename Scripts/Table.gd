@@ -88,7 +88,9 @@ func _on_next_pressed() -> void:
 	if target == &"Dealer":
 		var dealer_cards := Global.dealer_hand.cards
 		if len(dealer_cards) > 0: # Flip over the previous card.
-			dealer_cards[len(dealer_cards) - 1].visible = true
+			var prev := dealer_cards[len(dealer_cards) - 1]
+			prev.visible = true
+			dealer_hand.get_child(len(dealer_cards) - 1).flipping = true
 		
 		Global.dealer_hand.deal(next_card.card, false)
 		draw_new()
@@ -139,11 +141,12 @@ func cycle_deal_index() -> void:
 
 # Draw a new card into the dealer's hand.
 func draw_new() -> void:
+	var new = Card.new()
+	new.value = randi_range(1, 12)
 	
-	next_card.card = Card.new()
-	next_card.card.value = randi_range(1, 12)
+	next_card.card = new
 	
-	pass
+	
 
 func round_over(winner:Control):
 	print(winner)
