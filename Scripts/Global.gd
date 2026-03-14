@@ -13,7 +13,7 @@ var quota := 0 ## The quota for the current game.
 
 var money := 0 ## How much money the player has.
 
-var chips:Array[Chip]: ## The chips the player has.
+var chips:Dictionary[Chip, int]: ## The chips the player has.
 	set(to):
 		chips = to
 		chips_changed.emit(chips)

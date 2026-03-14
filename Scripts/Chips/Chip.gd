@@ -10,4 +10,4 @@
 
 ## Apply this chip's modifier to the card. 
 ## Optional hand argument to support things like 'copy the value of another card in the hand'
-@abstract func apply(to:Card, _of:Hand = null) -> void
+@abstract func apply(to:Card) -> void

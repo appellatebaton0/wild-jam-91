@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
 [ext_resource type="Resource" uid="uid://56pix6fkijvu" path="res://Assets/Chips/DoubleChip.tres" id="3_rgh2o"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
+[ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
 
 [sub_resource type="Gradient" id="Gradient_c1w88"]
 
@@ -20,6 +21,22 @@ gradient = SubResource("Gradient_idj7w")
 width = 32
 height = 32
 
+[sub_resource type="Gradient" id="Gradient_pbw6q"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v1gob"]
+gradient = SubResource("Gradient_pbw6q")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_idj7w"]
+thickness = 4
+vertical = true
+
+[sub_resource type="Gradient" id="Gradient_rgh2o"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pbw6q"]
+gradient = SubResource("Gradient_rgh2o")
+width = 48
+
 [sub_resource type="Gradient" id="Gradient_v1gob"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jw32o"]
@@ -31,23 +48,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_idj7w"]
 gradient = SubResource("Gradient_r150o")
 
-[sub_resource type="Gradient" id="Gradient_kln2b"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgh2o"]
-gradient = SubResource("Gradient_kln2b")
-width = 48
-
-[sub_resource type="Gradient" id="Gradient_pbw6q"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_v1gob"]
-gradient = SubResource("Gradient_pbw6q")
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_idj7w"]
-thickness = 4
-vertical = true
-
 [sub_resource type="Gradient" id="Gradient_jw32o"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_50glp"]
@@ -56,7 +56,7 @@ width = 48
 
 [node name="Main" type="Node" unique_id=1786674721]
 
-[node name="Table" type="Control" parent="." unique_id=540207028]
+[node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("players")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,6 +64,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r150o")
+players = {
+&"Player1": NodePath("PlayerBox/Player")
+}
 
 [node name="Background" type="TextureRect" parent="Table" unique_id=1024950272]
 layout_mode = 1
@@ -127,7 +130,7 @@ theme_override_constants/separation = 7
 [node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 chip = ExtResource("3_rgh2o")
-count = 6
+count = 1
 
 [node name="Spacer" type="Control" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1223161513]
 layout_mode = 2
@@ -196,47 +199,6 @@ text = "000000$"
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="PlayerBox" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/VBoxContainer" unique_id=605802732]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="Player" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/PlayerBox" unique_id=1552300650]
-layout_mode = 2
-
-[node name="Intent" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/PlayerBox/Player" unique_id=1868972599]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = SubResource("GradientTexture2D_jw32o")
-
-[node name="TextureRect" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/PlayerBox/Player" unique_id=393034014]
-custom_minimum_size = Vector2(125, 200)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_idj7w")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/PlayerBox/Player" unique_id=897403238]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Ex-card" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/PlayerBox/Player/HBoxContainer" unique_id=1311126176]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_rgh2o")
-script = ExtResource("4_rgh2o")
-
-[node name="DealerHand" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/VBoxContainer" unique_id=597211976]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Ex-card" type="TextureRect" parent="Table/MarginContainer/VBoxContainer/VBoxContainer/DealerHand" unique_id=1541194853]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_rgh2o")
-script = ExtResource("4_rgh2o")
-
 [node name="ContinueButton" type="TextureButton" parent="Table/MarginContainer" unique_id=95721931]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
@@ -281,6 +243,75 @@ size_flags_vertical = 8
 text = "ROUND 001"
 horizontal_alignment = 3
 
+[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 495.0
+offset_right = 1140.0
+offset_bottom = 559.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CardNode" type="TextureRect" parent="Table/DealerHand" unique_id=1805258729]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_pbw6q")
+script = ExtResource("4_rgh2o")
+metadata/_custom_type_script = "uid://5tl1kqw1dydx"
+
+[node name="PlayerBox" type="Control" parent="Table" unique_id=667759408]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 77.0
+offset_right = 1142.0
+offset_bottom = 349.0
+
+[node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234]
+anchors_preset = 0
+offset_left = 503.0
+offset_top = -38.0
+offset_right = 628.0
+offset_bottom = 298.0
+script = ExtResource("5_pbw6q")
+
+[node name="Intent" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=1868972599]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 30.0
+offset_right = 94.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture2D_jw32o")
+
+[node name="TextureRect" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=393034014]
+custom_minimum_size = Vector2(125, 200)
+layout_mode = 0
+offset_top = 68.0
+offset_right = 125.0
+offset_bottom = 268.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_idj7w")
+
+[node name="PlayerHand" type="HBoxContainer" parent="Table/PlayerBox/Player" unique_id=897403238]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 272.0
+offset_right = 125.0
+offset_bottom = 336.0
+theme_override_constants/separation = 10
+
+[node name="CardNode" type="TextureRect" parent="Table/PlayerBox/Player/PlayerHand" unique_id=555024772]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_pbw6q")
+script = ExtResource("4_rgh2o")
+metadata/_custom_type_script = "uid://5tl1kqw1dydx"
+
 [node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
 layout_mode = 1
 anchors_preset = 2
@@ -300,7 +331,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 55.999992
 offset_top = -350.0
-offset_right = 251.0
+offset_right = 233.12769
 offset_bottom = -111.999985
 grow_vertical = 0
 rotation = 0.29793882
@@ -308,6 +339,7 @@ pivot_offset = Vector2(108, 178)
 texture = SubResource("GradientTexture2D_50glp")
 stretch_mode = 4
 script = ExtResource("4_rgh2o")
+modifiable = true
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
 visible = false

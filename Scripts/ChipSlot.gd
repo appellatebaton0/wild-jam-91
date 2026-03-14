@@ -18,15 +18,12 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		## Create a new chip, and pick it up.
 		var new:ChipNode = CHIP_NODE_SCENE.instantiate()
 		
+		new.chip = chip
 		add_child(new)
 		
-		new.chip = chip
+		Global.held_chip = new
 		
 		count -= 1
-		
-		Global.held_chip = new
-		print("!")
-	
-	
-	print(event)
-	pass # Replace with function body.
+		new.dropped.connect(_on_chip_dropped)
+
+func _on_chip_dropped(): count += 1

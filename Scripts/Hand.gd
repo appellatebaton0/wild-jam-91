@@ -1,8 +1,8 @@
 class_name Hand extends Resource
 ## The class for the player / dealer's hand of cards.
 
-signal on_new_card(card:Card)
-signal on_cleared(hand:Array[Card])
+signal new_card(card:Card)
+signal cleared(hand:Array[Card])
 
 var cards:Array[Card]
 
@@ -11,13 +11,13 @@ func deal(card:Card) -> bool:
 	if cards.has(card): return false
 	
 	cards.append(cards)
-	on_new_card.emit(card)
+	new_card.emit(card)
 	
 	return true
 
 ## Clear this hand of all its cards.
 func clear() -> void:
-	on_cleared.emit(cards)
+	cleared.emit(cards)
 	cards.clear()
 
 ## Whether the current hand is winning or not
