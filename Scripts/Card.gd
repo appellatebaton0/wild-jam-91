@@ -5,13 +5,15 @@ signal value_changed(from:int, to:int)
 signal visibility_changed(to:bool)
 
 ## If the card is face up or not.
-@export var visible := true:
+@export var visible := false:
 	set(to):
 		visibility_changed.emit(to)
 		visible = to
 
 @export var value:int:
 	set(to):
+		to = clamp(to, 1, 12)
+		
 		value_changed.emit(value, to)
 		
 		# Set the value to its new one.

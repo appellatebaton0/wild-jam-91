@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dt8xwjydmeqno"]
+
+[ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="1_eumo2"]
+
+[sub_resource type="Gradient" id="Gradient_23e6p"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_50h0p"]
+gradient = SubResource("Gradient_23e6p")
+width = 48
+
+[node name="CardNode" type="TextureRect" unique_id=1318736687]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_50h0p")
+script = ExtResource("1_eumo2")
+metadata/_custom_type_script = "uid://5tl1kqw1dydx"

@@ -7,10 +7,11 @@ signal cleared(hand:Array[Card])
 var cards:Array[Card]
 
 ## Deal a new card into this hand.
-func deal(card:Card) -> bool:
+func deal(card:Card, visible := true) -> bool:
 	if cards.has(card): return false
 	
-	cards.append(cards)
+	cards.append(card)
+	card.visible = visible
 	new_card.emit(card)
 	
 	return true
@@ -21,7 +22,13 @@ func clear() -> void:
 	cards.clear()
 
 ## Whether the current hand is winning or not
-func is_winning() -> bool: return (high() == 21) or (low() == 21)
+func is_winning(visible_only := false) -> bool: return (high(visible_only) == 21) or (low(visible_only) == 21)
+
+## Returns whichever, of the high and low, is closer to 21.
+func closest(visible_only := false) -> int:
+	var h = high(visible_only)
+	var l = low(visible_only)
+	return h if abs(h - 21) < abs(l - 21) else l 
 
 ## Whether the current hand is losing.
 func is_over() -> bool: return low() > 21
