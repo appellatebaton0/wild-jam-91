@@ -37,6 +37,8 @@ func end_game():
 	game_score = 0
 	game_count += 1
 	
+	dealer_hand.clear()
+	
 	game_ended.emit()
 
 ## End the current run. Ran when the dealer doesn't meet quota.

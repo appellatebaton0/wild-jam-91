@@ -54,11 +54,11 @@ func _on_next_pressed() -> void:
 	var all_standing := true
 	
 	# Dealer is visibly winning.
-	if Global.dealer_hand.is_winning(true):
+	if Global.dealer_hand.is_winning():
 		round_over(self)
 		return
 	
-	# One of the players is winning.
+	# Is one of the players winning?
 	for player in players.values():
 		if player.hand.is_winning():
 			round_over(player)
@@ -68,7 +68,7 @@ func _on_next_pressed() -> void:
 	
 	# IF all the players are standing or out, figure out who's won.
 	
-	if all_standing:
+	if (all_standing and Global.dealer_hand.high() >= 17) or Global.dealer_hand.is_over():
 		var best_player:Player = null
 		var best_distance:int
 		for player in players.values(): if player is Player:
@@ -79,7 +79,7 @@ func _on_next_pressed() -> void:
 				best_distance = abs(player.hand.closest() - 21)
 		
 		@warning_ignore("incompatible_ternary")
-		round_over(best_player if best_distance < abs(Global.dealer_hand.closest() - 21) else self)
+		round_over(best_player if best_distance < abs(Global.dealer_hand.closest() - 21) and best_player else self)
 		return
 	
 	## Round's still going... Deal the current card to whoever it goes to.
@@ -96,7 +96,7 @@ func _on_next_pressed() -> void:
 		target = players[target]
 		if target is Player: # Deal the card to the player, face down if they're doubling down.
 			
-			match target.INTENT:
+			match target.intent:
 				Player.INTENT.HIT:
 					target.hand.deal(next_card.card)
 					target.renew_intent()
@@ -108,11 +108,21 @@ func _on_next_pressed() -> void:
 	
 	## Cycle the dealing index.
 	cycle_deal_index()
+	
+	## IF no chips remaining, just go again.
+	var has_chips_remaining = false
+	for chip_slot in chip_bar.get_children(): if chip_slot is ChipSlot:
+		if chip_slot.count > 0: has_chips_remaining = true
+	if not has_chips_remaining: _on_next_pressed()
 
 func cycle_deal_index() -> void: 
+	var started_at := deal_index
 	while true:
 		# Cycle the deal index until a new valid target is found.
 		deal_index = wrap(deal_index + 1, 0, len(deal_cycle))
+		
+		if deal_index == started_at:
+			break # Looped around. The game's probably over.
 		
 		# If the next player's intent is to HIT, it'll be their turn to draw, duh.
 		if deal_cycle[deal_index] != &"Dealer" and players[deal_cycle[deal_index]].intent == Player.INTENT.HIT:
@@ -136,10 +146,12 @@ func draw_new() -> void:
 	pass
 
 func round_over(winner:Control):
+	print(winner)
 	if winner == self: # The dealer won.
 		pass
 	elif winner is Player: # A player won.
 		pass
+	Global.end_game()
 
 ## Update the dealer's hand when it changes.
 
@@ -153,6 +165,6 @@ func _on_new_card(card:Card):
 	dealer_hand.add_child(new)
 
 ## Remove all the cards from the hand.
-func _on_clear_cards():
+func _on_clear_cards(_cards:Array[Card]):
 	for child in dealer_hand.get_children():
 		child.queue_free()

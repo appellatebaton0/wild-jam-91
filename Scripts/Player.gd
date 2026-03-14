@@ -10,9 +10,17 @@ enum INTENT {HIT, STAND, OUT, DOUBLE_DOWN}
 
 @export_range(2, 500) var bet:int = 50
 
+@onready var lab := Label.new()
 func _ready() -> void:
 	hand.new_card.connect(_on_new_card)
 	hand.cleared.connect(_on_clear_cards)
+	Global.game_ended.connect(_on_game_end)
+	
+	renew_bet()
+	
+	# debug label
+	add_child(lab)
+func _process(delta: float) -> void: lab.text = str(intent)
 
 const CARD_NODE_SCENE := preload("res://Scenes/CardNode.tscn")
 ## Add a new card to the hand.
@@ -24,7 +32,7 @@ func _on_new_card(card:Card):
 	hand_box.add_child(new)
 
 ## Remove all the cards from the hand.
-func _on_clear_cards():
+func _on_clear_cards(_cards:Array[Card]):
 	for child in hand_box.get_children():
 		child.queue_free()
 
@@ -104,4 +112,14 @@ func invert_intent(def := intent):
 		INTENT.HIT: intent = INTENT.STAND
 		_:
 			intent = def
+
+func renew_bet() -> int:
+	bet = randi_range(50, 500)
+	return bet
+
+## When the current game ends, reset the hand and the bet.
+func _on_game_end() -> void:
 	
+	hand.clear()
+	renew_bet()
+	intent = INTENT.HIT
