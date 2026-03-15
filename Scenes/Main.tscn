@@ -1,0 +1,1100 @@
+[gd_scene format=3 uid="uid://bqkgcup7e7ey5"]
+
+[ext_resource type="Script" uid="uid://c7etl1ys6nxhx" path="res://Scripts/Table.gd" id="1_r150o"]
+[ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
+[ext_resource type="Texture2D" uid="uid://dccifra5kjsj2" path="res://Assets/Background.png" id="2_v1gob"]
+[ext_resource type="Resource" uid="uid://56pix6fkijvu" path="res://Assets/Chips/DoubleChip.tres" id="3_rgh2o"]
+[ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
+[ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
+[ext_resource type="Script" uid="uid://cula1fvvdtwkd" path="res://Scripts/ChipDisplay.gd" id="7_jw32o"]
+[ext_resource type="Script" uid="uid://craqxpg4i8wx5" path="res://Scripts/AnimatorButton.gd" id="7_vy5pj"]
+[ext_resource type="Script" uid="uid://qudew6dbpmv2" path="res://Scripts/TransitionOverlay.gd" id="8_50glp"]
+[ext_resource type="Script" uid="uid://cnshugqmobch0" path="res://Scripts/Shop.gd" id="8_bmxlf"]
+[ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
+
+[sub_resource type="Gradient" id="Gradient_grg3l"]
+offsets = PackedFloat32Array(0.42541435, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_frkhe"]
+gradient = SubResource("Gradient_grg3l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_idj7w"]
+offsets = PackedFloat32Array(0.005181347, 1)
+colors = PackedColorArray(0, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kln2b"]
+gradient = SubResource("Gradient_idj7w")
+width = 32
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_pbw6q"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v1gob"]
+gradient = SubResource("Gradient_pbw6q")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_idj7w"]
+thickness = 4
+vertical = true
+
+[sub_resource type="Gradient" id="Gradient_v1gob"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.654902, 0.654902, 0.654902, 0.27450982)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jw32o"]
+gradient = SubResource("Gradient_v1gob")
+
+[sub_resource type="Gradient" id="Gradient_r150o"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 0.2901961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_idj7w"]
+gradient = SubResource("Gradient_r150o")
+
+[sub_resource type="Gradient" id="Gradient_bmxlf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kpch"]
+gradient = SubResource("Gradient_bmxlf")
+
+[sub_resource type="Gradient" id="Gradient_jw32o"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_50glp"]
+gradient = SubResource("Gradient_jw32o")
+width = 48
+
+[sub_resource type="Gradient" id="Gradient_50glp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy5pj"]
+gradient = SubResource("Gradient_50glp")
+
+[sub_resource type="Gradient" id="Gradient_vy5pj"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmxlf"]
+gradient = SubResource("Gradient_vy5pj")
+
+[sub_resource type="Gradient" id="Gradient_1p5hy"]
+offsets = PackedFloat32Array(0, 0.1764706, 0.8200692, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h1m7h"]
+gradient = SubResource("Gradient_1p5hy")
+
+[sub_resource type="Animation" id="Animation_jw32o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Table/RoundOverPopup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Table/RoundOverPopup:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TransitionOverlay:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TransitionOverlay:progress")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Table:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Shop:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bmxlf"]
+resource_name = "Shop->Table"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionOverlay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionOverlay:progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Table:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shop:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Table/RoundOverPopup:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_50glp"]
+resource_name = "Table->EndPopup"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Table/RoundOverPopup:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Table/RoundOverPopup:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_erwvk"]
+resource_name = "Table->Shop"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionOverlay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionOverlay:progress")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Table:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shop:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
+_data = {
+&"RESET": SubResource("Animation_jw32o"),
+&"Shop->Table": SubResource("Animation_bmxlf"),
+&"Table->EndPopup": SubResource("Animation_50glp"),
+&"Table->Shop": SubResource("Animation_erwvk")
+}
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2w5on"]
+stream_count = 1
+stream_0/volume = 0.0
+
+[node name="Main" type="Node" unique_id=1786674721]
+
+[node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("anim_player", "players")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r150o")
+anim_player = NodePath("../AnimationPlayer")
+players = {
+&"Player1": NodePath("PlayerBox/Player")
+}
+
+[node name="Background" type="TextureRect" parent="Table" unique_id=1024950272]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_v1gob")
+expand_mode = 1
+
+[node name="TurnIndicator" type="TextureRect" parent="Table" unique_id=1691322789]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_frkhe")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer" unique_id=511322114]
+layout_mode = 2
+
+[node name="Bars" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer" unique_id=387158876]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1137525609]
+layout_mode = 2
+
+[node name="ChipBarParent" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2" unique_id=789656190]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Background" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent" unique_id=1577673438]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_kln2b")
+
+[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent" unique_id=1403766086]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="ChipBar" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer" unique_id=643586999]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 7
+
+[node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+chip = ExtResource("3_rgh2o")
+count = 1
+
+[node name="Spacer" type="Control" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1223161513]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=587550076]
+layout_mode = 2
+
+[node name="ScoreBar" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer" unique_id=1144656942]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureRect" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar" unique_id=339317711]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_kln2b")
+
+[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar" unique_id=536971327]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar/MarginContainer" unique_id=304767522]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar/MarginContainer/VBoxContainer" unique_id=2056116340]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "000000000"
+
+[node name="MoneyBar" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer" unique_id=381655679]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureRect" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/MoneyBar" unique_id=211472937]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_kln2b")
+
+[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/MoneyBar" unique_id=339720090]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="Money" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/MoneyBar/MarginContainer" unique_id=710108117]
+unique_name_in_owner = true
+layout_mode = 2
+text = "000000$"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer" unique_id=25904373]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ContinueButton" type="TextureButton" parent="Table/MarginContainer" unique_id=95721931]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = SubResource("GradientTexture2D_v1gob")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Table/MarginContainer/ContinueButton" unique_id=1113975629]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Table/MarginContainer" unique_id=1633923152]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Label2" type="Label" parent="Table/MarginContainer/HBoxContainer" unique_id=1202036037]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "GAME 001"
+horizontal_alignment = 3
+
+[node name="VSeparator" type="VSeparator" parent="Table/MarginContainer/HBoxContainer" unique_id=1273741880]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_idj7w")
+
+[node name="Label3" type="Label" parent="Table/MarginContainer/HBoxContainer" unique_id=278751952]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "ROUND 001"
+horizontal_alignment = 3
+
+[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 501.0
+offset_right = 1140.0
+offset_bottom = 565.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PlayerBox" type="Control" parent="Table" unique_id=667759408]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 77.0
+offset_right = 1142.0
+offset_bottom = 349.0
+
+[node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234]
+anchors_preset = 0
+offset_left = 503.0
+offset_top = -38.0
+offset_right = 628.0
+offset_bottom = 298.0
+script = ExtResource("5_pbw6q")
+
+[node name="Intent" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=1868972599]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 27.0
+offset_top = -8.0
+offset_right = 91.0
+offset_bottom = 56.0
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture2D_jw32o")
+
+[node name="Texture" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=393034014]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -112.0
+offset_right = 150.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_idj7w")
+
+[node name="PlayerHand" type="HBoxContainer" parent="Table/PlayerBox/Player" unique_id=897403238]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -111.0
+offset_top = 33.0
+offset_right = 111.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=1112573543]
+custom_minimum_size = Vector2(125, 100)
+layout_mode = 0
+offset_left = 150.0
+offset_top = 10.0
+offset_right = 275.0
+offset_bottom = 110.0
+texture = SubResource("GradientTexture2D_4kpch")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/PlayerBox/Player/TextureRect" unique_id=323812416]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Table/PlayerBox/Player/TextureRect/VBoxContainer" unique_id=482054046]
+layout_mode = 2
+text = "BET"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bet" type="Label" parent="Table/PlayerBox/Player/TextureRect/VBoxContainer" unique_id=1631723075]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "500$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = -173.3128
+offset_right = 318.0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_50glp")
+
+[node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 175)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -232.3436
+offset_right = 99.0
+offset_bottom = -57.343597
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.29793882
+pivot_offset = Vector2(62.64557, 80.755035)
+texture = SubResource("GradientTexture2D_50glp")
+expand_mode = 1
+script = ExtResource("4_rgh2o")
+FLIP_SPEED = 1100
+max_x = 132.0
+modifiable = true
+
+[node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Table/RoundOverPopup" unique_id=1807374488]
+custom_minimum_size = Vector2(600, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -175.0
+offset_right = 300.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Table/RoundOverPopup/Panel" unique_id=1877866947]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/RoundOverPopup/Panel/MarginContainer" unique_id=1385354765]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=743047638]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ROUND COMPLETE"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=86465456]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "TO SHOP"
+script = ExtResource("7_vy5pj")
+anim_name = &"Table->Shop"
+
+[node name="Shop" type="Control" parent="." unique_id=1257850578]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_bmxlf")
+
+[node name="Panel" type="TextureRect" parent="Shop" unique_id=95063815]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vy5pj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1157051586]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer" unique_id=338303092]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Shop/MarginContainer/VBoxContainer" unique_id=1190053505]
+custom_minimum_size = Vector2(0, 259.2)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Shop/MarginContainer/VBoxContainer" unique_id=327130135]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_bmxlf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect" unique_id=1105709724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer" unique_id=1631733223]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="GridContainer" type="GridContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=811847063]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 7
+
+[node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+chip = ExtResource("3_rgh2o")
+
+[node name="ShopEntry2" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry3" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry4" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry5" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=916256719 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry9" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=2111056132 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry10" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1984822719 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry11" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1797144548 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry12" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=612177312 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry13" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=502973793 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry14" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1366369193 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry15" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=177555919 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry16" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=958778484 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry17" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1689270088 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry18" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1929170373 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry19" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1170422816 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry20" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=707031144 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="ShopEntry21" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1473947956 instance=ExtResource("9_4kpch")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=986045665]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1548177628]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "BUY CHIP SLOT"
+
+[node name="Continue" type="Button" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1946982751]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "CONTINUE"
+script = ExtResource("7_vy5pj")
+anim_name = &"Shop->Table"
+
+[node name="ChipBarParent" type="MarginContainer" parent="Shop/MarginContainer" unique_id=1358028168]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Background" type="NinePatchRect" parent="Shop/MarginContainer/ChipBarParent" unique_id=1538285747]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_kln2b")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/ChipBarParent" unique_id=120296607]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="ChipBar" type="HBoxContainer" parent="Shop/MarginContainer/ChipBarParent/MarginContainer" unique_id=541562196]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 7
+script = ExtResource("7_jw32o")
+usable = false
+
+[node name="ChipSlot" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1909970247 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot2" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1158282121 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot3" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=645527073 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot4" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1962112460 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot5" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1847388981 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot6" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=138543370 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot7" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=206407477 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot8" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1078688410 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot9" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1560566182 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="Menu" type="Control" parent="." unique_id=999863084]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputStopper" type="Control" parent="." unique_id=624563267]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionOverlay" type="Control" parent="." unique_id=130434851]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.26282808
+pivot_offset = Vector2(576, 324)
+script = ExtResource("8_50glp")
+ease_min = -0.5
+ease_max = -1.0
+texture = SubResource("GradientTexture2D_h1m7h")
+rect_count = 10
+y_cover = 1000
+x_size = 3000.0
+
+[node name="@TextureRect@105780" type="TextureRect" parent="TransitionOverlay" unique_id=2055780095]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = -150.0
+offset_right = 4776.0
+offset_bottom = -50.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105781" type="TextureRect" parent="TransitionOverlay" unique_id=704584588]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = -50.0
+offset_right = 4776.0
+offset_bottom = 50.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105782" type="TextureRect" parent="TransitionOverlay" unique_id=1756426644]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 50.0
+offset_right = 4776.0
+offset_bottom = 150.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105783" type="TextureRect" parent="TransitionOverlay" unique_id=523827483]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 150.0
+offset_right = 4776.0
+offset_bottom = 250.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105784" type="TextureRect" parent="TransitionOverlay" unique_id=1355427359]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 250.0
+offset_right = 4776.0
+offset_bottom = 350.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105785" type="TextureRect" parent="TransitionOverlay" unique_id=1095719151]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 350.0
+offset_right = 4776.0
+offset_bottom = 450.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105786" type="TextureRect" parent="TransitionOverlay" unique_id=1758827129]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 450.0
+offset_right = 4776.0
+offset_bottom = 550.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105787" type="TextureRect" parent="TransitionOverlay" unique_id=1954291231]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 550.0
+offset_right = 4776.0
+offset_bottom = 650.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105788" type="TextureRect" parent="TransitionOverlay" unique_id=208132844]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 650.0
+offset_right = 4776.0
+offset_bottom = 750.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="@TextureRect@105789" type="TextureRect" parent="TransitionOverlay" unique_id=1507693711]
+layout_mode = 0
+offset_left = 1776.0
+offset_top = 750.0
+offset_right = 4776.0
+offset_bottom = 850.0
+texture = SubResource("GradientTexture2D_h1m7h")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1477990020]
+libraries/ = SubResource("AnimationLibrary_vy5pj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1243578129]
+stream = SubResource("AudioStreamSynchronized_2w5on")

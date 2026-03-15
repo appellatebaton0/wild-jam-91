@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dwq3j5upcifut"]
+
+[ext_resource type="Script" uid="uid://l8y45y7ghahy" path="res://Scripts/ShopEntry.gd" id="1_tuy2o"]
+
+[sub_resource type="Gradient" id="Gradient_ynqlb"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tuy2o"]
+gradient = SubResource("Gradient_ynqlb")
+
+[sub_resource type="Gradient" id="Gradient_wnijs"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r8i6d"]
+gradient = SubResource("Gradient_wnijs")
+
+[node name="ShopEntry" type="TextureRect" unique_id=871977367]
+custom_minimum_size = Vector2(64, 80)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_tuy2o")
+expand_mode = 1
+script = ExtResource("1_tuy2o")
+cost = null
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1146846368]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=492324207]
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=953974057]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_r8i6d")
+expand_mode = 1
+
+[node name="Buy" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1006052428]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "BUY $50"
+
+[node name="Fail" type="AudioStreamPlayer" parent="." unique_id=1118143435]
+
+[node name="Suceed" type="AudioStreamPlayer" parent="." unique_id=1036665533]

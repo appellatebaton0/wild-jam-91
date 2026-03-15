@@ -1,0 +1,181 @@
+class_name Table extends Control
+## Manages the overall goings-ons of the Table screen's UI.
+
+@onready var chip_bar    := %ChipBar        # The HBox holding the chips.
+@onready var score_lab   := %Score          # The label showing the score.
+@onready var money_lab   := %Money          # The label showing the money.
+@onready var player_box  := %PlayerBox      # The box holding the players.
+@onready var cont_button := %ContinueButton # The button to continue.
+@onready var next_card   := %NextCard       # The next card to be dealt.
+@onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
+@onready var turn_indic  := %TurnIndicator  # The indicator for who's turn it is.
+
+@export var anim_player:AnimationPlayer
+
+@export var players:Dictionary[StringName, Player] = {
+	&"Player1": null
+}
+
+var deal_cycle:Array[StringName]
+var deal_index := 0
+
+func _ready() -> void:
+	## Connect the signals.
+	Global.chips_changed.connect(_on_chips_changed)
+	cont_button.pressed.connect(_on_next_pressed)
+	
+	Global.dealer_hand.new_card.connect(_on_new_card)
+	Global.dealer_hand.cleared.connect(_on_clear_cards)
+	
+	for player in players:
+		deal_cycle.append(player)
+	deal_cycle.append(&"Dealer")
+	
+	draw_new()
+
+const CHIP_SLOT_SCENE := preload("res://Scenes/ChipSlot.tscn")
+## Update the chips in the chip_bar to the new set.
+func _on_chips_changed(to:Dictionary[Chip, int]) -> void:
+	
+	## Get rid of the existing chips.
+	for child in chip_bar.get_children():
+		child.queue_free()
+	
+	## Add in the new chips.
+	for chip in to:
+		var new:ChipSlot = CHIP_SLOT_SCENE.instantiate()
+		
+		new.chip = chip
+		new.count = to[chip]
+		
+		chip_bar.add_child(new)
+
+func _on_next_pressed() -> void:
+	## Check for any met round end conditions.
+	
+	var all_standing := true
+	
+	# Dealer is visibly winning.
+	if Global.dealer_hand.is_winning():
+		round_over(self)
+		return
+	
+	# Is one of the players winning?
+	for player in players.values():
+		if player.hand.is_winning():
+			round_over(player)
+			return
+		if not player.intent == Player.INTENT.STAND and not player.intent == Player.INTENT.OUT:
+			all_standing = false
+	
+	# IF all the players are standing or out, figure out who's won.
+	
+	if (all_standing and Global.dealer_hand.high() >= 17) or Global.dealer_hand.is_over():
+		var best_player:Player = null
+		var best_distance:int
+		for player in players.values(): if player is Player:
+			if player.intent == Player.INTENT.OUT: continue # Skip losing players.
+			
+			if best_player == null or best_distance > abs(player.hand.closest() - 21):
+				best_player = player
+				best_distance = abs(player.hand.closest() - 21)
+		
+		@warning_ignore("incompatible_ternary")
+		round_over(best_player if best_distance < abs(Global.dealer_hand.closest() - 21) and best_player else self)
+		return
+	
+	## Round's still going... Deal the current card to whoever it goes to.
+	var target = deal_cycle[deal_index]
+	
+	if target == &"Dealer":
+		var dealer_cards := Global.dealer_hand.cards
+		if len(dealer_cards) > 0: # Flip over the previous card.
+			var prev := dealer_cards[len(dealer_cards) - 1]
+			prev.visible = true
+			dealer_hand.get_child(len(dealer_cards) - 1).flipping = true
+		
+		Global.dealer_hand.deal(next_card.card, false)
+		draw_new()
+	else:
+		target = players[target]
+		if target is Player: # Deal the card to the player, face down if they're doubling down.
+			
+			match target.intent:
+				Player.INTENT.HIT:
+					target.hand.deal(next_card.card)
+					target.renew_intent()
+					draw_new()
+				Player.INTENT.DOUBLE_DOWN:
+					target.bet *= 2
+					target.hand.deal(next_card.card, false)
+					target.intent = Player.INTENT.STAND
+	
+	## Cycle the dealing index.
+	cycle_deal_index()
+	
+	## IF no chips remaining, just go again.
+	var has_chips_remaining = false
+	for chip_slot in chip_bar.get_children(): if chip_slot is ChipSlot:
+		if chip_slot.count > 0: has_chips_remaining = true
+	if not has_chips_remaining: _on_next_pressed()
+
+func cycle_deal_index() -> void: 
+	var started_at := deal_index
+	while true:
+		# Cycle the deal index until a new valid target is found.
+		deal_index = wrap(deal_index + 1, 0, len(deal_cycle))
+		
+		if deal_index == started_at:
+			break # Looped around. The game's probably over.
+		
+		# If the next player's intent is to HIT, it'll be their turn to draw, duh.
+		if deal_cycle[deal_index] != &"Dealer" and players[deal_cycle[deal_index]].intent == Player.INTENT.HIT:
+			break 
+		
+		# If the dealer has an ace, and counting it as 11 would bring
+		# the total to 17 or more (but not over 21), the dealer must 
+		# count the ace as 11 and stand.
+		
+		# IE, if the HIGH is under 17, the dealer hits.
+		
+		if deal_cycle[deal_index] == &"Dealer" and Global.dealer_hand.high() < 17:
+			break # The next turn belongs to the dealer.
+
+func _process(delta: float) -> void:
+	var next := deal_cycle[deal_index]
+	var next_node := dealer_hand if next == &"Dealer" else players[next].hand_box
+	turn_indic.reparent(next_node)
+	next_node.move_child(turn_indic, -1)
+
+# Draw a new card into the dealer's hand.
+func draw_new() -> void:
+	var new = Card.new()
+	new.value = randi_range(1, 12)
+	
+	next_card.card = new
+	
+	
+
+func round_over(winner:Control):
+	if winner == self: # The dealer won.
+		pass
+	elif winner is Player: # A player won.
+		pass
+	
+	if anim_player: anim_player.play("Table->EndPopup")
+
+## Update the dealer's hand when it changes.
+
+const CARD_NODE_SCENE := preload("res://Scenes/CardNode.tscn")
+## Add a new card to the hand.
+func _on_new_card(card:Card):
+	
+	var new:CardNode = CARD_NODE_SCENE.instantiate()
+	new.card = card
+	
+	dealer_hand.add_child(new)
+
+## Remove all the cards from the hand.
+func _on_clear_cards(_cards:Array[Card]):
+	for child in dealer_hand.get_children(): if child is CardNode:
+		child.queue_free()

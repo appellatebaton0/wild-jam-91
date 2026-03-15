@@ -11,8 +11,21 @@ config_version=5
 [application]
 
 config/name="wild-jam-91"
+run/main_scene="uid://bqkgcup7e7ey5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://4scu11shd0ap"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-hackatime/plugin.cfg", "res://addons/godot-hackatime/tracker/plugin.cfg")
 
 [physics]
 

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bkxoekvv2efke"]
+
+[ext_resource type="Script" uid="uid://drogxsvxw33t6" path="res://Scripts/ChipSlot.gd" id="1_587vt"]
+
+[sub_resource type="Gradient" id="Gradient_y0qro"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dnpdf"]
+gradient = SubResource("Gradient_y0qro")
+
+[node name="ChipSlot" type="TextureRect" unique_id=1352684153]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_dnpdf")
+expand_mode = 1
+script = ExtResource("1_587vt")
+
+[node name="Label" type="Label" parent="." unique_id=1552364337]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 39.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "INF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
