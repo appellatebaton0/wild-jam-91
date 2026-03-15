@@ -21,6 +21,8 @@ var chips:Dictionary[Chip, int]: ## The chips the player has.
 	set(to):
 		chips = to
 		chips_changed.emit(chips)
+		
+		print("!")
 
 var held_chip:ChipNode:  ## The currently held chip, if any.
 	set(to):
