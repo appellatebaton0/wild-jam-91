@@ -10,6 +10,8 @@ class_name Table extends Control
 @onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
 @onready var turn_indic  := %TurnIndicator  # The indicator for who's turn it is.
 
+@export var anim_player:AnimationPlayer
+
 @export var players:Dictionary[StringName, Player] = {
 	&"Player1": null
 }
@@ -155,12 +157,12 @@ func draw_new() -> void:
 	
 
 func round_over(winner:Control):
-	print(winner)
 	if winner == self: # The dealer won.
 		pass
 	elif winner is Player: # A player won.
 		pass
-	Global.end_game()
+	
+	if anim_player: anim_player.play("Table->EndPopup")
 
 ## Update the dealer's hand when it changes.
 

@@ -1,7 +1,7 @@
 class_name CardNode extends TextureRect
 ## Handles turning the card node into something readable.
 
-const FLIP_SPEED := 500
+@export var FLIP_SPEED := 350
 
 var flipping = false
 
