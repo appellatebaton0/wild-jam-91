@@ -8,7 +8,7 @@ class_name Table extends Control
 @onready var cont_button := %ContinueButton # The button to continue.
 @onready var next_card   := %NextCard       # The next card to be dealt.
 @onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
-
+@onready var turn_indic  := %TurnIndicator  # The indicator for who's turn it is.
 
 @export var players:Dictionary[StringName, Player] = {
 	&"Player1": null
@@ -139,6 +139,12 @@ func cycle_deal_index() -> void:
 		if deal_cycle[deal_index] == &"Dealer" and Global.dealer_hand.high() < 17:
 			break # The next turn belongs to the dealer.
 
+func _process(delta: float) -> void:
+	var next := deal_cycle[deal_index]
+	var next_node := dealer_hand if next == &"Dealer" else players[next].hand_box
+	turn_indic.reparent(next_node)
+	next_node.move_child(turn_indic, -1)
+
 # Draw a new card into the dealer's hand.
 func draw_new() -> void:
 	var new = Card.new()
@@ -169,5 +175,5 @@ func _on_new_card(card:Card):
 
 ## Remove all the cards from the hand.
 func _on_clear_cards(_cards:Array[Card]):
-	for child in dealer_hand.get_children():
+	for child in dealer_hand.get_children(): if child is CardNode:
 		child.queue_free()

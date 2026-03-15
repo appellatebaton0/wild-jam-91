@@ -1,7 +1,7 @@
 class_name Card extends Resource
 ## The class for all cards.
 
-signal value_changed(from:int, to:int)
+signal value_changed
 signal visibility_changed(to:bool)
 
 ## If the card is face up or not.
@@ -14,7 +14,7 @@ signal visibility_changed(to:bool)
 	set(to):
 		to = clamp(to, 1, 13)
 		
-		value_changed.emit(value, to)
+		value_changed.emit()
 		
 		# Set the value to its new one.
 		value = to

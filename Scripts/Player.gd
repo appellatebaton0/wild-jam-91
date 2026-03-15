@@ -3,6 +3,7 @@ class_name Player extends Control
 
 @onready var intent_rect := %Intent     ## The TextureRect to show intent.
 @onready var hand_box    := %PlayerHand ## The VBox holding the hand.
+@onready var bet_lab     := %Bet        ## The label showing the current bet.
 
 enum INTENT {HIT, STAND, OUT, DOUBLE_DOWN}
 @export var intent := INTENT.HIT
@@ -33,7 +34,7 @@ func _on_new_card(card:Card):
 
 ## Remove all the cards from the hand.
 func _on_clear_cards(_cards:Array[Card]):
-	for child in hand_box.get_children():
+	for child in hand_box.get_children(): if child is CardNode:
 		child.queue_free()
 
 ## Change the intent to whatever it should be now.
@@ -114,7 +115,8 @@ func invert_intent(def := intent):
 			intent = def
 
 func renew_bet() -> int:
-	bet = randi_range(50, 500)
+	bet = randi_range(5, 50) * 10
+	bet_lab.text = "$" + str(bet)
 	return bet
 
 ## When the current game ends, reset the hand and the bet.

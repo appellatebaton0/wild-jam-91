@@ -9,9 +9,18 @@ class_name ChipSlot extends TextureRect
 		
 		texture = chip.texture
 
-@export var count := 0 ## How many of the chip there are.
+@onready var label := $Label
+
+@export var count := 0: ## How many of the chip there are.
+	set(to):
+		count = to
+		if label: label.text = str(count)
+	
 
 const CHIP_NODE_SCENE := preload("res://Scenes/ChipNode.tscn")
+
+func _ready() -> void:
+	if label: label.text = str(count)
 
 func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton:
 	if event.is_pressed() and not Global.held_chip and count > 0:
@@ -24,6 +33,7 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		Global.held_chip = new
 		
 		count -= 1
+		
 		new.dropped.connect(_on_chip_dropped)
 
 func _on_chip_dropped(): count += 1
