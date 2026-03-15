@@ -46,6 +46,11 @@ gradient = SubResource("Gradient_r150o")
 gradient = SubResource("Gradient_jw32o")
 width = 48
 
+[sub_resource type="Gradient" id="Gradient_50glp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy5pj"]
+gradient = SubResource("Gradient_50glp")
+
 [node name="Main" type="Node" unique_id=1786674721]
 
 [node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("players")]
@@ -121,6 +126,26 @@ size_flags_vertical = 0
 theme_override_constants/separation = 7
 
 [node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+chip = ExtResource("3_rgh2o")
+count = 1
+
+[node name="ChipSlot2" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=225585390 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+chip = ExtResource("3_rgh2o")
+count = 1
+
+[node name="ChipSlot3" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=525800694 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+chip = ExtResource("3_rgh2o")
+count = 1
+
+[node name="ChipSlot4" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=160638265 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+chip = ExtResource("3_rgh2o")
+count = 1
+
+[node name="ChipSlot5" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1738591964 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 chip = ExtResource("3_rgh2o")
 count = 1
@@ -338,14 +363,91 @@ stretch_mode = 4
 script = ExtResource("4_rgh2o")
 modifiable = true
 
+[node name="RoundOverPopup" type="Panel" parent="Table" unique_id=1807374488]
+custom_minimum_size = Vector2(600, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Table/RoundOverPopup" unique_id=1877866947]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/RoundOverPopup/MarginContainer" unique_id=1385354765]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/RoundOverPopup/MarginContainer/VBoxContainer" unique_id=743047638]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "ROUND COMPLETE"
+horizontal_alignment = 1
+
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="TextureRect" parent="Shop" unique_id=95063815]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vy5pj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1157051586]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer" unique_id=338303092]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Shop/MarginContainer/VBoxContainer" unique_id=1190053505]
+custom_minimum_size = Vector2(0, 259.2)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Shop/MarginContainer/VBoxContainer" unique_id=327130135]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect" unique_id=1105709724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer" unique_id=811847063]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Menu" type="Control" parent="." unique_id=999863084]
 visible = false
