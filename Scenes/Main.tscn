@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvbl3jkqfugn2" path="res://Assets/Cards/NextCard.png" id="4_1p5hy"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 [ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
+[ext_resource type="Script" uid="uid://cpdqm8lk2v04p" path="res://Scripts/FancyTooltip.gd" id="7_346fj"]
 [ext_resource type="Texture2D" uid="uid://dv0bcvfc74p18" path="res://Assets/UI/SpeechBubble.png" id="7_frkhe"]
 [ext_resource type="Script" uid="uid://cula1fvvdtwkd" path="res://Scripts/ChipDisplay.gd" id="7_jw32o"]
 [ext_resource type="Script" uid="uid://craqxpg4i8wx5" path="res://Scripts/AnimatorButton.gd" id="7_vy5pj"]
@@ -725,9 +726,14 @@ offset_top = -8.0
 offset_right = 91.0
 offset_bottom = 56.0
 size_flags_horizontal = 4
+tooltip_text = "Intent
+---
+{name}[color=] {intent}[color=]."
 texture = SubResource("GradientTexture2D_jw32o")
+script = ExtResource("7_346fj")
 
 [node name="Texture" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=393034014]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 1
 anchors_preset = 8
@@ -743,7 +749,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "{name}[color=]
+---
+{name}[color=] {intent}[color=].
+{name}[color=] is betting {bet}[color=]."
 texture = SubResource("GradientTexture2D_idj7w")
+script = ExtResource("7_346fj")
 
 [node name="PlayerHand" type="HBoxContainer" parent="Table/PlayerBox/Player" unique_id=897403238]
 unique_name_in_owner = true
@@ -769,7 +780,8 @@ sprite_frames = SubResource("SpriteFrames_h1m7h")
 autoplay = "default"
 frame_progress = 0.5060695
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Table/PlayerBox/Player/AnimatedSprite2D" unique_id=1606145929]
+[node name="BetBox" type="VBoxContainer" parent="Table/PlayerBox/Player/AnimatedSprite2D" unique_id=1606145929]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -779,10 +791,14 @@ offset_right = -126.33818
 offset_bottom = -140.73526
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Bet
+---
+{name}[color=] is betting ${bet}[color=]."
 theme = ExtResource("1_grg3l")
 theme_override_constants/separation = -20
+script = ExtResource("7_346fj")
 
-[node name="Label" type="Label" parent="Table/PlayerBox/Player/AnimatedSprite2D/VBoxContainer" unique_id=1969372184]
+[node name="Label" type="Label" parent="Table/PlayerBox/Player/AnimatedSprite2D/BetBox" unique_id=1969372184]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -791,7 +807,7 @@ text = "BET"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Bet" type="Label" parent="Table/PlayerBox/Player/AnimatedSprite2D/VBoxContainer" unique_id=1392805822]
+[node name="Bet" type="Label" parent="Table/PlayerBox/Player/AnimatedSprite2D/BetBox" unique_id=1392805822]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
