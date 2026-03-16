@@ -48,4 +48,13 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	var tooltip = preload("res://Scenes/Tooltip.tscn").instantiate()
 	tooltip.text = for_text
 	return tooltip
+
+func _get_tooltip(_at_position: Vector2) -> String:
 	
+	var response = tooltip_text
+	
+	response = response.replace("{color}", chip.color.to_html())
+	response = response.replace("{name}", chip.name)
+	response = response.replace("{description}", chip.info)
+	
+	return response

@@ -17,10 +17,13 @@ gradient = SubResource("Gradient_wnijs")
 custom_minimum_size = Vector2(64, 80)
 offset_right = 40.0
 offset_bottom = 40.0
+tooltip_text = "[color={color}]{name}[color=]
+----
+{description}[color=]
+Costs ${cost}."
 texture = SubResource("GradientTexture2D_tuy2o")
 expand_mode = 1
 script = ExtResource("1_tuy2o")
-cost = null
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1146846368]
 layout_mode = 1

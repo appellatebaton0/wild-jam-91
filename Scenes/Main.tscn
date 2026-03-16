@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://c7etl1ys6nxhx" path="res://Scripts/Table.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://dccifra5kjsj2" path="res://Assets/Background.png" id="2_v1gob"]
-[ext_resource type="Resource" uid="uid://56pix6fkijvu" path="res://Assets/Chips/DoubleChip.tres" id="3_rgh2o"]
 [ext_resource type="Texture2D" uid="uid://bvbl3jkqfugn2" path="res://Assets/Cards/NextCard.png" id="4_1p5hy"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 [ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://b00dkt83a24ij" path="res://Assets/Cards/RegularCard.png" id="9_h1m7h"]
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
+[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
 [ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
@@ -26,6 +26,26 @@ colors = PackedColorArray(0, 1, 1, 1, 1, 0, 0, 1)
 gradient = SubResource("Gradient_idj7w")
 width = 32
 height = 32
+
+[sub_resource type="GDScript" id="GDScript_346fj"]
+script/source = "class_name DoubleChip extends Chip
+## Doubles the value of the card it's applied to.
+
+func apply(to:Card) -> void:
+	
+	to.value *= 2
+	pass
+"
+
+[sub_resource type="Gradient" id="Gradient_242c6"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_05vih"]
+gradient = SubResource("Gradient_242c6")
+
+[sub_resource type="Resource" id="Resource_0sclb"]
+script = SubResource("GDScript_346fj")
+texture = SubResource("GradientTexture2D_05vih")
 
 [sub_resource type="Gradient" id="Gradient_pbw6q"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -78,6 +98,26 @@ animations = [{
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_50glp"]
 gradient = SubResource("Gradient_jw32o")
 width = 48
+
+[sub_resource type="GDScript" id="GDScript_2w5on"]
+resource_name = "EndGame"
+script/source = "extends AnimatorButton
+
+func _pressed() -> void: if animator: if tut_overlay.interpolation_timer == 1.0:
+	if not animator.is_playing() and animator.has_animation(anim_name):
+		animator.play(anim_name)
+		Global.game_ended.emit()
+	
+	if tut_overlay.visible:
+		if tutorial_progressor.has(tut_overlay.next_index):
+			var dir = tutorial_progressor[tut_overlay.next_index]
+			match dir:
+				-1: tut_overlay.last()
+				1: tut_overlay.next()
+		
+		elif tutorial_progressor.has(-1):
+			tut_overlay.set_index(tutorial_progressor[-1])
+"
 
 [sub_resource type="Gradient" id="Gradient_vy5pj"]
 colors = PackedColorArray(1, 1, 1, 0.22352941, 0, 0, 0, 0.4862745)
@@ -587,7 +627,7 @@ theme_override_constants/separation = 7
 
 [node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
 layout_mode = 2
-chip = ExtResource("3_rgh2o")
+chip = SubResource("Resource_0sclb")
 count = 1
 
 [node name="Spacer" type="Control" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1223161513]
@@ -915,7 +955,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "TO SHOP"
-script = ExtResource("7_vy5pj")
+script = SubResource("GDScript_2w5on")
 anim_name = &"Table->Shop"
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
@@ -988,88 +1028,67 @@ columns = 7
 
 [node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-chip = ExtResource("3_rgh2o")
-cost = 0
+chip = ExtResource("14_2w5on")
 
 [node name="ShopEntry2" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry3" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry4" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry5" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=916256719 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry9" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=2111056132 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry10" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1984822719 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry11" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1797144548 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry12" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=612177312 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry13" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=502973793 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry14" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1366369193 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry15" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=177555919 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry16" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=958778484 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry17" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1689270088 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry18" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1929170373 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry19" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1170422816 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry20" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=707031144 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="ShopEntry21" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1473947956 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-cost = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=986045665]
 layout_mode = 2
