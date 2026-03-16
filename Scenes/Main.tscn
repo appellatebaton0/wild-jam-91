@@ -53,10 +53,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v1gob"]
 gradient = SubResource("Gradient_pbw6q")
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_idj7w"]
-thickness = 4
-vertical = true
-
 [sub_resource type="Gradient" id="Gradient_v1gob"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0.654902, 0.654902, 0.654902, 0.27450982)
@@ -98,32 +94,6 @@ animations = [{
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_50glp"]
 gradient = SubResource("Gradient_jw32o")
 width = 48
-
-[sub_resource type="GDScript" id="GDScript_2w5on"]
-resource_name = "EndGame"
-script/source = "extends AnimatorButton
-
-func _pressed() -> void: if animator: if tut_overlay.interpolation_timer == 1.0:
-	if not animator.is_playing() and animator.has_animation(anim_name):
-		animator.play(anim_name)
-		Global.game_ended.emit()
-	
-	if tut_overlay.visible:
-		if tutorial_progressor.has(tut_overlay.next_index):
-			var dir = tutorial_progressor[tut_overlay.next_index]
-			match dir:
-				-1: tut_overlay.last()
-				1: tut_overlay.next()
-		
-		elif tutorial_progressor.has(-1):
-			tut_overlay.set_index(tutorial_progressor[-1])
-"
-
-[sub_resource type="Gradient" id="Gradient_vy5pj"]
-colors = PackedColorArray(1, 1, 1, 0.22352941, 0, 0, 0, 0.4862745)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmxlf"]
-gradient = SubResource("Gradient_vy5pj")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
 bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
@@ -721,29 +691,6 @@ text = "CONTINUE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Table/MarginContainer" unique_id=1633923152]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="Label2" type="Label" parent="Table/MarginContainer/HBoxContainer" unique_id=1202036037]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "GAME 001"
-horizontal_alignment = 3
-
-[node name="VSeparator" type="VSeparator" parent="Table/MarginContainer/HBoxContainer" unique_id=1273741880]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_idj7w")
-
-[node name="Label3" type="Label" parent="Table/MarginContainer/HBoxContainer" unique_id=278751952]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "ROUND 001"
-horizontal_alignment = 3
-
 [node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
 unique_name_in_owner = true
 layout_mode = 0
@@ -953,9 +900,12 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=86465456]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "[color=#5a9634]To Shop[color=]
+---
+End the round and go to the [color=#8885ca]Shop[color=]."
 theme_override_font_sizes/font_size = 30
 text = "TO SHOP"
-script = SubResource("GDScript_2w5on")
+script = ExtResource("7_vy5pj")
 anim_name = &"Table->Shop"
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
@@ -978,146 +928,100 @@ grow_vertical = 2
 texture = ExtResource("13_2w5on")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1157051586]
+[node name="ShopContainer" type="TextureRect" parent="Shop" unique_id=1323309893]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 168.0
+offset_right = -490.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/ShopContainer" unique_id=378975427]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer" unique_id=338303092]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="Shop/MarginContainer/VBoxContainer" unique_id=1190053505]
-custom_minimum_size = Vector2(0, 259.2)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Shop/MarginContainer/VBoxContainer" unique_id=327130135]
-layout_mode = 2
-size_flags_vertical = 3
-texture = SubResource("GradientTexture2D_bmxlf")
-
-[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect" unique_id=1105709724]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 30
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer" unique_id=1631733223]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="GridContainer" type="GridContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=811847063]
+[node name="GridContainer" type="GridContainer" parent="Shop/ShopContainer/MarginContainer" unique_id=811847063]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_constants/h_separation = 15
-theme_override_constants/v_separation = 15
-columns = 7
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 50
+columns = 4
 
-[node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 chip = ExtResource("14_2w5on")
 
-[node name="ShopEntry2" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry2" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry3" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry3" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry4" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry4" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry5" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry5" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry6" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry7" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=916256719 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry8" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1728505108 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry9" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=2111056132 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry10" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1984822719 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry11" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1797144548 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry12" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=612177312 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry13" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=502973793 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry14" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1366369193 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry15" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=177555919 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry16" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=958778484 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry17" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1689270088 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry18" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1929170373 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry19" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1170422816 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry20" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=707031144 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry21" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1473947956 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=986045665]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 15
-
-[node name="Button" type="Button" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1548177628]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "BUY CHIP SLOT"
-
-[node name="Continue" type="Button" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1946982751]
+[node name="Continue" type="Button" parent="Shop" unique_id=1946982751]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 722.0
+offset_top = 526.0
+offset_right = 1125.0
+offset_bottom = 626.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "[color=#5a9634]Continue[color=]
 ---
 Move on to the next [color=#5a9634]Round[color=]."
-text = "CONTINUE"
+theme_override_font_sizes/font_size = 68
+text = "Continue"
 script = ExtResource("7_vy5pj")
 tutorial_progressor = Dictionary[int, int]({
 -1: 6
 })
 anim_name = &"Shop->Table"
 
-[node name="ChipBarParent" type="MarginContainer" parent="Shop/MarginContainer" unique_id=1358028168]
-layout_mode = 2
+[node name="BuyButton" type="Button" parent="Shop" unique_id=324959979]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 195.0
+offset_top = 519.0
+offset_right = 483.0
+offset_bottom = 619.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Move on to the next [color=#5a9634]Round[color=]."
+theme_override_font_sizes/font_size = 74
+text = "Buy"
+
+[node name="ChipBarParent" type="MarginContainer" parent="Shop" unique_id=1358028168]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 30.0
+offset_right = 430.0
+offset_bottom = 110.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 0
@@ -1125,52 +1029,44 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Background" type="NinePatchRect" parent="Shop/MarginContainer/ChipBarParent" unique_id=1538285747]
+[node name="Background" type="NinePatchRect" parent="Shop/ChipBarParent" unique_id=1538285747]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_kln2b")
 
-[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/ChipBarParent" unique_id=120296607]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/ChipBarParent" unique_id=120296607]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 7
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="ChipBar" type="HBoxContainer" parent="Shop/MarginContainer/ChipBarParent/MarginContainer" unique_id=541562196]
+[node name="ChipBar" type="HBoxContainer" parent="Shop/ChipBarParent/MarginContainer" unique_id=541562196]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 14
 script = ExtResource("7_jw32o")
 usable = false
 
-[node name="ChipSlot" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1909970247 instance=ExtResource("2_kln2b")]
+[node name="ChipSlot" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1909970247 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 
-[node name="ChipSlot2" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1158282121 instance=ExtResource("2_kln2b")]
+[node name="ChipSlot2" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1158282121 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 
-[node name="ChipSlot3" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=645527073 instance=ExtResource("2_kln2b")]
+[node name="ChipSlot3" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=645527073 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 
-[node name="ChipSlot4" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1962112460 instance=ExtResource("2_kln2b")]
+[node name="ChipSlot4" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1962112460 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 
-[node name="ChipSlot5" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1847388981 instance=ExtResource("2_kln2b")]
+[node name="ChipSlot5" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1847388981 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 
-[node name="ChipSlot6" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=138543370 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Fail" type="AudioStreamPlayer" parent="Shop" unique_id=522220680]
 
-[node name="ChipSlot7" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=206407477 instance=ExtResource("2_kln2b")]
-layout_mode = 2
-
-[node name="ChipSlot8" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1078688410 instance=ExtResource("2_kln2b")]
-layout_mode = 2
-
-[node name="ChipSlot9" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1560566182 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Suceed" type="AudioStreamPlayer" parent="Shop" unique_id=1194004517]
 
 [node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=1883038425]
 rect = Rect2(0, 0, 1152, 648)
@@ -1400,90 +1296,90 @@ x_size = 3000.0
 
 [node name="@TextureRect@105780" type="TextureRect" parent="TransitionOverlay" unique_id=2055780095]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = -150.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = -50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105781" type="TextureRect" parent="TransitionOverlay" unique_id=704584588]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = -50.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105782" type="TextureRect" parent="TransitionOverlay" unique_id=1756426644]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 50.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 150.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105783" type="TextureRect" parent="TransitionOverlay" unique_id=523827483]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 150.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 250.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105784" type="TextureRect" parent="TransitionOverlay" unique_id=1355427359]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 250.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 350.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105785" type="TextureRect" parent="TransitionOverlay" unique_id=1095719151]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 350.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 450.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105786" type="TextureRect" parent="TransitionOverlay" unique_id=1758827129]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 450.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 550.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105787" type="TextureRect" parent="TransitionOverlay" unique_id=1954291231]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 550.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 650.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105788" type="TextureRect" parent="TransitionOverlay" unique_id=208132844]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 650.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 750.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105789" type="TextureRect" parent="TransitionOverlay" unique_id=1507693711]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 750.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 850.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1

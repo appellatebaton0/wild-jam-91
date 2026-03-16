@@ -82,8 +82,8 @@ func _get_tooltip(_at_position: Vector2) -> String:
 	var response:String = tooltip_text
 	
 	response = response.replace("{color}", "#E93816" if card.modified else "#5A9634")
-	response = response.replace("{name}", card.name() if card.visible else "??")
-	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible else "??")
+	response = response.replace("{name}", card.name() if card.visible or modifiable else "??")
+	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible or modifiable else "??")
 	
 	return response
 	
