@@ -221,6 +221,42 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TutorialFocus:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TutorialFocus:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TutorialFocus/Cutout:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
 resource_name = "Shop->Table"
@@ -402,12 +438,52 @@ tracks/4/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_2w5on"]
+resource_name = "TutorialOver"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutorialFocus:visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TutorialFocus:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TutorialFocus/Cutout:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
 _data = {
 &"RESET": SubResource("Animation_jw32o"),
 &"Shop->Table": SubResource("Animation_bmxlf"),
 &"Table->EndPopup": SubResource("Animation_50glp"),
-&"Table->Shop": SubResource("Animation_erwvk")
+&"Table->Shop": SubResource("Animation_erwvk"),
+&"TutorialOver": SubResource("Animation_2w5on")
 }
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2w5on"]
@@ -587,6 +663,9 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Deal your next [color=#5a9634]Card[color=]."
 texture_normal = SubResource("GradientTexture2D_v1gob")
 stretch_mode = 0
 
@@ -762,6 +841,9 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.29793882
 pivot_offset = Vector2(62.64557, 80.755035)
+tooltip_text = "[color={color}]Card[color=]
+---
+This [color={color}]Card[color=] is a {name}, which has a value of {value}."
 texture = ExtResource("9_h1m7h")
 expand_mode = 1
 script = ExtResource("4_rgh2o")
@@ -1005,6 +1087,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Move on to the next [color=#5a9634]Round[color=]."
 text = "CONTINUE"
 script = ExtResource("7_vy5pj")
 tutorial_progressor = Dictionary[int, int]({
@@ -1080,20 +1165,21 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5137255)
 
-[node name="Cutout" type="Panel" parent="TutorialFocus" unique_id=1260227664 node_paths=PackedStringArray("tooltip") groups=["TutOverlay"]]
+[node name="Cutout" type="Panel" parent="TutorialFocus" unique_id=1260227664 node_paths=PackedStringArray("animator", "tooltip") groups=["TutOverlay"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 31.0
-offset_top = 161.0
-offset_right = -483.0
-offset_bottom = -22.0
+offset_left = -48.0
+offset_top = -47.0
+offset_right = 51.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_grg3l")
 theme_override_styles/panel = SubResource("StyleBoxFlat_h1m7h")
 script = ExtResource("16_erwvk")
+animator = NodePath("../../AnimationPlayer")
 tooltip = NodePath("../RichTextLabel")
 keys = Array[Dictionary]([Dictionary[String, Variant]({
 "position": Vector2(576, 324),
@@ -1180,10 +1266,17 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_position": Vector2(6, 440),
 "tip_size": Vector2(361, 102),
 "tip_text": "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
+}), Dictionary[String, Variant]({
+"position": Vector2(-48, -47),
+"size": Vector2(1251, 747),
+"tip_position": Vector2(-19, 440),
+"tip_size": Vector2(1, 102),
+"tip_text": ""
 })])
+interpolating = false
 interpolation_time = 0.75
 current_index = 2
-next_index = 3
+next_index = 12
 front_locks = Array[int]([5])
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialFocus/Cutout" unique_id=2082386551]
@@ -1212,10 +1305,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 130.0
-offset_top = -152.0
-offset_right = 466.0
-offset_bottom = -52.0
+offset_left = -595.0
+offset_top = 116.0
+offset_right = -594.0
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -1223,10 +1316,9 @@ theme = ExtResource("1_grg3l")
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "For now, buy some [color=#e93816]Chips[color=] with your starting money."
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 49
+visible_characters = 91
 
 [node name="Panel" type="Panel" parent="TutorialFocus/RichTextLabel" unique_id=1375269532]
 z_as_relative = false

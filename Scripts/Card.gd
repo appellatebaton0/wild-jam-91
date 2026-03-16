@@ -32,3 +32,5 @@ func character() -> String:
 		12: return "Q"
 		13: return "K"
 		_: return str(value)
+
+func name() -> String: return ["", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"][value]

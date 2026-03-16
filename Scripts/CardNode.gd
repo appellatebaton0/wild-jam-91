@@ -66,3 +66,26 @@ func flip(): flipping = true
 
 func _on_mouse_entered() -> void: Global.hovered_card = self
 func _on_mouse_exited()  -> void: if Global.hovered_card == self: Global.hovered_card = null
+
+## Custom Tooltippin'
+func _make_custom_tooltip(for_text: String) -> Object:
+	
+	var tooltip = preload("res://Scenes/Tooltip.tscn").instantiate()
+	tooltip.text = for_text
+	
+	return tooltip
+
+func _get_tooltip(_at_position: Vector2) -> String:
+	
+	## Create the tooltip on the spot, from the base text in the property.
+	
+	var response:String = tooltip_text
+	
+	response = response.replace("{color}", "#E93816" if card.modified else "#5A9634")
+	response = response.replace("{name}", card.name() if card.visible else "??")
+	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible else "??")
+	
+	return response
+	
+	
+	

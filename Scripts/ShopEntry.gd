@@ -45,3 +45,9 @@ func empty_slot() -> bool:
 			return true
 	
 	return false
+
+## Custom Tooltippin'
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip = preload("res://Scenes/Tooltip.tscn").instantiate()
+	tooltip.text = for_text
+	return tooltip

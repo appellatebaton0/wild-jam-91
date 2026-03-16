@@ -5,6 +5,8 @@ class_name TutorialFocus extends Control
 signal key_changed(to:int)
 signal last_key ## Emitted when moved to the last key in the list.
 
+@export var animator:AnimationPlayer
+
 @export var tooltip:RichTextLabel
 @export var keys:Array[Dictionary]
 
@@ -30,8 +32,8 @@ func save_key():
 	
 	var new_keys = keys.duplicate()
 	
-	if save_index >= 0:
-		new_keys.insert(save_index, new_key())
+	if save_index >= 0 and save_index < len(keys):
+		new_keys[save_index] = new_key()
 	else:
 		new_keys.append(new_key())
 	
@@ -72,6 +74,7 @@ func set_index(to:int): if interpolation_timer == 1.0:
 	key_changed.emit(next_index)
 	if next_index == len(keys) - 1:
 		last_key.emit()
+		if animator and visible: animator.play("TutorialOver")
 
 func new_key() -> Dictionary[String, Variant]:
 	return {

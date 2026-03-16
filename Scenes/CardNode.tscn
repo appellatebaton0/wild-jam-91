@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="1_eumo2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eumo2"]
-load_path = "res://.godot/imported/2.png-846f27ba471adf5fafc1910b4d412adb.ctex"
 
 [node name="CardNode" type="TextureRect" unique_id=1318736687]
 custom_minimum_size = Vector2(0, 64)
 offset_bottom = 64.0
+tooltip_text = "[color={color}]Card[color=]
+---
+This [color={color}]Card[color=] is a {name}, which has a value of {value}."
 texture = SubResource("CompressedTexture2D_eumo2")
 expand_mode = 1
 script = ExtResource("1_eumo2")

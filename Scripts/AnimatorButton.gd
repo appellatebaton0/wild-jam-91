@@ -34,3 +34,9 @@ func _pressed() -> void: if animator: if tut_overlay.interpolation_timer == 1.0:
 		
 		elif tutorial_progressor.has(-1):
 			tut_overlay.set_index(tutorial_progressor[-1])
+
+## Custom Tooltippin'
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip = preload("res://Scenes/Tooltip.tscn").instantiate()
+	tooltip.text = for_text
+	return tooltip
