@@ -1,6 +1,18 @@
 class_name CardNode extends TextureRect
 ## Handles turning the card node into something readable.
 
+const TEXTURE_DICT := {
+	false: {
+		true: preload("res://Assets/Cards/RegularCard.png"),
+		false: preload("res://Assets/Cards/Back.png")
+	},
+	true: {
+		true: preload("res://Assets/Cards/EvilCard.png"),
+		false: preload("res://Assets/Cards/Back.png")
+	}
+}
+@onready var label := $Label
+
 @export var FLIP_SPEED := 350
 
 var flipping = false
@@ -39,11 +51,17 @@ func _process(delta: float) -> void:
 	else:
 		custom_minimum_size.x = move_toward(custom_minimum_size.x, max_x, delta * FLIP_SPEED)
 	
+	if label:
+		label.add_theme_font_size_override("font_size", custom_minimum_size.x / 1.2)
+	
 	if modifiable:
 		size.x = custom_minimum_size.x
 		global_position = start_pos - Vector2(custom_minimum_size.x / 2,0)
 
-func _update_texture(_a = null): texture = card.texture(modifiable)
+func _update_texture(_a = null): 
+	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
+	label.text = card.character()
+	label.visible = (card.visible or modifiable)
 func flip(): flipping = true
 
 func _on_mouse_entered() -> void: Global.hovered_card = self
