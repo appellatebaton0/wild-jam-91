@@ -36,7 +36,7 @@ func _on_pressed() -> void:
 
 ## Returns if the bar has an empty slot, clearing a space if needed and possible.
 func empty_slot() -> bool:
-	if len(Global.chips.keys()) < 9: return true
+	if len(Global.chips.keys()) < Global.MAX_CHIP_SLOTS: return true
 	
 	for key in Global.chips:
 		# Found an empty slot - erase its contents, return true.

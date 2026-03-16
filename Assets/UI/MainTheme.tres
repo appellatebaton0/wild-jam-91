@@ -3,5 +3,9 @@
 [ext_resource type="FontFile" uid="uid://d17x7kygo258p" path="res://Assets/Fonts/WinkyRough-VariableFont_wght.ttf" id="1_15feo"]
 
 [resource]
+Button/colors/font_color = Color(0.95686275, 0.91764706, 0.8352941, 1)
+Button/fonts/font = ExtResource("1_15feo")
 Label/colors/font_color = Color(0.95686275, 0.91764706, 0.84313726, 1)
 Label/fonts/font = ExtResource("1_15feo")
+RichTextLabel/colors/default_color = Color(0.95686275, 0.91764706, 0.8352941, 1)
+RichTextLabel/fonts/normal_font = ExtResource("1_15feo")

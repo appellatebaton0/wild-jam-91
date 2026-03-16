@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://dccifra5kjsj2" path="res://Assets/Background.png" id="2_v1gob"]
 [ext_resource type="Resource" uid="uid://56pix6fkijvu" path="res://Assets/Chips/DoubleChip.tres" id="3_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://bvbl3jkqfugn2" path="res://Assets/Cards/NextCard.png" id="4_1p5hy"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 [ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
 [ext_resource type="Texture2D" uid="uid://dv0bcvfc74p18" path="res://Assets/UI/SpeechBubble.png" id="7_frkhe"]
@@ -13,15 +14,9 @@
 [ext_resource type="Script" uid="uid://qudew6dbpmv2" path="res://Scripts/TransitionOverlay.gd" id="8_50glp"]
 [ext_resource type="Script" uid="uid://cnshugqmobch0" path="res://Scripts/Shop.gd" id="8_bmxlf"]
 [ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
-
-[sub_resource type="Gradient" id="Gradient_grg3l"]
-offsets = PackedFloat32Array(0.42541435, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_frkhe"]
-gradient = SubResource("Gradient_grg3l")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://b00dkt83a24ij" path="res://Assets/Cards/RegularCard.png" id="9_h1m7h"]
+[ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
+[ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 offsets = PackedFloat32Array(0.005181347, 1)
@@ -84,16 +79,54 @@ animations = [{
 gradient = SubResource("Gradient_jw32o")
 width = 48
 
-[sub_resource type="Gradient" id="Gradient_50glp"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy5pj"]
-gradient = SubResource("Gradient_50glp")
-
 [sub_resource type="Gradient" id="Gradient_vy5pj"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 0.22352941, 0, 0, 0, 0.4862745)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bmxlf"]
 gradient = SubResource("Gradient_vy5pj")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
+bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Shader" id="Shader_erwvk"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	COLOR = texture(screen_texture, SCREEN_UV);
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w5on"]
+shader = SubResource("Shader_erwvk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_346fj"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5on"]
+bg_color = Color(0.95686275, 0.91764706, 0.8352941, 0.54509807)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="Gradient" id="Gradient_1p5hy"]
 offsets = PackedFloat32Array(0, 0.1764706, 0.8200692, 1)
@@ -174,7 +207,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -186,7 +219,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
@@ -384,6 +417,7 @@ stream_0/volume = 0.0
 [node name="Main" type="Node" unique_id=1786674721]
 
 [node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("anim_player", "players")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -423,7 +457,7 @@ offset_right = 16.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_frkhe")
+texture = ExtResource("4_1p5hy")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
@@ -720,15 +754,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = -232.3436
-offset_right = 99.0
-offset_bottom = -57.343597
+offset_left = 70.999985
+offset_top = -235.3436
+offset_right = 171.0
+offset_bottom = -60.343597
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.29793882
 pivot_offset = Vector2(62.64557, 80.755035)
-texture = SubResource("GradientTexture2D_50glp")
+texture = ExtResource("9_h1m7h")
 expand_mode = 1
 script = ExtResource("4_rgh2o")
 FLIP_SPEED = 1100
@@ -803,7 +837,6 @@ script = ExtResource("7_vy5pj")
 anim_name = &"Table->Shop"
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -813,14 +846,15 @@ grow_vertical = 2
 theme = ExtResource("1_grg3l")
 script = ExtResource("8_bmxlf")
 
-[node name="Panel" type="TextureRect" parent="Shop" unique_id=95063815]
+[node name="Background" type="TextureRect" parent="Shop" unique_id=95063815]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_vy5pj")
+texture = ExtResource("13_2w5on")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1157051586]
 layout_mode = 1
@@ -873,66 +907,87 @@ columns = 7
 [node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 chip = ExtResource("3_rgh2o")
+cost = 0
 
 [node name="ShopEntry2" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry3" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry4" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry5" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=916256719 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry9" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=2111056132 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry10" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1984822719 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry11" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1797144548 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry12" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=612177312 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry13" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=502973793 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry14" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1366369193 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry15" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=177555919 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry16" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=958778484 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry17" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1689270088 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry18" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1929170373 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry19" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1170422816 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry20" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=707031144 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="ShopEntry21" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1473947956 instance=ExtResource("9_4kpch")]
 layout_mode = 2
+cost = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=986045665]
 layout_mode = 2
@@ -952,6 +1007,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "CONTINUE"
 script = ExtResource("7_vy5pj")
+tutorial_progressor = Dictionary[int, int]({
+-1: 6
+})
 anim_name = &"Shop->Table"
 
 [node name="ChipBarParent" type="MarginContainer" parent="Shop/MarginContainer" unique_id=1358028168]
@@ -1010,6 +1068,187 @@ layout_mode = 2
 [node name="ChipSlot9" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1560566182 instance=ExtResource("2_kln2b")]
 layout_mode = 2
 
+[node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=1883038425]
+rect = Rect2(0, 0, 1152, 648)
+
+[node name="Tint" type="ColorRect" parent="TutorialFocus" unique_id=368649665]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5137255)
+
+[node name="Cutout" type="Panel" parent="TutorialFocus" unique_id=1260227664 node_paths=PackedStringArray("tooltip") groups=["TutOverlay"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 161.0
+offset_right = -483.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_grg3l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1m7h")
+script = ExtResource("16_erwvk")
+tooltip = NodePath("../RichTextLabel")
+keys = Array[Dictionary]([Dictionary[String, Variant]({
+"position": Vector2(576, 324),
+"size": Vector2(0, 0),
+"tip_position": Vector2(408, 220.5),
+"tip_size": Vector2(336, 207),
+"tip_text": "Welcome to [color=#e93816][GAME NAME][color=]!
+Use the Left/Right Arrow Keys, A and D, or the DPad to navigate the [color=#5a9634]Tutorial[color=].
+
+Press D/Right to [color=#e93816]continue[color=].
+Press A/Left to skip the [color=#5a9634]Tutorial[color=].
+"
+}), Dictionary[String, Variant]({
+"position": Vector2(0, 0),
+"size": Vector2(1152, 648),
+"tip_position": Vector2(408, 110),
+"tip_size": Vector2(336, 58),
+"tip_text": "This is the [color=#8885ca]Shop[color=]."
+}), Dictionary[String, Variant]({
+"position": Vector2(31, 161),
+"size": Vector2(638, 465),
+"tip_position": Vector2(706, 172),
+"tip_size": Vector2(336, 210),
+"tip_text": "Before a round begins, you can buy [color=#e93816]Chips[color=] to use in the next round.
+
+[color=#e93816]Chips[color=] allow you to manipulate the value of [color=#5a9634]Cards[color=] - more on that later."
+}), Dictionary[String, Variant]({
+"position": Vector2(31, 161),
+"size": Vector2(638, 465),
+"tip_position": Vector2(706, 172),
+"tip_size": Vector2(336, 100),
+"tip_text": "For now, buy some [color=#e93816]Chips[color=] with your starting money."
+}), Dictionary[String, Variant]({
+"position": Vector2(24, 19),
+"size": Vector2(418, 101),
+"tip_position": Vector2(447, 25),
+"tip_size": Vector2(336, 87),
+"tip_text": "[color=#e93816]Chips[color=] you buy will show up here. You can have up to 5 kinds of chip at once."
+}), Dictionary[String, Variant]({
+"position": Vector2(710, 514),
+"size": Vector2(431, 124),
+"tip_position": Vector2(751, 421),
+"tip_size": Vector2(336, 87),
+"tip_text": "Press Continue to move onto your first [color=5a9634]Round[color=]."
+}), Dictionary[String, Variant]({
+"position": Vector2(0, 0),
+"size": Vector2(1152, 648),
+"tip_position": Vector2(408, 412),
+"tip_size": Vector2(336, 44),
+"tip_text": "This is the [color=#5a9634]Table[color=]."
+}), Dictionary[String, Variant]({
+"position": Vector2(77, 266),
+"size": Vector2(384, 383),
+"tip_position": Vector2(490, 412),
+"tip_size": Vector2(336, 130),
+"tip_text": "You're the dealer at a blackjack table in a casino. Your goal is to win every game by manipulating the values of the cards you deal."
+}), Dictionary[String, Variant]({
+"position": Vector2(2, 0),
+"size": Vector2(437, 85),
+"tip_position": Vector2(65, 90),
+"tip_size": Vector2(336, 130),
+"tip_text": "Drag a [color=#E93816]Chip[color=] from your bar onto the [color=#5a9634]Card[color=] you're about to deal to apply that [color=#E93816]Chip[color=]'s modification to it."
+}), Dictionary[String, Variant]({
+"position": Vector2(150, 271),
+"size": Vector2(341, 374),
+"tip_position": Vector2(150, 194),
+"tip_size": Vector2(336, 78),
+"tip_text": "The [color=#5a9634]Card[color=] will turn [color=#e93816]Red[color=] to show it's been manipulated."
+}), Dictionary[String, Variant]({
+"position": Vector2(873, 560),
+"size": Vector2(276, 86),
+"tip_position": Vector2(781, 456),
+"tip_size": Vector2(361, 99),
+"tip_text": "Once you've used all the [color=#E93816]Chip[color=]s on this card that you want - or none at all - press [color=#5a9634]Continue[color=] to deal it."
+}), Dictionary[String, Variant]({
+"position": Vector2(348, 383),
+"size": Vector2(447, 165),
+"tip_position": Vector2(386, 305),
+"tip_size": Vector2(361, 76),
+"tip_text": "[color=#5a9634]Cards[color=] in play will show up on the table in front of their respective player."
+}), Dictionary[String, Variant]({
+"position": Vector2(3, 550),
+"size": Vector2(97, 96),
+"tip_position": Vector2(6, 440),
+"tip_size": Vector2(361, 102),
+"tip_text": "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
+})])
+interpolation_time = 0.75
+current_index = 2
+next_index = 3
+front_locks = Array[int]([5])
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialFocus/Cutout" unique_id=2082386551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="ColorRect" type="Panel" parent="TutorialFocus/Cutout/MarginContainer" unique_id=788304380]
+material = SubResource("ShaderMaterial_2w5on")
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_346fj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialFocus" unique_id=1039667690]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 130.0
+offset_top = -152.0
+offset_right = 466.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_grg3l")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "For now, buy some [color=#e93816]Chips[color=] with your starting money."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 49
+
+[node name="Panel" type="Panel" parent="TutorialFocus/RichTextLabel" unique_id=1375269532]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2w5on")
+
+[node name="Label" type="Label" parent="TutorialFocus" unique_id=1397340074]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.0
+offset_right = 219.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Use Arrow Keys, A/D, or DPad to move between tooltips. "
+
 [node name="Menu" type="Control" parent="." unique_id=999863084]
 visible = false
 layout_mode = 3
@@ -1030,6 +1269,7 @@ theme = ExtResource("1_grg3l")
 
 [node name="TransitionOverlay" type="Control" parent="." unique_id=130434851]
 visible = false
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1049,90 +1289,90 @@ x_size = 3000.0
 
 [node name="@TextureRect@105780" type="TextureRect" parent="TransitionOverlay" unique_id=2055780095]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = -150.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = -50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105781" type="TextureRect" parent="TransitionOverlay" unique_id=704584588]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = -50.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105782" type="TextureRect" parent="TransitionOverlay" unique_id=1756426644]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 50.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 150.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105783" type="TextureRect" parent="TransitionOverlay" unique_id=523827483]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 150.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 250.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105784" type="TextureRect" parent="TransitionOverlay" unique_id=1355427359]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 250.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 350.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105785" type="TextureRect" parent="TransitionOverlay" unique_id=1095719151]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 350.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 450.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105786" type="TextureRect" parent="TransitionOverlay" unique_id=1758827129]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 450.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 550.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105787" type="TextureRect" parent="TransitionOverlay" unique_id=1954291231]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 550.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 650.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105788" type="TextureRect" parent="TransitionOverlay" unique_id=208132844]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 650.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 750.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105789" type="TextureRect" parent="TransitionOverlay" unique_id=1507693711]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 750.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 850.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1

@@ -15,6 +15,8 @@ var quota := 0 ## The quota for the current game.
 
 var money := 0 ## How much money the player has.
 
+const MAX_CHIP_SLOTS = 5
+
 var dealer_hand := Hand.new()
 
 var chips:Dictionary[Chip, int]: ## The chips the player has.

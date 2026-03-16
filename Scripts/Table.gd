@@ -141,7 +141,7 @@ func cycle_deal_index() -> void:
 		if deal_cycle[deal_index] == &"Dealer" and Global.dealer_hand.high() < 17:
 			break # The next turn belongs to the dealer.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var next := deal_cycle[deal_index]
 	var next_node := dealer_hand if next == &"Dealer" else players[next].hand_box
 	turn_indic.reparent(next_node)
