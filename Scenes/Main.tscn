@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dypsx17qmxhng" path="res://Assets/UI/StopIntent.png" id="11_kpo4j"]
 [ext_resource type="Texture2D" uid="uid://ry4ppqjm8qud" path="res://Assets/UI/HoldIntent.png" id="12_4n42c"]
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
-[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
+[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/ChipResources/CoinFlip.tres" id="14_2w5on"]
 [ext_resource type="Texture2D" uid="uid://c2cpmvvjekqo" path="res://Assets/Cards/CardTransformation.png" id="14_c4ay3"]
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
@@ -29,7 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
+[ext_resource type="Script" uid="uid://dr25sxmad7flb" path="res://Scripts/ChipShop.gd" id="23_u7mjy"]
 [ext_resource type="Script" uid="uid://ck5b0qf3f6jqk" path="res://Scripts/BusSlider.gd" id="28_c5snn"]
+[ext_resource type="Script" uid="uid://deibrokcxof6g" path="res://Scripts/WindowSetter.gd" id="29_xvtyr"]
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 offsets = PackedFloat32Array(0.005181347, 1)
@@ -266,6 +268,36 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
 bg_color = Color(0.62560004, 0.67184, 0.68, 1)
+
+[sub_resource type="Shader" id="Shader_xvtyr"]
+code = "shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest_mipmap;
+uniform float lod: hint_range(0.0, 5) = 0.0;
+uniform float dark = 1.0;
+
+void fragment(){
+    COLOR = textureLod(screen_texture, SCREEN_UV, lod);
+	COLOR.rgb -= dark;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7mjy"]
+shader = SubResource("Shader_xvtyr")
+shader_parameter/lod = 1.70000008075
+shader_parameter/dark = 0.2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvtyr"]
+bg_color = Color(0.31239998, 0.28599998, 0.55, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.21197623, 0.19035539, 0.38803446, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
 bg_color = Color(0.02906301, 0.03273736, 0.11157911, 1)
@@ -509,13 +541,13 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("TutorialFocus:visible")
+tracks/7/path = NodePath("TutorialFocus/Cutout:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/8/type = "value"
@@ -533,13 +565,13 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("TutorialFocus/Cutout:visible")
+tracks/9/path = NodePath("TutorialFocus:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/10/type = "value"
@@ -1056,13 +1088,13 @@ resource_name = "TutorialOver"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TutorialFocus:visible")
-tracks/0/interp = 2
+tracks/0/path = NodePath("TutorialFocus/Cutout:visible")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false]
 }
 tracks/1/type = "value"
@@ -1080,13 +1112,13 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TutorialFocus/Cutout:visible")
-tracks/2/interp = 1
+tracks/2/path = NodePath("TutorialFocus:visible")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false]
 }
 
@@ -1335,6 +1367,14 @@ patch_margin_bottom = 20
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[node name="Button" type="Button" parent="Table/MarginContainer" unique_id=2064214925]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Options"
+script = ExtResource("7_vy5pj")
+anim_name = &"OpenOptions"
+
 [node name="PlayerBox" type="Control" parent="Table" unique_id=667759408]
 unique_name_in_owner = true
 anchors_preset = 0
@@ -1437,7 +1477,7 @@ grow_horizontal = 2
 grow_vertical = 2
 tooltip_text = "Bet
 ---
-{name}[color=] is betting ${bet}[color=]."
+{name}[color=] is betting {bet}[color=]."
 theme = ExtResource("1_grg3l")
 theme_override_constants/separation = -20
 script = ExtResource("7_346fj")
@@ -1818,6 +1858,7 @@ size_flags_vertical = 6
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 50
 columns = 4
+script = ExtResource("23_u7mjy")
 
 [node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
@@ -1921,8 +1962,8 @@ axis_stretch_vertical = 2
 
 [node name="Suceed" type="AudioStreamPlayer" parent="Shop" unique_id=1194004517]
 
-[node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=1883038425]
-rect = Rect2(0, 0, 1152, 648)
+[node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=550124284]
+copy_mode = 2
 
 [node name="Tint" type="ColorRect" parent="TutorialFocus" unique_id=368649665]
 anchors_preset = 15
@@ -1937,10 +1978,10 @@ color = Color(0, 0, 0, 0.5137255)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -47.0
-offset_right = 51.0
-offset_bottom = 52.0
+offset_left = 448.0
+offset_top = 127.0
+offset_right = 408.0
+offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2042,6 +2083,7 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_text": ""
 })])
 save_index = 11
+interpolating = false
 interpolation_time = 0.75
 next_index = 13
 front_locks = Array[int]([5])
@@ -2215,9 +2257,31 @@ text = "Start"
 script = ExtResource("7_vy5pj")
 anim_name = &"MainMenu->Shop"
 
+[node name="Button2" type="Button" parent="Menu" unique_id=580172976]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -259.0
+offset_top = 147.0
+offset_right = 65.0
+offset_bottom = 294.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Options"
+script = ExtResource("7_vy5pj")
+anim_name = &"OpenOptions"
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=346560414]
+z_index = 4
+
 [node name="Options" type="Panel" parent="." unique_id=1155802139]
 visible = false
-z_index = 2
+z_index = 3
+material = SubResource("ShaderMaterial_u7mjy")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2246,6 +2310,7 @@ theme_override_constants/separation = 30
 [node name="Panel" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=1964762664]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xvtyr")
 
 [node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer/HBoxContainer/Panel" unique_id=1704594195]
 layout_mode = 1
@@ -2285,30 +2350,103 @@ theme_override_font_sizes/font_size = 25
 text = "AUDIO"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=776991041]
+[node name="Master" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=776991041]
 layout_mode = 2
 script = ExtResource("28_c5snn")
 
-[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1506765402]
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Master" unique_id=1506765402]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "MASTER"
 
-[node name="Value" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=2070537775]
+[node name="Value" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Master" unique_id=2070537775]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "20.0"
 horizontal_alignment = 2
 
-[node name="Slider" type="HSlider" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=832897378]
+[node name="Slider" type="HSlider" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Master" unique_id=832897378]
 custom_minimum_size = Vector2(375, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+min_value = -60.0
+max_value = 60.0
+step = 0.1
+
+[node name="SFX" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=465688657]
+layout_mode = 2
+script = ExtResource("28_c5snn")
+bus_name = &"SFX"
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SFX" unique_id=768862338]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+
+[node name="Value" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SFX" unique_id=1297237067]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20.0"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SFX" unique_id=1022818363]
+custom_minimum_size = Vector2(375, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 60.0
+step = 0.1
+
+[node name="Music" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=864346584]
+layout_mode = 2
+script = ExtResource("28_c5snn")
+bus_name = &"SFX"
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Music" unique_id=1252950704]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MUSIC"
+
+[node name="Value" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Music" unique_id=785290934]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20.0"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Music" unique_id=1177719816]
+custom_minimum_size = Vector2(375, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 60.0
+step = 0.1
+
+[node name="Label2" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=667652847]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "DISPLAY"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=297551700]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=697465493]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WINDOW MODE"
+
+[node name="OptionButton" type="OptionButton" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1453222374]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("29_xvtyr")
 
 [node name="Panel2" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=851581354]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xvtyr")
 
 [node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer/HBoxContainer/Panel2" unique_id=1654432179]
 layout_mode = 1
@@ -2609,6 +2747,7 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1477990020]
 libraries/ = SubResource("AnimationLibrary_vy5pj")
+autoplay = &"Splash->MainMenu"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1243578129]
 stream = SubResource("AudioStreamSynchronized_2w5on")

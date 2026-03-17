@@ -17,12 +17,17 @@ boot_splash/bg_color=Color(0.02745098, 0.03137255, 0.10980392, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cllog7xa6tjag"
+
 [autoload]
 
 Global="*uid://4scu11shd0ap"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

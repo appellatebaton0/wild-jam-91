@@ -5,6 +5,9 @@
 @export var color:Color
 ## The name of this chip.
 @export var name := ""
+## How much this chip costs in the shop.
+@export var cost := 20
+
 ## The info tooltip that shows when this chip's slot in the bar is hovered over.
 @export_multiline() var info := ""
 
