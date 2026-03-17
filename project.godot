@@ -13,6 +13,8 @@ config_version=5
 config/name="wild-jam-91"
 run/main_scene="uid://bqkgcup7e7ey5"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0.02745098, 0.03137255, 0.10980392, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]

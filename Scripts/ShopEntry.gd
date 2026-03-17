@@ -25,11 +25,14 @@ func _make_custom_tooltip(for_text: String) -> Object:
 
 func _get_tooltip(_at_position: Vector2) -> String:
 	
+	if not chip: return "" 
+	
 	var response = tooltip_text
 	
 	response = response.replace("{color}", chip.color.to_html())
 	response = response.replace("{name}", chip.name)
 	response = response.replace("{description}", chip.info)
 	response = response.replace("{cost}", str(cost))
+	
 	
 	return response

@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
 [ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
 [ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
+[ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
+[ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 offsets = PackedFloat32Array(0.005181347, 1)
@@ -139,12 +142,69 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
+bg_color = Color(0.62560004, 0.67184, 0.68, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
+bg_color = Color(0.02906301, 0.03273736, 0.11157911, 1)
+
 [sub_resource type="Gradient" id="Gradient_1p5hy"]
 offsets = PackedFloat32Array(0, 0.1764706, 0.8200692, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_h1m7h"]
 gradient = SubResource("Gradient_1p5hy")
+
+[sub_resource type="Animation" id="Animation_c4ay3"]
+resource_name = "MainMenu->Shop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionOverlay:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionOverlay:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.2617993877991494, -0.26282808]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_jw32o"]
 length = 0.001
@@ -268,6 +328,174 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Splash/MadeFor:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Menu/Control/CrayonCreation:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Menu/Control/Probability:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Menu/Control/Probability:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(481, 191)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Menu/Control/CrayonCreation:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(481, 191)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Menu/Control/CrayonCreation:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Menu/Control/Probability:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Menu/Control/CrayonCreation:pivot_offset")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(95, 133)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Menu/Control/Probability:pivot_offset")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(95, 133)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Splash:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Splash:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("TransitionOverlay:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.26282808]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Menu:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Menu/Control/Label:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
 resource_name = "Shop->Table"
@@ -343,6 +571,154 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sxkr1"]
+resource_name = "Splash->MainMenu"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splash/MadeFor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.65, 0.8, 2.5, 2.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/Control/CrayonCreation:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.15, 4.81, 4.97, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menu/Control/Probability:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 3.15, 4.81, 4.97, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu/Control/Probability:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3, 3.1666667, 3.25, 4.7799997, 4.9666667, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(431, 191), Vector2(206, 191), Vector2(206, 191), Vector2(206, 191), Vector2(206, 191), Vector2(-43, 362)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Menu/Control/CrayonCreation:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3, 3.1666667, 3.25, 4.7799997, 4.9666667, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(531, 191), Vector2(756, 191), Vector2(756, 191), Vector2(756, 191), Vector2(756, 191), Vector2(-43, 362)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Menu/Control/CrayonCreation:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.9666667, 5.233333, 5.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.40491638]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Menu/Control/Probability:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4.9666667, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Menu/Control/CrayonCreation:pivot_offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(95, 133), Vector2(95, 266)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Menu/Control/Probability:pivot_offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(95, 133), Vector2(95, 266)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Splash:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 6.641403, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Splash:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Menu/Control/Label:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 3, 3.15, 4.96, 5.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -490,8 +866,10 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
 _data = {
+&"MainMenu->Shop": SubResource("Animation_c4ay3"),
 &"RESET": SubResource("Animation_jw32o"),
 &"Shop->Table": SubResource("Animation_bmxlf"),
+&"Splash->MainMenu": SubResource("Animation_sxkr1"),
 &"Table->EndPopup": SubResource("Animation_50glp"),
 &"Table->Shop": SubResource("Animation_erwvk"),
 &"TutorialOver": SubResource("Animation_2w5on")
@@ -679,6 +1057,7 @@ tooltip_text = "[color=#5a9634]Continue[color=]
 Deal your next [color=#5a9634]Card[color=]."
 texture_normal = SubResource("GradientTexture2D_v1gob")
 stretch_mode = 0
+script = ExtResource("7_346fj")
 
 [node name="Label" type="Label" parent="Table/MarginContainer/ContinueButton" unique_id=1113975629]
 layout_mode = 1
@@ -1026,11 +1405,12 @@ offset_right = 483.0
 offset_bottom = 619.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "[color=#5a9634]Continue[color=]
+tooltip_text = "Buy
 ---
-Move on to the next [color=#5a9634]Round[color=]."
+Buy the last selected [color=#e93816]Chip[color=]."
 theme_override_font_sizes/font_size = 74
 text = "Buy"
+script = ExtResource("7_346fj")
 
 [node name="ChipBarParent" type="MarginContainer" parent="Shop" unique_id=1358028168]
 layout_mode = 0
@@ -1230,7 +1610,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_346fj")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TutorialFocus" unique_id=1039667690]
-z_index = 2
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1272,8 +1652,115 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Use Arrow Keys, A/D, or DPad to move between tooltips. "
 
-[node name="Menu" type="Control" parent="." unique_id=999863084]
+[node name="Menu" type="Panel" parent="." unique_id=1375457296]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_grg3l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3tgeq")
+
+[node name="Control" type="Control" parent="Menu" unique_id=881711370]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Probability" type="TextureRect" parent="Menu/Control" unique_id=1565232548]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -133.0
+offset_right = 95.00073
+offset_bottom = 132.99939
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(95, 133)
+texture = ExtResource("18_fq0cl")
+expand_mode = 1
+
+[node name="CrayonCreation" type="TextureRect" parent="Menu/Control" unique_id=1698137658]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -133.0
+offset_right = 94.99939
+offset_bottom = 132.99939
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(95, 133)
+texture = ExtResource("19_hwpts")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Menu/Control" unique_id=785018468]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.5
+offset_top = -261.0
+offset_right = 122.5
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(122, 26)
+theme_override_font_sizes/font_size = 39
+text = "Used Wildcards"
+
+[node name="Label" type="Label" parent="Menu" unique_id=1136547222]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -254.0
+offset_right = 303.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 107
+text = "[Game Name]"
+
+[node name="Button" type="Button" parent="Menu" unique_id=766904342]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -73.5
+offset_right = 162.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+script = ExtResource("7_vy5pj")
+anim_name = &"MainMenu->Shop"
+
+[node name="Options" type="Control" parent="." unique_id=298571288]
 visible = false
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1281,6 +1768,73 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_grg3l")
+
+[node name="Splash" type="Panel" parent="." unique_id=528694775]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0sclb")
+
+[node name="MadeFor" type="Control" parent="Splash" unique_id=1881149074]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(576, 324)
+
+[node name="Label" type="Label" parent="Splash/MadeFor" unique_id=1975473668]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 434.5
+offset_top = 122.0
+offset_right = 677.5
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(121, 25)
+theme_override_font_sizes/font_size = 37
+text = "Made For The"
+
+[node name="Label2" type="Label" parent="Splash/MadeFor" unique_id=2143775206]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 380.5
+offset_top = 401.0
+offset_right = 731.5
+offset_bottom = 452.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(175, 25)
+theme_override_font_sizes/font_size = 37
+text = "Godot Wild Jam #91"
+
+[node name="TextureRect" type="TextureRect" parent="Splash/MadeFor" unique_id=691442685]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.66663
+offset_top = 76.0
+offset_right = 960.6666
+offset_bottom = 532.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(405, 228)
+texture = ExtResource("20_jyqft")
+expand_mode = 1
 
 [node name="InputStopper" type="Control" parent="." unique_id=624563267]
 visible = false
@@ -1312,96 +1866,97 @@ x_size = 3000.0
 
 [node name="@TextureRect@105780" type="TextureRect" parent="TransitionOverlay" unique_id=2055780095]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = -150.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = -50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105781" type="TextureRect" parent="TransitionOverlay" unique_id=704584588]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = -50.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105782" type="TextureRect" parent="TransitionOverlay" unique_id=1756426644]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 50.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 150.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105783" type="TextureRect" parent="TransitionOverlay" unique_id=523827483]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 150.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 250.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105784" type="TextureRect" parent="TransitionOverlay" unique_id=1355427359]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 250.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 350.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105785" type="TextureRect" parent="TransitionOverlay" unique_id=1095719151]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 350.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 450.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105786" type="TextureRect" parent="TransitionOverlay" unique_id=1758827129]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 450.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 550.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105787" type="TextureRect" parent="TransitionOverlay" unique_id=1954291231]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 550.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 650.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105788" type="TextureRect" parent="TransitionOverlay" unique_id=208132844]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 650.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 750.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105789" type="TextureRect" parent="TransitionOverlay" unique_id=1507693711]
 layout_mode = 0
-offset_left = -3624.0
+offset_left = 1776.0
 offset_top = 750.0
-offset_right = -624.0
+offset_right = 4776.0
 offset_bottom = 850.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1477990020]
 libraries/ = SubResource("AnimationLibrary_vy5pj")
+autoplay = &"Splash->MainMenu"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1243578129]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1243578129]
 stream = SubResource("AudioStreamSynchronized_2w5on")
