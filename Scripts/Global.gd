@@ -13,7 +13,7 @@ var game_count := 0 ## The current game count.
 
 var quota := 0 ## The quota for the current game.
 
-var money := 0 ## How much money the player has.
+var money := 60 ## How much money the player has.
 
 var selected_shop_item:ShopEntry
 

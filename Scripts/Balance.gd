@@ -8,10 +8,10 @@ var display_value := 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
-	text = as_digits()
+	text = "$" + as_digits()
 	
 	@warning_ignore("narrowing_conversion")
-	display_value = move_toward(display_value, Global.money, floori(as_tenth() / 20.0))
+	display_value = move_toward(display_value, Global.money, max(floori(as_tenth() / 20.0), 1))
 
 func as_digits() -> String:
 	var a = str(display_value)

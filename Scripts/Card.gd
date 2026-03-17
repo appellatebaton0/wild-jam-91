@@ -1,7 +1,7 @@
 class_name Card extends Resource
 ## The class for all cards.
 
-signal value_changed
+signal value_changed(to:int)
 signal visibility_changed(to:bool)
 
 var modified := false ## Whether this card has been modified by a chip.
@@ -16,7 +16,7 @@ var modified := false ## Whether this card has been modified by a chip.
 	set(to):
 		to = clamp(to, 1, 13)
 		
-		value_changed.emit()
+		value_changed.emit(to)
 		
 		# Set the value to its new one.
 		value = to
@@ -25,8 +25,8 @@ var modified := false ## Whether this card has been modified by a chip.
 func low() -> int: return clamp(value, 1, 10) # clamp to 10, since face cards will be higher.
 func high() -> int: return 11 if value == 1 else clamp(value, 1, 10)
 
-func character() -> String:
-	match value:
+func character(for_val:int = value) -> String:
+	match for_val:
 		1: return "A"
 		11: return "J"
 		12: return "Q"

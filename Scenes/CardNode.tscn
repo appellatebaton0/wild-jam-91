@@ -14,6 +14,7 @@ This [color={color}]Card[color=] is a {name}, which has a value of {value}."
 texture = ExtResource("1_23e6p")
 expand_mode = 1
 script = ExtResource("1_eumo2")
+max_x = 54.4
 metadata/_custom_type_script = "uid://5tl1kqw1dydx"
 
 [node name="Label" type="Label" parent="." unique_id=521660950]

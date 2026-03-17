@@ -29,7 +29,9 @@ func _process(delta: float) -> void:
 	
 	lab.text = str(intent)
 	
-	for tooltipper in [intent_rect, bet_box, texture]: if tooltipper is FancyTooltip:
+	intent_rect.play(intent_string())
+	
+	for tooltipper in [bet_box, texture, $Intent/ToolTip]: if tooltipper is FancyTooltip:
 		tooltipper.special_properties["{name}"] = player_name
 		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + intent_string() if intent != INTENT.OUT else " is out"
 		tooltipper.special_properties["{bet}"] = "[color=#" + Color(0.82, 0.561, 0.221, 1.0).to_html() + "]$" + str(bet)

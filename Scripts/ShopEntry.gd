@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	chip_texture.disabled = Global.money < cost
+	$ChipTexture/Label.text = "$" + str(cost)
 
 func _on_pressed() -> void: Global.selected_shop_item = self
 	

@@ -25,12 +25,12 @@ var flipping = false
 @export var card:Card:
 	set(to):
 		if card:
-			card.value_changed.disconnect(_update_texture)
+			card.value_changed.disconnect(flip)
 		
 		card = to
-		card.value_changed.connect(_update_texture)
+		card.value_changed.connect(flip)
 		
-		_update_texture()
+		flip(card.value)
 
 var belongs_to:Hand ## The hand this card belongs to.
 
@@ -57,16 +57,31 @@ func _process(delta: float) -> void:
 		label.scale.x = custom_minimum_size.x / max_x
 		label.pivot_offset.x = label.size.x / 2
 		
-		label.text = card.character()
-		label.visible = (card.visible or modifiable)
+		if out_of_date:
+			label.text = card.character()
+			label.visible = (card.visible or modifiable)
+			out_of_date = false
 	
 	if modifiable:
 		size.x = custom_minimum_size.x
 		global_position = start_pos - Vector2(custom_minimum_size.x / 2,0)
 
-func _update_texture(_a = null): 
+var out_of_date := false
+func _update_texture(to:int = card.value): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
-func flip(): flipping = true
+	print(label, " -> ", to)
+	if label:
+		label.text = card.character(to)
+		label.visible = (card.visible or modifiable)
+	else:
+		out_of_date = true
+	
+func flip(to:int): 
+	print(card.modified)
+	if not card.modified:
+		flipping = true
+	else:
+		_update_texture(to)
 
 func _on_mouse_entered() -> void: Global.hovered_card = self
 func _on_mouse_exited()  -> void: if Global.hovered_card == self: Global.hovered_card = null
@@ -78,6 +93,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	tooltip.text = for_text
 	
 	return tooltip
+
 
 func _get_tooltip(_at_position: Vector2) -> String:
 	

@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://b00dkt83a24ij" path="res://Assets/Cards/RegularCard.png" id="9_h1m7h"]
 [ext_resource type="Texture2D" uid="uid://botm0p64oeyob" path="res://Assets/UI/Hand.png" id="10_3tgeq"]
+[ext_resource type="Texture2D" uid="uid://v3jcaa2qgx2i" path="res://Assets/UI/RaiseIntent.png" id="10_aht7i"]
+[ext_resource type="Texture2D" uid="uid://dypsx17qmxhng" path="res://Assets/UI/StopIntent.png" id="11_kpo4j"]
+[ext_resource type="Texture2D" uid="uid://ry4ppqjm8qud" path="res://Assets/UI/HoldIntent.png" id="12_4n42c"]
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
 [ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
 [ext_resource type="Texture2D" uid="uid://c2cpmvvjekqo" path="res://Assets/Cards/CardTransformation.png" id="14_c4ay3"]
@@ -35,12 +38,84 @@ gradient = SubResource("Gradient_idj7w")
 width = 32
 height = 32
 
-[sub_resource type="Gradient" id="Gradient_v1gob"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.654902, 0.654902, 0.654902, 0.27450982)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(0, 0, 159, 153)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jw32o"]
-gradient = SubResource("Gradient_v1gob")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6heos"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yxf6"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qta6b"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvnwx"]
+atlas = ExtResource("11_kpo4j")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btbly"]
+atlas = ExtResource("11_kpo4j")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs04g"]
+atlas = ExtResource("12_4n42c")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ehlx"]
+atlas = ExtResource("12_4n42c")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3rx7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3rx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6heos")
+}],
+"loop": true,
+"name": &"Double Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yxf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qta6b")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvnwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btbly")
+}],
+"loop": true,
+"name": &"Out",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs04g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ehlx")
+}],
+"loop": true,
+"name": &"Stand",
+"speed": 2.5
+}]
 
 [sub_resource type="Gradient" id="Gradient_r150o"]
 offsets = PackedFloat32Array(1)
@@ -139,6 +214,10 @@ animations = [{
 "name": &"ignite",
 "speed": 8.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utia5"]
+atlas = ExtResource("10_3tgeq")
+region = Rect2(189.727, 171.91, 148, 153)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
 bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
@@ -1138,18 +1217,29 @@ offset_right = 628.0
 offset_bottom = 298.0
 script = ExtResource("5_pbw6q")
 
-[node name="Intent" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=1868972599]
+[node name="Intent" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=1535351640]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 27.0
-offset_top = -8.0
-offset_right = 91.0
-offset_bottom = 56.0
-size_flags_horizontal = 4
+position = Vector2(60.999992, 22)
+scale = Vector2(0.5212418, 0.52124184)
+sprite_frames = SubResource("SpriteFrames_x3rx7")
+animation = &"Double Down"
+frame_progress = 0.17236556
+
+[node name="ToolTip" type="Control" parent="Table/PlayerBox/Player/Intent" unique_id=1955527303]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.5
+offset_top = -76.5
+offset_right = -79.5
+offset_bottom = -76.5
+grow_horizontal = 2
+grow_vertical = 2
 tooltip_text = "Intent
 ---
-{name}[color=] {intent}[color=]."
-texture = SubResource("GradientTexture2D_jw32o")
+{name} {intent}."
+theme = ExtResource("1_grg3l")
 script = ExtResource("7_346fj")
 
 [node name="Texture" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=393034014]
@@ -1257,10 +1347,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.392548
-offset_top = -128.5
-offset_right = 131.60745
-offset_bottom = 46.5
+offset_left = 42.607468
+offset_top = -188.5
+offset_right = 229.83554
+offset_bottom = 31.289474
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.4225
@@ -1273,7 +1363,7 @@ expand_mode = 1
 script = ExtResource("4_rgh2o")
 animator = NodePath("../ApplyAnimator")
 FLIP_SPEED = 1100
-max_x = 148.0
+max_x = 205.608
 modifiable = true
 
 [node name="Label" type="Label" parent="Table/Hand/NextCard" unique_id=1266180797]
@@ -1285,19 +1375,32 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(30, 87)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 116
+theme_override_font_sizes/font_size = 153
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ApplyAnimator" type="AnimatedSprite2D" parent="Table/Hand" unique_id=1749480393]
 unique_name_in_owner = true
-position = Vector2(144, 3.0000134)
-scale = Vector2(0.40962672, 0.4096266)
+position = Vector2(189, -44.999996)
+scale = Vector2(0.50173557, 0.5017354)
 sprite_frames = SubResource("SpriteFrames_u7mjy")
 animation = &"ignite"
 frame = 6
 frame_progress = 1.0
+
+[node name="Thumb" type="TextureRect" parent="Table/Hand" unique_id=1346448168]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 134.0
+offset_top = -123.0
+offset_right = 239.2149
+offset_bottom = -21.0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_utia5")
+expand_mode = 1
 
 [node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
 visible = false
