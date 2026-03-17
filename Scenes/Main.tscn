@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
+[ext_resource type="Script" uid="uid://ck5b0qf3f6jqk" path="res://Scripts/BusSlider.gd" id="28_c5snn"]
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 offsets = PackedFloat32Array(0.005181347, 1)
@@ -276,6 +277,46 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_h1m7h"]
 gradient = SubResource("Gradient_1p5hy")
 
+[sub_resource type="Animation" id="Animation_4n42c"]
+resource_name = "CloseOptions"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.34906584]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Options:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+
 [sub_resource type="Animation" id="Animation_c4ay3"]
 resource_name = "MainMenu->Shop"
 tracks/0/type = "value"
@@ -322,6 +363,58 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_c5snn"]
+resource_name = "OpenOptions"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Options:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Options:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.34906584, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InputStopper:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -592,6 +685,42 @@ tracks/21/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1e-05, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Options:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Options:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Options:rotation")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
@@ -963,7 +1092,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
 _data = {
+&"CloseOptions": SubResource("Animation_4n42c"),
 &"MainMenu->Shop": SubResource("Animation_c4ay3"),
+&"OpenOptions": SubResource("Animation_c5snn"),
 &"RESET": SubResource("Animation_jw32o"),
 &"Shop->Table": SubResource("Animation_bmxlf"),
 &"Splash->MainMenu": SubResource("Animation_sxkr1"),
@@ -1978,7 +2109,6 @@ grow_horizontal = 2
 text = "Use Arrow Keys, A/D, or DPad to move between tooltips. "
 
 [node name="Menu" type="Panel" parent="." unique_id=1375457296]
-visible = false
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -2085,16 +2215,209 @@ text = "Start"
 script = ExtResource("7_vy5pj")
 anim_name = &"MainMenu->Shop"
 
-[node name="Options" type="Control" parent="." unique_id=298571288]
+[node name="Options" type="Panel" parent="." unique_id=1155802139]
 visible = false
 z_index = 2
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(576, 324)
 theme = ExtResource("1_grg3l")
+
+[node name="MarginContainer" type="MarginContainer" parent="Options" unique_id=1724927493]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/MarginContainer" unique_id=2131733524]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Panel" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=1964762664]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer/HBoxContainer/Panel" unique_id=1704594195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer" unique_id=1062228426]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=575027555]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=251011235]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=549964525]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=303989947]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=340743115]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "AUDIO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=776991041]
+layout_mode = 2
+script = ExtResource("28_c5snn")
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1506765402]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MASTER"
+
+[node name="Value" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=2070537775]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20.0"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=832897378]
+custom_minimum_size = Vector2(375, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Panel2" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=851581354]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Options/MarginContainer/HBoxContainer/Panel2" unique_id=1654432179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer" unique_id=554136967]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer" unique_id=377648601]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "HOW TO PLAY BLACKJACK"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer" unique_id=645505622]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer" unique_id=1106481173]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer" unique_id=870355293]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=319313666]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "OBJECTIVE"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=414236967]
+layout_mode = 2
+text = "Each player attempts to beat the dealer (you) by getting a count as close to 21 as possible, without going over 21."
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1196100258]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "CARD VALUES"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=132394363]
+layout_mode = 2
+text = "It's up to each player whether an Ace is worth 1 or 11. Face cards (K, Q, J) are worth 10. All other cards are worth their face value."
+autowrap_mode = 2
+
+[node name="Label6" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=672522335]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "BETTING & NATURALS"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=519921699]
+layout_mode = 2
+text = "Before each round, all players place a bet against the dealer (you). If they win, they get that much from the casino's bank. If they lose, you get that bet as income. 
+
+If a player gets exactly 21, it's called a natural, and they get 1.5x their bet. If you get a natural, the game immediately ends, and you get the bets of all players without one. "
+autowrap_mode = 2
+
+[node name="Label8" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=508643028]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "THE PLAY"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1521678134]
+layout_mode = 2
+text = "The player to the left goes first, and decides to either \"Stand\" (not ask for another card) or \"Hit\" (Ask for another card to get closer to 21). Once a player Stands, they cannot Hit again afterwards. This continues in a circle for all players."
+autowrap_mode = 2
+
+[node name="Label10" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=425479618]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "DEALER PLAY"
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=640419858]
+layout_mode = 2
+text = "After every player has gone, the dealer's face down card is flipped. If your total is under 17, the next card will be dealt to you, otherwise it continues to the next player. "
+autowrap_mode = 2
+
+[node name="Label12" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=200249254]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "DOUBLING DOWN"
+horizontal_alignment = 1
+
+[node name="Label13" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=663760496]
+layout_mode = 2
+text = "As the rounds progress, players become more likely to double down. When the player's turn comes, they get one more card, placed face down, and double their bet."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Options/MarginContainer" unique_id=859469158]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 21
+text = "Close Options"
+script = ExtResource("7_vy5pj")
+anim_name = &"CloseOptions"
 
 [node name="Splash" type="Panel" parent="." unique_id=528694775]
 visible = false
@@ -2167,9 +2490,11 @@ expand_mode = 1
 [node name="InputStopper" type="Control" parent="." unique_id=624563267]
 visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_grg3l")
 
 [node name="TransitionOverlay" type="Control" parent="." unique_id=130434851]

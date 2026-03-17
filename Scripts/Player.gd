@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 	# debug label
 	add_child(lab)
-func _process(delta: float) -> void: 
+func _process(_delta: float) -> void: 
 	
 	lab.text = str(intent)
 	
