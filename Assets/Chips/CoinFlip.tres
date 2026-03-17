@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="CoinFlip" format=3 uid="uid://8oc0dynbaij0"]
 
 [ext_resource type="Script" uid="uid://bfacdgpv6xwb3" path="res://Scripts/Chips/CoinFlip.gd" id="1_ggdq4"]
+[ext_resource type="Texture2D" uid="uid://dl8xwirs5xrlx" path="res://Assets/Chips/DraftChip.png" id="2_et7ee"]
 
 [resource]
 script = ExtResource("1_ggdq4")
@@ -8,4 +9,5 @@ color = Color(0.65593517, 0.34127298, 0.66258293, 1)
 name = "Coin Flip"
 info = "[color=#e93816]50% chance to become a King.
 [color=#5a9634]50% chance to become an Ace."
+texture = ExtResource("2_et7ee")
 metadata/_custom_type_script = "uid://bfacdgpv6xwb3"

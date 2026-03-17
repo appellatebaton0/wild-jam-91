@@ -52,6 +52,8 @@ func _on_chips_changed(to:Dictionary[Chip, int]) -> void:
 
 func _on_next_pressed() -> void:
 	
+	print("!")
+	
 	## Round's still going... Deal the current card to whoever it goes to.
 	var target = deal_cycle[deal_index]
 	

@@ -5,19 +5,13 @@ class_name Balance extends Label
 
 var display_value := 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Global.money = 81241
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	text = as_digits()
 	
-	display_value = move_toward(display_value, Global.money, as_tenth() / 20)
-	pass
+	@warning_ignore("narrowing_conversion")
+	display_value = move_toward(display_value, Global.money, floori(as_tenth() / 20.0))
 
 func as_digits() -> String:
 	var a = str(display_value)
@@ -28,4 +22,4 @@ func as_digits() -> String:
 	return a
 
 func as_tenth() -> int:
-	return 1 * pow(10, str(abs(Global.money - display_value)).length())
+	return 1 * floori(pow(10, str(abs(Global.money - display_value)).length()))

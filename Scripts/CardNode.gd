@@ -52,7 +52,8 @@ func _process(delta: float) -> void:
 		custom_minimum_size.x = move_toward(custom_minimum_size.x, max_x, delta * FLIP_SPEED)
 	
 	if label:
-		label.add_theme_font_size_override("font_size", custom_minimum_size.x / 1.2)
+		label.scale.x = custom_minimum_size.x / max_x
+		label.pivot_offset.x = label.size.x / 2
 	
 	if modifiable:
 		size.x = custom_minimum_size.x

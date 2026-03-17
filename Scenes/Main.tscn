@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://cnshugqmobch0" path="res://Scripts/Shop.gd" id="8_bmxlf"]
 [ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://b00dkt83a24ij" path="res://Assets/Cards/RegularCard.png" id="9_h1m7h"]
+[ext_resource type="Texture2D" uid="uid://botm0p64oeyob" path="res://Assets/UI/Hand.png" id="10_3tgeq"]
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
 [ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
@@ -32,32 +33,6 @@ colors = PackedColorArray(0, 1, 1, 1, 1, 0, 0, 1)
 gradient = SubResource("Gradient_idj7w")
 width = 32
 height = 32
-
-[sub_resource type="GDScript" id="GDScript_346fj"]
-script/source = "class_name DoubleChip extends Chip
-## Doubles the value of the card it's applied to.
-
-func apply(to:Card) -> void:
-	
-	to.value *= 2
-	pass
-"
-
-[sub_resource type="Gradient" id="Gradient_242c6"]
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_05vih"]
-gradient = SubResource("Gradient_242c6")
-
-[sub_resource type="Resource" id="Resource_0sclb"]
-script = SubResource("GDScript_346fj")
-texture = SubResource("GradientTexture2D_05vih")
-
-[sub_resource type="Gradient" id="Gradient_pbw6q"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_v1gob"]
-gradient = SubResource("Gradient_pbw6q")
 
 [sub_resource type="Gradient" id="Gradient_v1gob"]
 offsets = PackedFloat32Array(0)
@@ -94,12 +69,6 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
-
-[sub_resource type="Gradient" id="Gradient_jw32o"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_50glp"]
-gradient = SubResource("Gradient_jw32o")
-width = 48
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
 bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
@@ -903,6 +872,16 @@ grow_vertical = 2
 texture = ExtResource("4_1p5hy")
 expand_mode = 1
 
+[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 501.0
+offset_right = 1140.0
+offset_bottom = 565.0
+theme_override_constants/separation = 10
+alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
 layout_mode = 1
 anchors_preset = 15
@@ -910,10 +889,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer" unique_id=511322114]
 layout_mode = 2
@@ -924,38 +903,52 @@ layout_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1137525609]
 layout_mode = 2
 
-[node name="ChipBarParent" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2" unique_id=789656190]
+[node name="ChipBarParent" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2" unique_id=236577875]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Background" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent" unique_id=1577673438]
+[node name="Background" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent" unique_id=1521304982]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_kln2b")
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.701981, 5.220192, 632.74835, 130.19797)
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent" unique_id=1403766086]
+[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent" unique_id=1553824153]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 7
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
 
-[node name="ChipBar" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer" unique_id=643586999]
+[node name="ChipBar" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer" unique_id=1046603161]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 14
+script = ExtResource("7_jw32o")
 
 [node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
 layout_mode = 2
-chip = SubResource("Resource_0sclb")
-count = 1
+
+[node name="ChipSlot2" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=2064319986 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot3" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=626043830 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot4" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=797339352 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot5" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=464228699 instance=ExtResource("2_kln2b")]
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1223161513]
 layout_mode = 2
@@ -1024,40 +1017,40 @@ text = "000000$"
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="ContinueButton" type="TextureButton" parent="Table/MarginContainer" unique_id=95721931]
+[node name="ContinueButton" type="Button" parent="Table/MarginContainer" unique_id=1802303539]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+z_index = 1
+custom_minimum_size = Vector2(390, 105)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_horizontal = 10
+size_flags_vertical = 10
 tooltip_text = "[color=#5a9634]Continue[color=]
 ---
 Deal your next [color=#5a9634]Card[color=]."
-texture_normal = SubResource("GradientTexture2D_v1gob")
-stretch_mode = 0
+theme_override_font_sizes/font_size = 68
+text = "Continue"
+flat = true
 script = ExtResource("7_346fj")
 
-[node name="Label" type="Label" parent="Table/MarginContainer/ContinueButton" unique_id=1113975629]
+[node name="NinePatchRect" type="NinePatchRect" parent="Table/MarginContainer/ContinueButton" unique_id=1851281024]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 4.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 28
-text = "CONTINUE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 501.0
-offset_right = 1140.0
-offset_bottom = 565.0
-theme_override_constants/separation = 10
-alignment = 1
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.701614, 5.644291, 634.44574, 129.77386)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="PlayerBox" type="Control" parent="Table" unique_id=667759408]
 unique_name_in_owner = true
@@ -1179,28 +1172,29 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 176.0
-offset_top = -173.3128
-offset_right = 318.0
+offset_top = -247.0
+offset_right = 430.7851
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_50glp")
+texture = ExtResource("10_3tgeq")
+expand_mode = 1
 
 [node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 175)
+custom_minimum_size = Vector2(0, 175)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 70.999985
-offset_top = -235.3436
-offset_right = 171.0
-offset_bottom = -60.343597
+offset_left = -16.392548
+offset_top = -128.5
+offset_right = -16.392548
+offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 0.29793882
-pivot_offset = Vector2(62.64557, 80.755035)
+rotation = 0.4225
+pivot_offset = Vector2(50, 175)
 tooltip_text = "[color={color}]Card[color=]
 ---
 This [color={color}]Card[color=] is a {name}, which has a value of {value}."
@@ -1218,6 +1212,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(30, 87)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 116
 text = "5"
@@ -1328,14 +1323,17 @@ theme_override_constants/margin_bottom = 0
 
 [node name="Background" type="NinePatchRect" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent" unique_id=1538285747]
 layout_mode = 2
-texture = SubResource("GradientTexture2D_kln2b")
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.701981, 5.220192, 632.74835, 130.19797)
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent" unique_id=120296607]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_left = 8
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 8
 
 [node name="ChipBar" type="HBoxContainer" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent/MarginContainer" unique_id=541562196]
@@ -1591,8 +1589,8 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(336, 87),
 "tip_text": "[color=#e93816]Chips[color=] you buy will show up here. You can have up to 5 kinds of chip at once."
 }), Dictionary[String, Variant]({
-"position": Vector2(710, 514),
-"size": Vector2(431, 124),
+"position": Vector2(710, 507),
+"size": Vector2(425, 115),
 "tip_position": Vector2(751, 421),
 "tip_size": Vector2(336, 87),
 "tip_text": "Press Continue to move onto your first [color=5a9634]Round[color=]."
@@ -1603,14 +1601,14 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(336, 44),
 "tip_text": "This is the [color=#5a9634]Table[color=]."
 }), Dictionary[String, Variant]({
-"position": Vector2(77, 266),
-"size": Vector2(384, 383),
+"position": Vector2(180, 302),
+"size": Vector2(299, 347),
 "tip_position": Vector2(490, 412),
 "tip_size": Vector2(336, 130),
 "tip_text": "You're the dealer at a blackjack table in a casino. Your goal is to win every game by manipulating the values of the cards you deal."
 }), Dictionary[String, Variant]({
-"position": Vector2(2, 0),
-"size": Vector2(437, 85),
+"position": Vector2(25, 16),
+"size": Vector2(444, 105),
 "tip_position": Vector2(65, 90),
 "tip_size": Vector2(336, 130),
 "tip_text": "Drag a [color=#E93816]Chip[color=] from your bar onto the [color=#5a9634]Card[color=] you're about to deal to apply that [color=#E93816]Chip[color=]'s modification to it."
@@ -1621,14 +1619,14 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(336, 78),
 "tip_text": "The [color=#5a9634]Card[color=] will turn [color=#e93816]Red[color=] to show it's been manipulated."
 }), Dictionary[String, Variant]({
-"position": Vector2(873, 560),
-"size": Vector2(276, 86),
+"position": Vector2(709, 506),
+"size": Vector2(414, 120),
 "tip_position": Vector2(781, 456),
 "tip_size": Vector2(361, 99),
 "tip_text": "Once you've used all the [color=#E93816]Chip[color=]s on this card that you want - or none at all - press [color=#5a9634]Continue[color=] to deal it."
 }), Dictionary[String, Variant]({
 "position": Vector2(348, 383),
-"size": Vector2(447, 165),
+"size": Vector2(447, 186),
 "tip_position": Vector2(386, 305),
 "tip_size": Vector2(361, 76),
 "tip_text": "[color=#5a9634]Cards[color=] in play will show up on the table in front of their respective player."
@@ -1645,10 +1643,9 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(1, 102),
 "tip_text": ""
 })])
-interpolating = false
+save_index = 11
 interpolation_time = 0.75
-current_index = 2
-next_index = 12
+next_index = 13
 front_locks = Array[int]([5])
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialFocus/Cutout" unique_id=2082386551]
@@ -1690,7 +1687,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 91
+visible_characters = 0
 
 [node name="Panel" type="Panel" parent="TutorialFocus/RichTextLabel" unique_id=1375269532]
 z_as_relative = false
@@ -1742,8 +1739,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 95.00073
-offset_bottom = 132.99939
+offset_right = 95.000854
+offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
@@ -1760,8 +1757,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 94.99939
-offset_bottom = 132.99939
+offset_right = 94.99951
+offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
