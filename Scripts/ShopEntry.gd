@@ -7,11 +7,9 @@ class_name ShopEntry extends Control
 
 func _ready() -> void: 
 	chip_texture.pressed.connect(_on_pressed)
-	
-	if chip:
-		chip_texture.texture_normal = chip.texture
 
-func _process(_delta: float) -> void:
+func _process(_delta: float) -> void: if chip:
+	chip_texture.texture_normal = chip.texture
 	chip_texture.disabled = Global.money < chip.cost
 	$ChipTexture/Label.text = "$" + str(chip.cost)
 
