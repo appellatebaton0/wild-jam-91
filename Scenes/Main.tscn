@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://botm0p64oeyob" path="res://Assets/UI/Hand.png" id="10_3tgeq"]
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
 [ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
+[ext_resource type="Texture2D" uid="uid://c2cpmvvjekqo" path="res://Assets/Cards/CardTransformation.png" id="14_c4ay3"]
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
 [ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
@@ -68,6 +69,75 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4ay3"]
+atlas = ExtResource("4_1p5hy")
+region = Rect2(118, 70, 59, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aht7i"]
+atlas = ExtResource("14_c4ay3")
+region = Rect2(0, 0, 745, 1033)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jffn"]
+atlas = ExtResource("14_c4ay3")
+region = Rect2(745, 0, 745, 1033)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpo4j"]
+atlas = ExtResource("14_c4ay3")
+region = Rect2(1490, 0, 745, 1033)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n42c"]
+atlas = ExtResource("14_c4ay3")
+region = Rect2(2235, 0, 745, 1033)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5snn"]
+atlas = ExtResource("14_c4ay3")
+region = Rect2(2980, 0, 745, 1033)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvtyr"]
+atlas = ExtResource("14_c4ay3")
+region = Rect2(3725, 0, 745, 1033)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7mjy"]
+atlas = ExtResource("4_1p5hy")
+region = Rect2(118, 70, 59, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7mjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4ay3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aht7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jffn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpo4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n42c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5snn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvtyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7mjy")
+}],
+"loop": false,
+"name": &"ignite",
+"speed": 8.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
@@ -1178,7 +1248,7 @@ grow_vertical = 0
 texture = ExtResource("10_3tgeq")
 expand_mode = 1
 
-[node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668]
+[node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668 node_paths=PackedStringArray("animator")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 175)
 layout_mode = 1
@@ -1189,7 +1259,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -16.392548
 offset_top = -128.5
-offset_right = -16.392548
+offset_right = 131.60745
 offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1201,8 +1271,9 @@ This [color={color}]Card[color=] is a {name}, which has a value of {value}."
 texture = ExtResource("9_h1m7h")
 expand_mode = 1
 script = ExtResource("4_rgh2o")
+animator = NodePath("../ApplyAnimator")
 FLIP_SPEED = 1100
-max_x = 132.0
+max_x = 148.0
 modifiable = true
 
 [node name="Label" type="Label" parent="Table/Hand/NextCard" unique_id=1266180797]
@@ -1218,6 +1289,15 @@ theme_override_font_sizes/font_size = 116
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ApplyAnimator" type="AnimatedSprite2D" parent="Table/Hand" unique_id=1749480393]
+unique_name_in_owner = true
+position = Vector2(144, 3.0000134)
+scale = Vector2(0.40962672, 0.4096266)
+sprite_frames = SubResource("SpriteFrames_u7mjy")
+animation = &"ignite"
+frame = 6
+frame_progress = 1.0
 
 [node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
 visible = false

@@ -1,6 +1,8 @@
 class_name CardNode extends TextureRect
 ## Handles turning the card node into something readable.
 
+@export var animator:AnimatedSprite2D
+
 const TEXTURE_DICT := {
 	false: {
 		true: preload("res://Assets/Cards/RegularCard.png"),
@@ -23,12 +25,12 @@ var flipping = false
 @export var card:Card:
 	set(to):
 		if card:
-			card.value_changed.disconnect(flip)
+			card.value_changed.disconnect(_update_texture)
 		
 		card = to
-		card.value_changed.connect(flip)
+		card.value_changed.connect(_update_texture)
 		
-		flip()
+		_update_texture()
 
 var belongs_to:Hand ## The hand this card belongs to.
 
@@ -54,6 +56,9 @@ func _process(delta: float) -> void:
 	if label:
 		label.scale.x = custom_minimum_size.x / max_x
 		label.pivot_offset.x = label.size.x / 2
+		
+		label.text = card.character()
+		label.visible = (card.visible or modifiable)
 	
 	if modifiable:
 		size.x = custom_minimum_size.x
@@ -61,8 +66,6 @@ func _process(delta: float) -> void:
 
 func _update_texture(_a = null): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
-	label.text = card.character()
-	label.visible = (card.visible or modifiable)
 func flip(): flipping = true
 
 func _on_mouse_entered() -> void: Global.hovered_card = self

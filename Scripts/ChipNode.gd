@@ -26,7 +26,9 @@ func _input(event: InputEvent) -> void:
 					## Modify the hovered-over card, and delete this chip.
 					if card.card: 
 						card.card.modified = true
+						if card.animator: card.animator.play("ignite")
 						chip.apply(card.card)
+						
 					
 					## Some particle effect before this?
 					queue_free()
