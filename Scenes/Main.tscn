@@ -1,25 +1,26 @@
 [gd_scene format=3 uid="uid://bqkgcup7e7ey5"]
 
+[ext_resource type="Theme" uid="uid://c724nvjjfrjd4" path="res://Assets/UI/MainTheme.tres" id="1_grg3l"]
 [ext_resource type="Script" uid="uid://c7etl1ys6nxhx" path="res://Scripts/Table.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
 [ext_resource type="Texture2D" uid="uid://dccifra5kjsj2" path="res://Assets/Background.png" id="2_v1gob"]
-[ext_resource type="Resource" uid="uid://56pix6fkijvu" path="res://Assets/Chips/DoubleChip.tres" id="3_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://bvbl3jkqfugn2" path="res://Assets/Cards/NextCard.png" id="4_1p5hy"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 [ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
+[ext_resource type="Script" uid="uid://cpdqm8lk2v04p" path="res://Scripts/FancyTooltip.gd" id="7_346fj"]
+[ext_resource type="Texture2D" uid="uid://dv0bcvfc74p18" path="res://Assets/UI/SpeechBubble.png" id="7_frkhe"]
 [ext_resource type="Script" uid="uid://cula1fvvdtwkd" path="res://Scripts/ChipDisplay.gd" id="7_jw32o"]
 [ext_resource type="Script" uid="uid://craqxpg4i8wx5" path="res://Scripts/AnimatorButton.gd" id="7_vy5pj"]
 [ext_resource type="Script" uid="uid://qudew6dbpmv2" path="res://Scripts/TransitionOverlay.gd" id="8_50glp"]
 [ext_resource type="Script" uid="uid://cnshugqmobch0" path="res://Scripts/Shop.gd" id="8_bmxlf"]
 [ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
-
-[sub_resource type="Gradient" id="Gradient_grg3l"]
-offsets = PackedFloat32Array(0.42541435, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_frkhe"]
-gradient = SubResource("Gradient_grg3l")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://b00dkt83a24ij" path="res://Assets/Cards/RegularCard.png" id="9_h1m7h"]
+[ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
+[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/Chips/CoinFlip.tres" id="14_2w5on"]
+[ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
+[ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
+[ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
 
 [sub_resource type="Gradient" id="Gradient_idj7w"]
 offsets = PackedFloat32Array(0.005181347, 1)
@@ -30,15 +31,31 @@ gradient = SubResource("Gradient_idj7w")
 width = 32
 height = 32
 
+[sub_resource type="GDScript" id="GDScript_346fj"]
+script/source = "class_name DoubleChip extends Chip
+## Doubles the value of the card it's applied to.
+
+func apply(to:Card) -> void:
+	
+	to.value *= 2
+	pass
+"
+
+[sub_resource type="Gradient" id="Gradient_242c6"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_05vih"]
+gradient = SubResource("Gradient_242c6")
+
+[sub_resource type="Resource" id="Resource_0sclb"]
+script = SubResource("GDScript_346fj")
+texture = SubResource("GradientTexture2D_05vih")
+
 [sub_resource type="Gradient" id="Gradient_pbw6q"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v1gob"]
 gradient = SubResource("Gradient_pbw6q")
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_idj7w"]
-thickness = 4
-vertical = true
 
 [sub_resource type="Gradient" id="Gradient_v1gob"]
 offsets = PackedFloat32Array(0)
@@ -54,10 +71,27 @@ colors = PackedColorArray(1, 1, 1, 0.2901961)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_idj7w"]
 gradient = SubResource("Gradient_r150o")
 
-[sub_resource type="Gradient" id="Gradient_bmxlf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_frkhe"]
+atlas = ExtResource("7_frkhe")
+region = Rect2(0, 0, 270, 242)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kpch"]
-gradient = SubResource("Gradient_bmxlf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p5hy"]
+atlas = ExtResource("7_frkhe")
+region = Rect2(270, 0, 270, 242)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1m7h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frkhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p5hy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_jw32o"]
 
@@ -65,16 +99,54 @@ gradient = SubResource("Gradient_bmxlf")
 gradient = SubResource("Gradient_jw32o")
 width = 48
 
-[sub_resource type="Gradient" id="Gradient_50glp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
+bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vy5pj"]
-gradient = SubResource("Gradient_50glp")
+[sub_resource type="Shader" id="Shader_erwvk"]
+code = "shader_type canvas_item;
 
-[sub_resource type="Gradient" id="Gradient_vy5pj"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+uniform sampler2D screen_texture : hint_screen_texture;
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmxlf"]
-gradient = SubResource("Gradient_vy5pj")
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	COLOR = texture(screen_texture, SCREEN_UV);
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w5on"]
+shader = SubResource("Shader_erwvk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_346fj"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w5on"]
+bg_color = Color(0.95686275, 0.91764706, 0.8352941, 0.54509807)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
+bg_color = Color(0.62560004, 0.67184, 0.68, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
+bg_color = Color(0.02906301, 0.03273736, 0.11157911, 1)
 
 [sub_resource type="Gradient" id="Gradient_1p5hy"]
 offsets = PackedFloat32Array(0, 0.1764706, 0.8200692, 1)
@@ -82,6 +154,57 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_h1m7h"]
 gradient = SubResource("Gradient_1p5hy")
+
+[sub_resource type="Animation" id="Animation_c4ay3"]
+resource_name = "MainMenu->Shop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionOverlay:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionOverlay:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.2617993877991494, -0.26282808]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_jw32o"]
 length = 0.001
@@ -155,7 +278,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -167,7 +290,211 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TutorialFocus:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TutorialFocus:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TutorialFocus/Cutout:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Splash/MadeFor:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Menu/Control/CrayonCreation:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Menu/Control/Probability:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Menu/Control/Probability:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(481, 191)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Menu/Control/CrayonCreation:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(481, 191)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Menu/Control/CrayonCreation:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Menu/Control/Probability:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Menu/Control/CrayonCreation:pivot_offset")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(95, 133)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Menu/Control/Probability:pivot_offset")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(95, 133)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Splash:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Splash:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("TransitionOverlay:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.26282808]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Menu:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Menu/Control/Label:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
@@ -244,6 +571,154 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sxkr1"]
+resource_name = "Splash->MainMenu"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splash/MadeFor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.65, 0.8, 2.5, 2.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/Control/CrayonCreation:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.15, 4.81, 4.97, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menu/Control/Probability:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 3.15, 4.81, 4.97, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menu/Control/Probability:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3, 3.1666667, 3.25, 4.7799997, 4.9666667, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(431, 191), Vector2(206, 191), Vector2(206, 191), Vector2(206, 191), Vector2(206, 191), Vector2(-43, 362)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Menu/Control/CrayonCreation:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3, 3.1666667, 3.25, 4.7799997, 4.9666667, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(531, 191), Vector2(756, 191), Vector2(756, 191), Vector2(756, 191), Vector2(756, 191), Vector2(-43, 362)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Menu/Control/CrayonCreation:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.9666667, 5.233333, 5.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.40491638]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Menu/Control/Probability:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4.9666667, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Menu/Control/CrayonCreation:pivot_offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(95, 133), Vector2(95, 266)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Menu/Control/Probability:pivot_offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(95, 133), Vector2(95, 266)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Splash:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 6.641403, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Splash:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Menu/Control/Label:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 3, 3.15, 4.96, 5.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -350,12 +825,54 @@ tracks/4/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_2w5on"]
+resource_name = "TutorialOver"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutorialFocus:visible")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TutorialFocus:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TutorialFocus/Cutout:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
 _data = {
+&"MainMenu->Shop": SubResource("Animation_c4ay3"),
 &"RESET": SubResource("Animation_jw32o"),
 &"Shop->Table": SubResource("Animation_bmxlf"),
+&"Splash->MainMenu": SubResource("Animation_sxkr1"),
 &"Table->EndPopup": SubResource("Animation_50glp"),
-&"Table->Shop": SubResource("Animation_erwvk")
+&"Table->Shop": SubResource("Animation_erwvk"),
+&"TutorialOver": SubResource("Animation_2w5on")
 }
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2w5on"]
@@ -365,12 +882,14 @@ stream_0/volume = 0.0
 [node name="Main" type="Node" unique_id=1786674721]
 
 [node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("anim_player", "players")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_grg3l")
 script = ExtResource("1_r150o")
 anim_player = NodePath("../AnimationPlayer")
 players = {
@@ -403,7 +922,7 @@ offset_right = 16.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_frkhe")
+texture = ExtResource("4_1p5hy")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
@@ -457,7 +976,7 @@ theme_override_constants/separation = 7
 
 [node name="ChipSlot" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer2/ChipBarParent/MarginContainer/ChipBar" unique_id=1352684153 instance=ExtResource("2_kln2b")]
 layout_mode = 2
-chip = ExtResource("3_rgh2o")
+chip = SubResource("Resource_0sclb")
 count = 1
 
 [node name="Spacer" type="Control" parent="Table/MarginContainer/VBoxContainer/Bars" unique_id=1223161513]
@@ -533,8 +1052,12 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Deal your next [color=#5a9634]Card[color=]."
 texture_normal = SubResource("GradientTexture2D_v1gob")
 stretch_mode = 0
+script = ExtResource("7_346fj")
 
 [node name="Label" type="Label" parent="Table/MarginContainer/ContinueButton" unique_id=1113975629]
 layout_mode = 1
@@ -547,29 +1070,6 @@ theme_override_font_sizes/font_size = 28
 text = "CONTINUE"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Table/MarginContainer" unique_id=1633923152]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="Label2" type="Label" parent="Table/MarginContainer/HBoxContainer" unique_id=1202036037]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "GAME 001"
-horizontal_alignment = 3
-
-[node name="VSeparator" type="VSeparator" parent="Table/MarginContainer/HBoxContainer" unique_id=1273741880]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_idj7w")
-
-[node name="Label3" type="Label" parent="Table/MarginContainer/HBoxContainer" unique_id=278751952]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "ROUND 001"
-horizontal_alignment = 3
 
 [node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
 unique_name_in_owner = true
@@ -605,9 +1105,14 @@ offset_top = -8.0
 offset_right = 91.0
 offset_bottom = 56.0
 size_flags_horizontal = 4
+tooltip_text = "Intent
+---
+{name}[color=] {intent}[color=]."
 texture = SubResource("GradientTexture2D_jw32o")
+script = ExtResource("7_346fj")
 
 [node name="Texture" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=393034014]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 1
 anchors_preset = 8
@@ -623,7 +1128,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "{name}[color=]
+---
+{name}[color=] {intent}[color=].
+{name}[color=] is betting {bet}[color=]."
 texture = SubResource("GradientTexture2D_idj7w")
+script = ExtResource("7_346fj")
 
 [node name="PlayerHand" type="HBoxContainer" parent="Table/PlayerBox/Player" unique_id=897403238]
 unique_name_in_owner = true
@@ -642,36 +1152,48 @@ grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=1112573543]
-custom_minimum_size = Vector2(125, 100)
-layout_mode = 0
-offset_left = 150.0
-offset_top = 10.0
-offset_right = 275.0
-offset_bottom = 110.0
-texture = SubResource("GradientTexture2D_4kpch")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=973104317]
+position = Vector2(252.99997, 77.999985)
+scale = Vector2(0.56198347, 0.56198347)
+sprite_frames = SubResource("SpriteFrames_h1m7h")
+autoplay = "default"
+frame_progress = 0.5060695
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Table/PlayerBox/Player/TextureRect" unique_id=323812416]
-layout_mode = 1
+[node name="BetBox" type="VBoxContainer" parent="Table/PlayerBox/Player/AnimatedSprite2D" unique_id=1606145929]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -126.33818
+offset_top = -74.73527
+offset_right = -126.33818
+offset_bottom = -140.73526
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Bet
+---
+{name}[color=] is betting ${bet}[color=]."
+theme = ExtResource("1_grg3l")
+theme_override_constants/separation = -20
+script = ExtResource("7_346fj")
 
-[node name="Label" type="Label" parent="Table/PlayerBox/Player/TextureRect/VBoxContainer" unique_id=482054046]
+[node name="Label" type="Label" parent="Table/PlayerBox/Player/AnimatedSprite2D/BetBox" unique_id=1969372184]
 layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 44
 text = "BET"
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
-[node name="Bet" type="Label" parent="Table/PlayerBox/Player/TextureRect/VBoxContainer" unique_id=1631723075]
+[node name="Bet" type="Label" parent="Table/PlayerBox/Player/AnimatedSprite2D/BetBox" unique_id=1392805822]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "500$"
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 78
+text = "$500"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
 layout_mode = 1
@@ -693,20 +1215,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = -232.3436
-offset_right = 99.0
-offset_bottom = -57.343597
+offset_left = 70.999985
+offset_top = -235.3436
+offset_right = 171.0
+offset_bottom = -60.343597
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.29793882
 pivot_offset = Vector2(62.64557, 80.755035)
-texture = SubResource("GradientTexture2D_50glp")
+tooltip_text = "[color={color}]Card[color=]
+---
+This [color={color}]Card[color=] is a {name}, which has a value of {value}."
+texture = ExtResource("9_h1m7h")
 expand_mode = 1
 script = ExtResource("4_rgh2o")
 FLIP_SPEED = 1100
 max_x = 132.0
 modifiable = true
+
+[node name="Label" type="Label" parent="Table/Hand/NextCard" unique_id=1266180797]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 116
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
 visible = false
@@ -757,164 +1295,129 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=86465456]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "[color=#5a9634]To Shop[color=]
+---
+End the round and go to the [color=#8885ca]Shop[color=]."
 theme_override_font_sizes/font_size = 30
 text = "TO SHOP"
 script = ExtResource("7_vy5pj")
 anim_name = &"Table->Shop"
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_grg3l")
 script = ExtResource("8_bmxlf")
 
-[node name="Panel" type="TextureRect" parent="Shop" unique_id=95063815]
+[node name="Background" type="TextureRect" parent="Shop" unique_id=95063815]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_vy5pj")
+texture = ExtResource("13_2w5on")
+expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1157051586]
+[node name="ShopContainer" type="TextureRect" parent="Shop" unique_id=1323309893]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 168.0
+offset_right = -490.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/ShopContainer" unique_id=378975427]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer" unique_id=338303092]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="Shop/MarginContainer/VBoxContainer" unique_id=1190053505]
-custom_minimum_size = Vector2(0, 259.2)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Shop/MarginContainer/VBoxContainer" unique_id=327130135]
-layout_mode = 2
-size_flags_vertical = 3
-texture = SubResource("GradientTexture2D_bmxlf")
-
-[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect" unique_id=1105709724]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 30
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer" unique_id=1631733223]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="GridContainer" type="GridContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=811847063]
+[node name="GridContainer" type="GridContainer" parent="Shop/ShopContainer/MarginContainer" unique_id=811847063]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_constants/h_separation = 15
-theme_override_constants/v_separation = 15
-columns = 7
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 50
+columns = 4
 
-[node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-chip = ExtResource("3_rgh2o")
+chip = ExtResource("14_2w5on")
 
-[node name="ShopEntry2" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry3" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry2" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry4" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry3" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=53930372 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry5" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry4" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1485424928 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry5" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1830729000 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry6" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=916256719 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry7" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry9" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=2111056132 instance=ExtResource("9_4kpch")]
+[node name="ShopEntry8" parent="Shop/ShopContainer/MarginContainer/GridContainer" unique_id=1728505108 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
-[node name="ShopEntry10" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1984822719 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry11" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1797144548 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry12" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=612177312 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry13" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=502973793 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry14" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1366369193 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry15" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=177555919 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry16" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=958778484 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry17" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1689270088 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry18" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1929170373 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry19" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1170422816 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry20" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=707031144 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry21" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/GridContainer" unique_id=1473947956 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer" unique_id=986045665]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 15
-
-[node name="Button" type="Button" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1548177628]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "BUY CHIP SLOT"
-
-[node name="Continue" type="Button" parent="Shop/MarginContainer/VBoxContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1946982751]
+[node name="Continue" type="Button" parent="Shop" unique_id=1946982751]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 722.0
+offset_top = 526.0
+offset_right = 1125.0
+offset_bottom = 626.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "CONTINUE"
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Move on to the next [color=#5a9634]Round[color=]."
+theme_override_font_sizes/font_size = 68
+text = "Continue"
 script = ExtResource("7_vy5pj")
+tutorial_progressor = Dictionary[int, int]({
+-1: 6
+})
 anim_name = &"Shop->Table"
 
-[node name="ChipBarParent" type="MarginContainer" parent="Shop/MarginContainer" unique_id=1358028168]
-layout_mode = 2
+[node name="BuyButton" type="Button" parent="Shop" unique_id=324959979]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 195.0
+offset_top = 519.0
+offset_right = 483.0
+offset_bottom = 619.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Buy
+---
+Buy the last selected [color=#e93816]Chip[color=]."
+theme_override_font_sizes/font_size = 74
+text = "Buy"
+script = ExtResource("7_346fj")
+
+[node name="ChipBarParent" type="MarginContainer" parent="Shop" unique_id=1358028168]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 30.0
+offset_right = 430.0
+offset_bottom = 110.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = 0
@@ -922,61 +1425,416 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Background" type="NinePatchRect" parent="Shop/MarginContainer/ChipBarParent" unique_id=1538285747]
+[node name="Background" type="NinePatchRect" parent="Shop/ChipBarParent" unique_id=1538285747]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_kln2b")
 
-[node name="MarginContainer" type="MarginContainer" parent="Shop/MarginContainer/ChipBarParent" unique_id=120296607]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/ChipBarParent" unique_id=120296607]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ChipBar" type="HBoxContainer" parent="Shop/ChipBarParent/MarginContainer" unique_id=541562196]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 14
+script = ExtResource("7_jw32o")
+usable = false
+
+[node name="ChipSlot" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1909970247 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot2" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1158282121 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot3" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=645527073 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot4" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1962112460 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="ChipSlot5" parent="Shop/ChipBarParent/MarginContainer/ChipBar" unique_id=1847388981 instance=ExtResource("2_kln2b")]
+layout_mode = 2
+
+[node name="Fail" type="AudioStreamPlayer" parent="Shop" unique_id=522220680]
+
+[node name="Suceed" type="AudioStreamPlayer" parent="Shop" unique_id=1194004517]
+
+[node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=1883038425]
+rect = Rect2(0, 0, 1152, 648)
+
+[node name="Tint" type="ColorRect" parent="TutorialFocus" unique_id=368649665]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5137255)
+
+[node name="Cutout" type="Panel" parent="TutorialFocus" unique_id=1260227664 node_paths=PackedStringArray("animator", "tooltip") groups=["TutOverlay"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -47.0
+offset_right = 51.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_grg3l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1m7h")
+script = ExtResource("16_erwvk")
+animator = NodePath("../../AnimationPlayer")
+tooltip = NodePath("../RichTextLabel")
+keys = Array[Dictionary]([Dictionary[String, Variant]({
+"position": Vector2(576, 324),
+"size": Vector2(0, 0),
+"tip_position": Vector2(408, 220.5),
+"tip_size": Vector2(336, 207),
+"tip_text": "Welcome to [color=#e93816][GAME NAME][color=]!
+Use the Left/Right Arrow Keys, A and D, or the DPad to navigate the [color=#5a9634]Tutorial[color=].
+
+Press D/Right to [color=#e93816]continue[color=].
+Press A/Left to skip the [color=#5a9634]Tutorial[color=].
+"
+}), Dictionary[String, Variant]({
+"position": Vector2(0, 0),
+"size": Vector2(1152, 648),
+"tip_position": Vector2(408, 110),
+"tip_size": Vector2(336, 58),
+"tip_text": "This is the [color=#8885ca]Shop[color=]."
+}), Dictionary[String, Variant]({
+"position": Vector2(31, 161),
+"size": Vector2(638, 465),
+"tip_position": Vector2(706, 172),
+"tip_size": Vector2(336, 210),
+"tip_text": "Before a round begins, you can buy [color=#e93816]Chips[color=] to use in the next round.
+
+[color=#e93816]Chips[color=] allow you to manipulate the value of [color=#5a9634]Cards[color=] - more on that later."
+}), Dictionary[String, Variant]({
+"position": Vector2(31, 161),
+"size": Vector2(638, 465),
+"tip_position": Vector2(706, 172),
+"tip_size": Vector2(336, 100),
+"tip_text": "For now, buy some [color=#e93816]Chips[color=] with your starting money."
+}), Dictionary[String, Variant]({
+"position": Vector2(24, 19),
+"size": Vector2(418, 101),
+"tip_position": Vector2(447, 25),
+"tip_size": Vector2(336, 87),
+"tip_text": "[color=#e93816]Chips[color=] you buy will show up here. You can have up to 5 kinds of chip at once."
+}), Dictionary[String, Variant]({
+"position": Vector2(710, 514),
+"size": Vector2(431, 124),
+"tip_position": Vector2(751, 421),
+"tip_size": Vector2(336, 87),
+"tip_text": "Press Continue to move onto your first [color=5a9634]Round[color=]."
+}), Dictionary[String, Variant]({
+"position": Vector2(0, 0),
+"size": Vector2(1152, 648),
+"tip_position": Vector2(408, 412),
+"tip_size": Vector2(336, 44),
+"tip_text": "This is the [color=#5a9634]Table[color=]."
+}), Dictionary[String, Variant]({
+"position": Vector2(77, 266),
+"size": Vector2(384, 383),
+"tip_position": Vector2(490, 412),
+"tip_size": Vector2(336, 130),
+"tip_text": "You're the dealer at a blackjack table in a casino. Your goal is to win every game by manipulating the values of the cards you deal."
+}), Dictionary[String, Variant]({
+"position": Vector2(2, 0),
+"size": Vector2(437, 85),
+"tip_position": Vector2(65, 90),
+"tip_size": Vector2(336, 130),
+"tip_text": "Drag a [color=#E93816]Chip[color=] from your bar onto the [color=#5a9634]Card[color=] you're about to deal to apply that [color=#E93816]Chip[color=]'s modification to it."
+}), Dictionary[String, Variant]({
+"position": Vector2(150, 271),
+"size": Vector2(341, 374),
+"tip_position": Vector2(150, 194),
+"tip_size": Vector2(336, 78),
+"tip_text": "The [color=#5a9634]Card[color=] will turn [color=#e93816]Red[color=] to show it's been manipulated."
+}), Dictionary[String, Variant]({
+"position": Vector2(873, 560),
+"size": Vector2(276, 86),
+"tip_position": Vector2(781, 456),
+"tip_size": Vector2(361, 99),
+"tip_text": "Once you've used all the [color=#E93816]Chip[color=]s on this card that you want - or none at all - press [color=#5a9634]Continue[color=] to deal it."
+}), Dictionary[String, Variant]({
+"position": Vector2(348, 383),
+"size": Vector2(447, 165),
+"tip_position": Vector2(386, 305),
+"tip_size": Vector2(361, 76),
+"tip_text": "[color=#5a9634]Cards[color=] in play will show up on the table in front of their respective player."
+}), Dictionary[String, Variant]({
+"position": Vector2(3, 550),
+"size": Vector2(97, 96),
+"tip_position": Vector2(6, 440),
+"tip_size": Vector2(361, 102),
+"tip_text": "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
+}), Dictionary[String, Variant]({
+"position": Vector2(-48, -47),
+"size": Vector2(1251, 747),
+"tip_position": Vector2(-19, 440),
+"tip_size": Vector2(1, 102),
+"tip_text": ""
+})])
+interpolating = false
+interpolation_time = 0.75
+current_index = 2
+next_index = 12
+front_locks = Array[int]([5])
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialFocus/Cutout" unique_id=2082386551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
 
-[node name="ChipBar" type="HBoxContainer" parent="Shop/MarginContainer/ChipBarParent/MarginContainer" unique_id=541562196]
+[node name="ColorRect" type="Panel" parent="TutorialFocus/Cutout/MarginContainer" unique_id=788304380]
+material = SubResource("ShaderMaterial_2w5on")
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 7
-script = ExtResource("7_jw32o")
-usable = false
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_346fj")
 
-[node name="ChipSlot" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1909970247 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialFocus" unique_id=1039667690]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -595.0
+offset_top = 116.0
+offset_right = -594.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_grg3l")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 91
 
-[node name="ChipSlot2" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1158282121 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Panel" type="Panel" parent="TutorialFocus/RichTextLabel" unique_id=1375269532]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2w5on")
 
-[node name="ChipSlot3" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=645527073 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Label" type="Label" parent="TutorialFocus" unique_id=1397340074]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.0
+offset_right = 219.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Use Arrow Keys, A/D, or DPad to move between tooltips. "
 
-[node name="ChipSlot4" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1962112460 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Menu" type="Panel" parent="." unique_id=1375457296]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_grg3l")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3tgeq")
 
-[node name="ChipSlot5" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1847388981 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Control" type="Control" parent="Menu" unique_id=881711370]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ChipSlot6" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=138543370 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Probability" type="TextureRect" parent="Menu/Control" unique_id=1565232548]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -133.0
+offset_right = 95.00073
+offset_bottom = 132.99939
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(95, 133)
+texture = ExtResource("18_fq0cl")
+expand_mode = 1
 
-[node name="ChipSlot7" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=206407477 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="CrayonCreation" type="TextureRect" parent="Menu/Control" unique_id=1698137658]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -133.0
+offset_right = 94.99939
+offset_bottom = 132.99939
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(95, 133)
+texture = ExtResource("19_hwpts")
+expand_mode = 1
 
-[node name="ChipSlot8" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1078688410 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Label" type="Label" parent="Menu/Control" unique_id=785018468]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.5
+offset_top = -261.0
+offset_right = 122.5
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(122, 26)
+theme_override_font_sizes/font_size = 39
+text = "Used Wildcards"
 
-[node name="ChipSlot9" parent="Shop/MarginContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1560566182 instance=ExtResource("2_kln2b")]
-layout_mode = 2
+[node name="Label" type="Label" parent="Menu" unique_id=1136547222]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -254.0
+offset_right = 303.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 107
+text = "[Game Name]"
 
-[node name="Menu" type="Control" parent="." unique_id=999863084]
+[node name="Button" type="Button" parent="Menu" unique_id=766904342]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -73.5
+offset_right = 162.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+script = ExtResource("7_vy5pj")
+anim_name = &"MainMenu->Shop"
+
+[node name="Options" type="Control" parent="." unique_id=298571288]
 visible = false
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_grg3l")
+
+[node name="Splash" type="Panel" parent="." unique_id=528694775]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0sclb")
+
+[node name="MadeFor" type="Control" parent="Splash" unique_id=1881149074]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(576, 324)
+
+[node name="Label" type="Label" parent="Splash/MadeFor" unique_id=1975473668]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 434.5
+offset_top = 122.0
+offset_right = 677.5
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(121, 25)
+theme_override_font_sizes/font_size = 37
+text = "Made For The"
+
+[node name="Label2" type="Label" parent="Splash/MadeFor" unique_id=2143775206]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 380.5
+offset_top = 401.0
+offset_right = 731.5
+offset_bottom = 452.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(175, 25)
+theme_override_font_sizes/font_size = 37
+text = "Godot Wild Jam #91"
+
+[node name="TextureRect" type="TextureRect" parent="Splash/MadeFor" unique_id=691442685]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.66663
+offset_top = 76.0
+offset_right = 960.6666
+offset_bottom = 532.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(405, 228)
+texture = ExtResource("20_jyqft")
+expand_mode = 1
 
 [node name="InputStopper" type="Control" parent="." unique_id=624563267]
 visible = false
@@ -984,9 +1842,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_grg3l")
 
 [node name="TransitionOverlay" type="Control" parent="." unique_id=130434851]
 visible = false
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -995,6 +1855,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.26282808
 pivot_offset = Vector2(576, 324)
+theme = ExtResource("1_grg3l")
 script = ExtResource("8_50glp")
 ease_min = -0.5
 ease_max = -1.0
@@ -1095,6 +1956,7 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1477990020]
 libraries/ = SubResource("AnimationLibrary_vy5pj")
+autoplay = &"Splash->MainMenu"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1243578129]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1243578129]
 stream = SubResource("AudioStreamSynchronized_2w5on")

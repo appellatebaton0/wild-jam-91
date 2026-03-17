@@ -42,3 +42,21 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		new.dropped.connect(_on_chip_dropped)
 
 func _on_chip_dropped(): count += 1
+
+## Custom Tooltippin'
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip = preload("res://Scenes/Tooltip.tscn").instantiate()
+	tooltip.text = for_text
+	return tooltip
+
+func _get_tooltip(_at_position: Vector2) -> String:
+	
+	if not chip: return ""
+	
+	var response = tooltip_text
+	
+	response = response.replace("{color}", chip.color.to_html())
+	response = response.replace("{name}", chip.name)
+	response = response.replace("{description}", chip.info)
+	
+	return response

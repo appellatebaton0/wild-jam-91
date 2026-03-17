@@ -4,6 +4,10 @@ class_name Player extends Control
 @onready var intent_rect := %Intent     ## The TextureRect to show intent.
 @onready var hand_box    := %PlayerHand ## The VBox holding the hand.
 @onready var bet_lab     := %Bet        ## The label showing the current bet.
+@onready var bet_box     := %BetBox     ## The VBox holding bet information.
+@onready var texture     := %Texture    ## The TextureRect with this player's texture.
+
+@export var player_name := &"Sarah"
 
 enum INTENT {HIT, STAND, OUT, DOUBLE_DOWN}
 @export var intent := INTENT.HIT
@@ -21,7 +25,14 @@ func _ready() -> void:
 	
 	# debug label
 	add_child(lab)
-func _process(delta: float) -> void: lab.text = str(intent)
+func _process(delta: float) -> void: 
+	
+	lab.text = str(intent)
+	
+	for tooltipper in [intent_rect, bet_box, texture]: if tooltipper is FancyTooltip:
+		tooltipper.special_properties["{name}"] = player_name
+		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + intent_string() if intent != INTENT.OUT else " is out"
+		tooltipper.special_properties["{bet}"] = "[color=#" + Color(0.82, 0.561, 0.221, 1.0).to_html() + "]$" + str(bet)
 
 const CARD_NODE_SCENE := preload("res://Scenes/CardNode.tscn")
 ## Add a new card to the hand.
@@ -125,3 +136,19 @@ func _on_game_end() -> void:
 	hand.clear()
 	renew_bet()
 	intent = INTENT.HIT
+
+func intent_string() -> String:
+	match intent:
+		INTENT.HIT:         return "Hit"
+		INTENT.STAND:       return "Stand"
+		INTENT.DOUBLE_DOWN: return "Double Down"
+		INTENT.OUT:         return "Out"
+		_: return ""
+
+func intent_color() -> Color:
+	match intent:
+		INTENT.HIT:         return Color("E93816")
+		INTENT.STAND:       return Color("5A9634")
+		INTENT.DOUBLE_DOWN: return Color("3b8fa8")
+		INTENT.OUT:         return Color("6e4848ff")
+		_: return Color(0,0,0)

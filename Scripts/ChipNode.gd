@@ -24,7 +24,9 @@ func _input(event: InputEvent) -> void:
 				var card = Global.hovered_card
 				if card and card.modifiable:
 					## Modify the hovered-over card, and delete this chip.
-					if card.card: chip.apply(card.card)
+					if card.card: 
+						card.card.modified = true
+						chip.apply(card.card)
 					
 					## Some particle effect before this?
 					queue_free()

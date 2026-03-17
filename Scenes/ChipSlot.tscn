@@ -9,9 +9,13 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_y0qro")
 
 [node name="ChipSlot" type="TextureRect" unique_id=1352684153]
-custom_minimum_size = Vector2(48, 48)
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(64, 64)
+offset_left = -1.0
+offset_right = 47.0
+offset_bottom = 48.0
+tooltip_text = "[color={color}]{name}[color=]
+----
+{description}"
 texture = SubResource("GradientTexture2D_dnpdf")
 expand_mode = 1
 script = ExtResource("1_587vt")
@@ -24,14 +28,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = 9.0
-offset_right = 39.0
-offset_bottom = 39.0
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 55.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "INF"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.95686275, 0.91764706, 0.8352941, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 40
+text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 

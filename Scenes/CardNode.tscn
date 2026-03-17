@@ -1,12 +1,29 @@
 [gd_scene format=3 uid="uid://dt8xwjydmeqno"]
 
-[ext_resource type="Texture2D" uid="uid://yq0ore1r40g7" path="res://Assets/Cards/2.png" id="1_23e6p"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="1_eumo2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eumo2"]
 
 [node name="CardNode" type="TextureRect" unique_id=1318736687]
 custom_minimum_size = Vector2(0, 64)
+offset_left = -1.0
+offset_right = -1.0
 offset_bottom = 64.0
-texture = ExtResource("1_23e6p")
+tooltip_text = "[color={color}]Card[color=]
+---
+This [color={color}]Card[color=] is a {name}, which has a value of {value}."
+texture = SubResource("CompressedTexture2D_eumo2")
 expand_mode = 1
 script = ExtResource("1_eumo2")
 metadata/_custom_type_script = "uid://5tl1kqw1dydx"
+
+[node name="Label" type="Label" parent="." unique_id=521660950]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1

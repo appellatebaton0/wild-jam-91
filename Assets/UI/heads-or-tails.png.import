@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cibv34t1yded8"
-path="res://.godot/imported/Jack.png-dc51bb085dc85beb96e53700488e04be.ctex"
+uid="uid://by2gjrob7mxet"
+path="res://.godot/imported/heads-or-tails.png-bce8cd88cbf9e882fc6e7eaf25efbebf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Jack.png"
-dest_files=["res://.godot/imported/Jack.png-dc51bb085dc85beb96e53700488e04be.ctex"]
+source_file="res://Assets/UI/heads-or-tails.png"
+dest_files=["res://.godot/imported/heads-or-tails.png-bce8cd88cbf9e882fc6e7eaf25efbebf.ctex"]
 
 [params]
 

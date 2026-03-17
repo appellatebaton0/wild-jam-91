@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x1alojlhrigi"
-path="res://.godot/imported/Queen.png-c690222bc72385bfe6f1236af53f6ad7.ctex"
+uid="uid://bvbl3jkqfugn2"
+path="res://.godot/imported/NextCard.png-47a12a8e416575ff232910ce3bd0a010.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Queen.png"
-dest_files=["res://.godot/imported/Queen.png-c690222bc72385bfe6f1236af53f6ad7.ctex"]
+source_file="res://Assets/Cards/NextCard.png"
+dest_files=["res://.godot/imported/NextCard.png-47a12a8e416575ff232910ce3bd0a010.ctex"]
 
 [params]
 

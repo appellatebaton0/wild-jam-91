@@ -51,6 +51,36 @@ func _on_chips_changed(to:Dictionary[Chip, int]) -> void:
 		chip_bar.add_child(new)
 
 func _on_next_pressed() -> void:
+	
+	## Round's still going... Deal the current card to whoever it goes to.
+	var target = deal_cycle[deal_index]
+	
+	if target == &"Dealer":
+		var dealer_cards := Global.dealer_hand.cards
+		if len(dealer_cards) > 0: # Flip over the previous card.
+			var prev := dealer_cards[len(dealer_cards) - 1]
+			prev.visible = true
+			dealer_hand.get_child(len(dealer_cards) - 1).flipping = true
+		
+		Global.dealer_hand.deal(next_card.card, false)
+		draw_new()
+	else:
+		target = players[target]
+		if target is Player: # Deal the card to the player, face down if they're doubling down.
+			
+			match target.intent:
+				Player.INTENT.HIT:
+					target.hand.deal(next_card.card)
+					target.renew_intent()
+					draw_new()
+				Player.INTENT.DOUBLE_DOWN:
+					target.bet *= 2
+					target.hand.deal(next_card.card, false)
+					target.intent = Player.INTENT.STAND
+	
+	## Cycle the dealing index.
+	cycle_deal_index()
+	
 	## Check for any met round end conditions.
 	
 	var all_standing := true
@@ -84,35 +114,6 @@ func _on_next_pressed() -> void:
 		round_over(best_player if best_distance < abs(Global.dealer_hand.closest() - 21) and best_player else self)
 		return
 	
-	## Round's still going... Deal the current card to whoever it goes to.
-	var target = deal_cycle[deal_index]
-	
-	if target == &"Dealer":
-		var dealer_cards := Global.dealer_hand.cards
-		if len(dealer_cards) > 0: # Flip over the previous card.
-			var prev := dealer_cards[len(dealer_cards) - 1]
-			prev.visible = true
-			dealer_hand.get_child(len(dealer_cards) - 1).flipping = true
-		
-		Global.dealer_hand.deal(next_card.card, false)
-		draw_new()
-	else:
-		target = players[target]
-		if target is Player: # Deal the card to the player, face down if they're doubling down.
-			
-			match target.intent:
-				Player.INTENT.HIT:
-					target.hand.deal(next_card.card)
-					target.renew_intent()
-					draw_new()
-				Player.INTENT.DOUBLE_DOWN:
-					target.bet *= 2
-					target.hand.deal(next_card.card, false)
-					target.intent = Player.INTENT.STAND
-	
-	## Cycle the dealing index.
-	cycle_deal_index()
-	
 	## IF no chips remaining, just go again.
 	var has_chips_remaining = false
 	for chip_slot in chip_bar.get_children(): if chip_slot is ChipSlot:
@@ -141,7 +142,7 @@ func cycle_deal_index() -> void:
 		if deal_cycle[deal_index] == &"Dealer" and Global.dealer_hand.high() < 17:
 			break # The next turn belongs to the dealer.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var next := deal_cycle[deal_index]
 	var next_node := dealer_hand if next == &"Dealer" else players[next].hand_box
 	turn_indic.reparent(next_node)
@@ -161,6 +162,8 @@ func round_over(winner:Control):
 		pass
 	elif winner is Player: # A player won.
 		pass
+	
+	cycle_deal_index()
 	
 	if anim_player: anim_player.play("Table->EndPopup")
 

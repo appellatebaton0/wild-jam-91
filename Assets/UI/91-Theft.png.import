@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btinvb5i8ebcs"
-path="res://.godot/imported/Ace.png-29dd8ecdc37ba003d113ff3e169ae924.ctex"
+uid="uid://dotnj2wfxjenx"
+path="res://.godot/imported/91-Theft.png-1c45504ff0e23a25f01b500a59e3e82e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Ace.png"
-dest_files=["res://.godot/imported/Ace.png-29dd8ecdc37ba003d113ff3e169ae924.ctex"]
+source_file="res://Assets/UI/91-Theft.png"
+dest_files=["res://.godot/imported/91-Theft.png-1c45504ff0e23a25f01b500a59e3e82e.ctex"]
 
 [params]
 
