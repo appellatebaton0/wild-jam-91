@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
 [ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
+[ext_resource type="Script" uid="uid://cput2ojqmwnu3" path="res://Scripts/RoundOverPopup.gd" id="18_4n42c"]
 [ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
@@ -1160,6 +1161,7 @@ theme_override_constants/margin_bottom = 3
 [node name="Money" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/MoneyBar/MarginContainer" unique_id=710108117]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "000000$"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer" unique_id=25904373]
@@ -1176,6 +1178,7 @@ size_flags_vertical = 10
 tooltip_text = "[color=#5a9634]Continue[color=]
 ---
 Deal your next [color=#5a9634]Card[color=]."
+focus_mode = 0
 theme_override_font_sizes/font_size = 68
 text = "Continue"
 flat = true
@@ -1403,6 +1406,7 @@ texture = SubResource("AtlasTexture_utia5")
 expand_mode = 1
 
 [node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -1411,8 +1415,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("18_4n42c")
 
-[node name="Panel" type="Panel" parent="Table/RoundOverPopup" unique_id=1807374488]
+[node name="Panel" type="NinePatchRect" parent="Table/RoundOverPopup" unique_id=1978141765]
 custom_minimum_size = Vector2(600, 350)
 layout_mode = 1
 anchors_preset = 8
@@ -1426,6 +1431,12 @@ offset_right = 300.0
 offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.793286, 5.8818665, 636.0155, 129.97748)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="MarginContainer" type="MarginContainer" parent="Table/RoundOverPopup/Panel" unique_id=1877866947]
 layout_mode = 1
@@ -1444,18 +1455,89 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=743047638]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 41
 text = "ROUND COMPLETE"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=86465456]
+[node name="HBoxContainer" type="HBoxContainer" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=2081127979]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1633475760]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2060436514]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "INCOME"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=850838848]
+layout_mode = 2
+
+[node name="IncomeBox" type="VBoxContainer" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=518899025]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TotalIncome" type="Label" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1331777770]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TOTAL INCOME: "
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1661606283]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=219410275]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "EXPENSES"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=315405707]
+layout_mode = 2
+
+[node name="ExpenseBox" type="VBoxContainer" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=637144960]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TotalExpenses" type="Label" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1493532814]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TOTAL EXPENSES: "
+horizontal_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer" unique_id=1902723801]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(9.773659, 6.5892677, 633.4796, 128.3169)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Button" type="Button" parent="Table/RoundOverPopup/Panel/MarginContainer/VBoxContainer/NinePatchRect" unique_id=86465456]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
 tooltip_text = "[color=#5a9634]To Shop[color=]
 ---
 End the round and go to the [color=#8885ca]Shop[color=]."
+focus_mode = 0
 theme_override_font_sizes/font_size = 30
 text = "TO SHOP"
+flat = true
 script = ExtResource("7_vy5pj")
 anim_name = &"Table->Shop"
 
@@ -1641,6 +1723,7 @@ size_flags_vertical = 10
 tooltip_text = "Buy
 ---
 Buy the last selected [color=#e93816]Chip[color=]."
+focus_mode = 0
 theme_override_font_sizes/font_size = 66
 text = "Buy"
 flat = true
@@ -1673,6 +1756,7 @@ size_flags_vertical = 10
 tooltip_text = "[color=#5a9634]Continue[color=]
 ---
 Move on to the next [color=#5a9634]Round[color=]."
+focus_mode = 0
 theme_override_font_sizes/font_size = 68
 text = "Continue"
 flat = true
@@ -1996,6 +2080,7 @@ offset_right = 162.0
 offset_bottom = 73.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 text = "Start"
 script = ExtResource("7_vy5pj")
 anim_name = &"MainMenu->Shop"

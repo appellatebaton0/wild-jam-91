@@ -14,6 +14,13 @@ var game_count := 0 ## The current game count.
 var quota := 0 ## The quota for the current game.
 
 var money := 60 ## How much money the player has.
+var bank := 5000: ## How much money the casino bank has.
+	set(to):
+		if to < 0:
+			money += to
+			bank = 0
+		else:
+			bank = to
 
 var selected_shop_item:ShopEntry
 

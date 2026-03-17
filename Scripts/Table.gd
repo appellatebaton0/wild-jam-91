@@ -9,6 +9,7 @@ class_name Table extends Control
 @onready var next_card   := %NextCard       # The next card to be dealt.
 @onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
 @onready var turn_indic  := %TurnIndicator  # The indicator for who's turn it is.
+@onready var ropopup     := %RoundOverPopup # The round over popup.
 
 @export var anim_player:AnimationPlayer
 
@@ -52,8 +53,6 @@ func _on_chips_changed(to:Dictionary[Chip, int]) -> void:
 
 func _on_next_pressed() -> void:
 	
-	print("!")
-	
 	## Round's still going... Deal the current card to whoever it goes to.
 	var target = deal_cycle[deal_index]
 	
@@ -62,7 +61,10 @@ func _on_next_pressed() -> void:
 		if len(dealer_cards) > 0: # Flip over the previous card.
 			var prev := dealer_cards[len(dealer_cards) - 1]
 			prev.visible = true
-			dealer_hand.get_child(len(dealer_cards) - 1).flipping = true
+			
+			var flipping_card := dealer_hand.get_child(len(dealer_cards) - 1)
+			if flipping_card is CardNode:
+				flipping_card.flipping = true
 		
 		Global.dealer_hand.deal(next_card.card, false)
 		draw_new()
@@ -89,31 +91,26 @@ func _on_next_pressed() -> void:
 	
 	# Dealer is visibly winning.
 	if Global.dealer_hand.is_winning():
-		round_over(self)
+		round_over()
 		return
 	
 	# Is one of the players winning?
 	for player in players.values():
 		if player.hand.is_winning():
-			round_over(player)
+			round_over()
 			return
 		if not player.intent == Player.INTENT.STAND and not player.intent == Player.INTENT.OUT:
 			all_standing = false
 	
+	# IF the dealer is over, all the players win.
+	if Global.dealer_hand.is_over(): 
+		round_over()
+		return
+	
 	# IF all the players are standing or out, figure out who's won.
 	
-	if (all_standing and Global.dealer_hand.high() >= 17) or Global.dealer_hand.is_over():
-		var best_player:Player = null
-		var best_distance:int
-		for player in players.values(): if player is Player:
-			if player.intent == Player.INTENT.OUT: continue # Skip losing players.
-			
-			if best_player == null or best_distance > abs(player.hand.closest() - 21):
-				best_player = player
-				best_distance = abs(player.hand.closest() - 21)
-		
-		@warning_ignore("incompatible_ternary")
-		round_over(best_player if best_distance < abs(Global.dealer_hand.closest() - 21) and best_player else self)
+	if (all_standing and Global.dealer_hand.high() >= 17): 
+		round_over()
 		return
 	
 	## IF no chips remaining, just go again.
@@ -159,15 +156,62 @@ func draw_new() -> void:
 	
 	
 
-func round_over(winner:Control):
-	if winner == self: # The dealer won.
-		pass
-	elif winner is Player: # A player won.
-		pass
+func round_over():
+	
+	var round_data := get_round_data()
+	ropopup.round_ended(players.values(), round_data["winners"], round_data["draws"], round_data["naturals"])
 	
 	cycle_deal_index()
 	
 	if anim_player: anim_player.play("Table->EndPopup")
+
+func get_round_data() -> Dictionary[String, Array]:
+	## Figure out which players are currently beating the dealer.
+	
+	var response:Dictionary[String, Array] = {
+		"winners": [],
+		"draws": [],
+		"naturals": [],
+	}
+	
+	# The dealer's best value.
+	var dealer_value = Global.dealer_hand.best()
+	
+	# Append any players who have a value that beats it.
+	for player in players.values(): if player is Player:
+		
+		var best = player.hand.best()
+		
+		# Hand is 21, and dealer's isn't. Natural.
+		if player.hand.is_winning() and not Global.dealer_hand.is_winning():
+			response["naturals"].append(player)
+		
+		# If the player beats the player, or the dealer lost, they won.
+		elif (player.hand.best() > dealer_value) or Global.dealer_hand.is_over():
+			response["winners"].append(player)
+		
+		# Player draws w/ dealer.
+		elif (player.hand.best() == dealer_value):
+			response["draws"].append(player)
+	
+	return response
+	
+	#var best_player:Player = null
+	#var best_distance:int
+	#for player in players.values(): if player is Player:
+		#if player.intent == Player.INTENT.OUT: continue # Skip losing players.
+		#
+		#if best_player == null or best_distance > abs(player.hand.closest() - 21):
+			#best_player = player
+			#best_distance = abs(player.hand.closest() - 21)
+
+func get_naturals() -> Array[Player]:
+	var response:Array[Player]
+	
+	for player in players.values(): if player is Player:
+		if player.hand.is_winning(): response.append(player)
+	
+	return response
 
 ## Update the dealer's hand when it changes.
 

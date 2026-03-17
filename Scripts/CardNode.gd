@@ -69,7 +69,6 @@ func _process(delta: float) -> void:
 var out_of_date := false
 func _update_texture(to:int = card.value): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
-	print(label, " -> ", to)
 	if label:
 		label.text = card.character(to)
 		label.visible = (card.visible or modifiable)
@@ -77,7 +76,6 @@ func _update_texture(to:int = card.value):
 		out_of_date = true
 	
 func flip(to:int): 
-	print(card.modified)
 	if not card.modified:
 		flipping = true
 	else:
