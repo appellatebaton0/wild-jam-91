@@ -1557,6 +1557,8 @@ layout_mode = 2
 
 [node name="Money" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/MoneyBar/MarginContainer/VBoxContainer" unique_id=2142454494]
 layout_mode = 2
+tooltip_text = "Your [color=#d18f38]Money[color=]. Used to buy [color=#e93816]Coins[color=]."
+mouse_filter = 1
 theme_override_font_sizes/font_size = 47
 text = "$024520"
 horizontal_alignment = 1
@@ -1564,7 +1566,7 @@ vertical_alignment = 1
 script = ExtResource("16_3tgeq")
 digits = 6
 
-[node name="ScoreBar" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer" unique_id=381655679]
+[node name="BankBar" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer" unique_id=381655679]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -1574,7 +1576,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="TextureRect2" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar" unique_id=243859568]
+[node name="TextureRect2" type="NinePatchRect" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/BankBar" unique_id=243859568]
 layout_mode = 2
 texture = ExtResource("15_jyqft")
 region_rect = Rect2(9.590477, 6.7305775, 633.459, 127.82486)
@@ -1585,16 +1587,18 @@ patch_margin_bottom = 15
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar" unique_id=339720090]
+[node name="MarginContainer" type="MarginContainer" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/BankBar" unique_id=339720090]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 3
 
-[node name="Score" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/ScoreBar/MarginContainer" unique_id=710108117]
+[node name="Bank" type="Label" parent="Table/MarginContainer/VBoxContainer/Bars/VBoxContainer/BankBar/MarginContainer" unique_id=710108117]
 layout_mode = 2
 size_flags_vertical = 1
+tooltip_text = "The casino's [color=#e6b743]Bank[color=]. Any losses will take from here, then your [color=#d18f38]Money[color=] if the [color=#e6b743]Bank[color=] is empty. When both are empty, you [color=#e93816]lose[color=]."
+mouse_filter = 1
 theme_override_font_sizes/font_size = 35
 text = "$000000"
 horizontal_alignment = 1
@@ -2269,10 +2273,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 846.0
-offset_top = 97.0
-offset_right = -29.0
-offset_bottom = -472.0
+offset_left = 3.0
+offset_top = 550.0
+offset_right = -1052.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2287,10 +2291,10 @@ keys = Array[Dictionary]([Dictionary[String, Variant]({
 "tip_position": Vector2(408, 220.5),
 "tip_size": Vector2(336, 207),
 "tip_text": "Welcome to [color=#e93816][GAME NAME][color=]!
-Use the Left/Right Arrow Keys, A and D, or the DPad to navigate the [color=#5a9634]Tutorial[color=].
+Use the Scroll Wheel or Left/Right Arrow Keys to navigate the [color=#5a9634]Tutorial[color=].
 
-Press D/Right to [color=#e93816]continue[color=].
-Press A/Left to skip the [color=#5a9634]Tutorial[color=].
+Scroll Up/Right Arrow to [color=#e93816]continue[color=].
+Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "
 }), Dictionary[String, Variant]({
 "position": Vector2(0, 0),
@@ -2361,6 +2365,12 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(361, 76),
 "tip_text": "[color=#5a9634]Cards[color=] in play will show up on the table in front of their respective player."
 }), Dictionary[String, Variant]({
+"position": Vector2(848, 100),
+"size": Vector2(276, 73),
+"tip_position": Vector2(796, 181),
+"tip_size": Vector2(329, 151),
+"tip_text": "This number below your money is the casino's [color=#e6b743]Bank[color=]. Any losses will take from here, and only cut into your [color=#d18f38]Money[color=] if the [color=#e6b743]Bank[color=] is empty. When both are empty, you [color=#e93816]lose."
+}), Dictionary[String, Variant]({
 "position": Vector2(3, 550),
 "size": Vector2(97, 96),
 "tip_position": Vector2(6, 440),
@@ -2373,7 +2383,6 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(1, 102),
 "tip_text": ""
 })])
-interpolating = false
 interpolation_time = 0.75
 next_index = 13
 front_locks = Array[int]([5])
@@ -2405,10 +2414,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 271.0
-offset_top = -135.0
-offset_right = 548.0
-offset_bottom = 58.0
+offset_left = -570.0
+offset_top = 116.0
+offset_right = -209.0
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2416,9 +2425,11 @@ theme = ExtResource("1_grg3l")
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "This number below your money is the casino's bank. Any losses will take money from here, and only cut into your money if the bank is empty. When both are empty, you lose."
+text = "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters = 91
 
 [node name="Panel" type="Panel" parent="TutorialOverlay/RichTextLabel" unique_id=1375269532]
 z_index = -1
@@ -2445,7 +2456,6 @@ theme_override_font_sizes/font_size = 18
 text = "Use Arrow Keys or Left/Right Click your mouse to move between tooltips. "
 
 [node name="Menu" type="Panel" parent="." unique_id=1375457296]
-visible = false
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
