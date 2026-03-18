@@ -2,8 +2,8 @@ class_name Table extends Control
 ## Manages the overall goings-ons of the Table screen's UI.
 
 @onready var chip_bar    := %ChipBar        # The HBox holding the chips.
-@onready var score_lab   := %Score          # The label showing the score.
-@onready var money_lab   := %Money          # The label showing the money.
+#@onready var score_lab   := %Score          # The label showing the score.
+#@onready var money_lab   := %Money          # The label showing the money.
 @onready var player_box  := %PlayerBox      # The box holding the players.
 @onready var cont_button := %ContinueButton # The button to continue.
 @onready var next_card   := %NextCard       # The next card to be dealt.
@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 	Global.dealer_hand.new_card.connect(_on_new_card)
 	Global.dealer_hand.cleared.connect(_on_clear_cards)
+	
+	#Global.run_ended.connect(_on_run_ended)
 	
 	for player in players:
 		deal_cycle.append(player)
@@ -156,8 +158,6 @@ func draw_new() -> void:
 	new.value = randi_range(1, 12)
 	
 	next_card.card = new
-	
-	
 
 func round_over():
 	
@@ -166,7 +166,8 @@ func round_over():
 	
 	cycle_deal_index()
 	
-	if anim_player: anim_player.play("Table->EndPopup")
+	if anim_player: 
+		anim_player.play("Table->EndPopup" if not Global.losing() else "RunEnded")
 
 func get_round_data() -> Dictionary[String, Array]:
 	## Figure out which players are currently beating the dealer.
@@ -231,3 +232,14 @@ func _on_new_card(card:Card):
 func _on_clear_cards(_cards:Array[Card]):
 	for child in dealer_hand.get_children(): if child is CardNode:
 		child.queue_free()
+	
+	
+	## Shhh, we're just gonna sneak randomizing the player textures in here too. Nobody needs to know. Our secret.
+	#var bag = PLAYER_TEXTURES.duplicate()
+	#for player in players.values(): if player is Player:
+		#
+		#if len(bag) == 0: bag = PLAYER_TEXTURES.duplicate()
+		#
+		#player.texture.texture = bag.pop_at(randi_range(0, len(bag) - 1))
+#
+#const PLAYER_TEXTURES:Array[Texture2D]

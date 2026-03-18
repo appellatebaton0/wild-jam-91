@@ -26,6 +26,8 @@ func _on_buy():
 		else:
 			Global.chips[Global.selected_shop_item.chip] = 1
 		Global.chips_changed.emit(Global.chips)
+		
+		Global.money -= Global.selected_shop_item.chip.cost
 	else:
 		$Fail.play()
 
