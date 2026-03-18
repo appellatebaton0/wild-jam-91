@@ -26,7 +26,10 @@ var selected_shop_item:ShopEntry
 
 const MAX_CHIP_SLOTS = 5
 
+## The dealer's (player's) hand.
 var dealer_hand := Hand.new()
+## The hand the next card is going into.
+var next_hand:Hand
 
 var chips:Dictionary[Chip, int]: ## The chips the player has.
 	set(to):

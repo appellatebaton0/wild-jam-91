@@ -1,7 +1,12 @@
 class_name ShopEntry extends Control
 ## Fully-contained shopfront for a single kind of chip.
 
-@export var chip:Chip ## The chip being sold.
+@export var chip:Chip: ## The chip being sold.
+	set(to):
+		print(name, " set to ", to.name)
+		chip = to
+		
+@onready var tooltip_original := tooltip_text
 
 @onready var chip_texture := %ChipTexture
 
@@ -9,6 +14,7 @@ func _ready() -> void:
 	chip_texture.pressed.connect(_on_pressed)
 
 func _process(_delta: float) -> void: if chip:
+	print(name, " is ", chip.name)
 	chip_texture.texture_normal = chip.texture
 	chip_texture.disabled = Global.money < chip.cost
 	$ChipTexture/Label.text = "$" + str(chip.cost)
@@ -30,7 +36,7 @@ func _get_tooltip(_at_position: Vector2) -> String:
 	response = response.replace("{color}", chip.color.to_html())
 	response = response.replace("{name}", chip.name)
 	response = response.replace("{description}", chip.info)
-	response = response.replace("{chip.cost}", str(chip.cost))
+	response = response.replace("{cost}", str(chip.cost))
 	
 	
 	return response

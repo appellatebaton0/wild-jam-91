@@ -144,6 +144,9 @@ func cycle_deal_index() -> void:
 func _process(_delta: float) -> void:
 	var next := deal_cycle[deal_index]
 	var next_node := dealer_hand if next == &"Dealer" else players[next].hand_box
+	
+	Global.next_hand = Global.dealer_hand if next == &"Dealer" else players[next].hand
+	
 	turn_indic.reparent(next_node)
 	next_node.move_child(turn_indic, -1)
 

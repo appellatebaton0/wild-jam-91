@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://dypsx17qmxhng" path="res://Assets/UI/StopIntent.png" id="11_kpo4j"]
 [ext_resource type="Texture2D" uid="uid://ry4ppqjm8qud" path="res://Assets/UI/HoldIntent.png" id="12_4n42c"]
 [ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
-[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/ChipResources/CoinFlip.tres" id="14_2w5on"]
 [ext_resource type="Texture2D" uid="uid://c2cpmvvjekqo" path="res://Assets/Cards/CardTransformation.png" id="14_c4ay3"]
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
@@ -1096,6 +1095,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload_shop"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2w5on"]
 resource_name = "TutorialOver"
@@ -1879,7 +1892,6 @@ script = ExtResource("23_u7mjy")
 
 [node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
-chip = ExtResource("14_2w5on")
 
 [node name="ShopEntry2" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1361852231 instance=ExtResource("9_4kpch")]
 layout_mode = 2

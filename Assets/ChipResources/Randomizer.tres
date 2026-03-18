@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Randomizer" format=3 uid="uid://cs44tie8jr8or"]
+
+[ext_resource type="Script" uid="uid://cxaj2uo15x408" path="res://Scripts/Chips/Randomizer.gd" id="1_7y2k5"]
+
+[resource]
+script = ExtResource("1_7y2k5")
+color = Color(0.84, 0.22679998, 0.22679998, 1)
+name = "Randomizer"
+info = "Randomizes the value of the card."
+metadata/_custom_type_script = "uid://cxaj2uo15x408"
