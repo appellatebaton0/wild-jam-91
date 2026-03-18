@@ -2269,10 +2269,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 576.0
-offset_top = 324.0
-offset_right = -576.0
-offset_bottom = -324.0
+offset_left = 846.0
+offset_top = 97.0
+offset_right = -29.0
+offset_bottom = -472.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2373,9 +2373,9 @@ Press A/Left to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(1, 102),
 "tip_text": ""
 })])
-save_index = 11
 interpolating = false
 interpolation_time = 0.75
+next_index = 13
 front_locks = Array[int]([5])
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialOverlay/Cutout" unique_id=2082386551]
@@ -2405,10 +2405,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -168.0
-offset_top = -103.5
-offset_right = 168.0
-offset_bottom = 103.5
+offset_left = 271.0
+offset_top = -135.0
+offset_right = 548.0
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2416,15 +2416,9 @@ theme = ExtResource("1_grg3l")
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "Welcome to [color=#e93816][GAME NAME][color=]!
-Use your mouse or arrow keys to navigate the [color=#5a9634]Tutorial[color=].
-
-Left Click / Right Arrow to [color=#e93816]continue[color=].
-Right Click / Left Arrow to skip the [color=#5a9634]Tutorial[color=].
-"
+text = "This number below your money is the casino's bank. Any losses will take money from here, and only cut into your money if the bank is empty. When both are empty, you lose."
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 165
 
 [node name="Panel" type="Panel" parent="TutorialOverlay/RichTextLabel" unique_id=1375269532]
 z_index = -1
@@ -2451,6 +2445,7 @@ theme_override_font_sizes/font_size = 18
 text = "Use Arrow Keys or Left/Right Click your mouse to move between tooltips. "
 
 [node name="Menu" type="Panel" parent="." unique_id=1375457296]
+visible = false
 z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -2533,7 +2528,7 @@ anchor_bottom = 0.5
 offset_left = -303.0
 offset_top = -254.0
 offset_right = 303.0
-offset_bottom = 19.0
+offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 107
@@ -2574,6 +2569,16 @@ focus_mode = 0
 text = "Options"
 script = ExtResource("7_vy5pj")
 anim_name = &"OpenOptions"
+
+[node name="QuitButton" type="Button" parent="Menu" unique_id=1490910983]
+layout_mode = 0
+offset_left = 716.0
+offset_top = 515.0
+offset_right = 963.0
+offset_bottom = 625.0
+text = "Quit"
+script = ExtResource("31_4yxf6")
+metadata/_custom_type_script = "uid://c13wlkfaaoh5d"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=346560414]
 z_index = 2

@@ -31,6 +31,8 @@ func _process(_delta: float) -> void:
 	
 	intent_rect.play(intent_string())
 	
+	print(Color(0.82, 0.561, 0.221, 1.0).to_html())
+	
 	for tooltipper in [bet_box, texture, $Intent/ToolTip]: if tooltipper is FancyTooltip:
 		tooltipper.special_properties["{name}"] = player_name
 		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + intent_string() if intent != INTENT.OUT else " is out"
