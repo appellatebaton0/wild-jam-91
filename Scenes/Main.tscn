@@ -34,6 +34,9 @@
 [ext_resource type="Script" uid="uid://deibrokcxof6g" path="res://Scripts/WindowSetter.gd" id="29_xvtyr"]
 [ext_resource type="Script" uid="uid://c13wlkfaaoh5d" path="res://Scripts/QuitButton.gd" id="31_4yxf6"]
 [ext_resource type="Script" uid="uid://bvbi0in1hw0x4" path="res://Scripts/ReplayButton.gd" id="31_qta6b"]
+[ext_resource type="AudioStream" uid="uid://c6dn4nh6nww8g" path="res://Assets/Music/AnteUp.mp3" id="35_6heos"]
+[ext_resource type="AudioStream" uid="uid://dasa4ye7jh6w7" path="res://Assets/Music/HitMe.mp3" id="36_vvnwx"]
+[ext_resource type="Script" uid="uid://dlanw8aqnmihn" path="res://Scripts/ClickEffect.gd" id="37_vvnwx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
 atlas = ExtResource("10_aht7i")
@@ -335,6 +338,42 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="Gradient" id="Gradient_vvnwx"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.19155844, 0.4512987, 0.7305195, 1)
+colors = PackedColorArray(0, 0, 0, 0.92941177, 0, 0, 0, 0.69079673, 0, 0, 0, 0.635481, 0, 0, 0, 0.4530284, 0, 0, 0, 0.007843138)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_btbly"]
+gradient = SubResource("Gradient_vvnwx")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_vvnwx"]
+_data = [Vector2(0, 1), 0.0, -3.0754473, 0, 0, Vector2(1, 0), -0.34914315, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_btbly"]
+curve = SubResource("Curve_vvnwx")
+
+[sub_resource type="Curve" id="Curve_vs04g"]
+_limits = [0.0, 6.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 9.01534, 0, 0, Vector2(1, 3.0931673), 6.2981415, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ehlx"]
+curve = SubResource("Curve_vs04g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vs04g"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_6ehlx")
+alpha_curve = SubResource("CurveTexture_btbly")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sclb"]
 bg_color = Color(0.02906301, 0.03273736, 0.11157911, 1)
 
@@ -448,6 +487,18 @@ tracks/4/keys = {
 "args": [],
 "method": &"reload_shop"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Music:stream:stream_0/volume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-60.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_c5snn"]
@@ -852,6 +903,42 @@ tracks/28/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Music:stream:stream_0/volume")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-60.0]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Music:stream:stream_1/volume")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-60.0]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Music:stream:stream_2/volume")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-60.0]
+}
 
 [sub_resource type="Animation" id="Animation_qta6b"]
 resource_name = "Replay"
@@ -1067,6 +1154,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Music:stream:stream_0/volume")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -60.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Music:stream:stream_1/volume")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-60.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_sxkr1"]
 resource_name = "Splash->MainMenu"
@@ -1215,6 +1326,42 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1), Vector2(1e-05, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Music:stream:stream_0/volume")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-60.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Music:stream:stream_1/volume")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-60.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Music:stream:stream_2/volume")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-60.0]
+}
 
 [sub_resource type="Animation" id="Animation_50glp"]
 resource_name = "Table->EndPopup"
@@ -1333,6 +1480,30 @@ tracks/5/keys = {
 "method": &"reload_shop"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Music:stream:stream_1/volume")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -60.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Music:stream:stream_0/volume")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-60.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_2w5on"]
 resource_name = "TutorialOver"
@@ -1389,10 +1560,15 @@ _data = {
 }
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_2w5on"]
-stream_count = 1
-stream_0/volume = 0.0
+stream_count = 3
+stream_0/stream = ExtResource("35_6heos")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("36_vvnwx")
+stream_1/volume = -60.0
+stream_2/volume = -60.0
 
 [node name="Main" type="Node" unique_id=1786674721]
+metadata/_edit_horizontal_guides_ = [-137.0]
 
 [node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("anim_player", "players")]
 visible = false
@@ -2720,7 +2896,7 @@ step = 0.1
 [node name="Music" type="HBoxContainer" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=864346584]
 layout_mode = 2
 script = ExtResource("28_c5snn")
-bus_name = &"SFX"
+bus_name = &"Music"
 
 [node name="Label" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Music" unique_id=1252950704]
 layout_mode = 2
@@ -3060,6 +3236,15 @@ script = ExtResource("31_4yxf6")
 [node name="Control2" type="Control" parent="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=606647581]
 layout_mode = 2
 
+[node name="ClickEffect" type="GPUParticles2D" parent="." unique_id=186039861]
+z_index = 5
+position = Vector2(-151, -52)
+amount = 30
+texture = SubResource("GradientTexture2D_btbly")
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_vs04g")
+script = ExtResource("37_vvnwx")
+
 [node name="Splash" type="Panel" parent="." unique_id=528694775]
 z_index = 5
 anchors_preset = 15
@@ -3253,3 +3438,5 @@ autoplay = &"Splash->MainMenu"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1243578129]
 stream = SubResource("AudioStreamSynchronized_2w5on")
+autoplay = true
+bus = &"Music"
