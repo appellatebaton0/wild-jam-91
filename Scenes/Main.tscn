@@ -2244,10 +2244,11 @@ axis_stretch_vertical = 2
 [node name="Suceed" type="AudioStreamPlayer" parent="Shop" unique_id=1194004517]
 
 [node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=550124284]
+z_index = 2
 copy_mode = 2
 
 [node name="TutorialOverlay" type="Control" parent="." unique_id=734212934]
-z_index = 1
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -2383,6 +2384,7 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(1, 102),
 "tip_text": ""
 })])
+interpolating = false
 interpolation_time = 0.75
 next_index = 13
 front_locks = Array[int]([5])
@@ -2453,10 +2455,10 @@ offset_right = 319.5
 offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 18
-text = "Use Arrow Keys or Left/Right Click your mouse to move between tooltips. "
+text = "Use the Scroll Wheel / Left & Right Arrow Keys to navigate."
 
 [node name="Menu" type="Panel" parent="." unique_id=1375457296]
-z_index = 2
+z_index = 4
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2591,12 +2593,12 @@ script = ExtResource("31_4yxf6")
 metadata/_custom_type_script = "uid://c13wlkfaaoh5d"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=346560414]
-z_index = 2
+z_index = 5
 copy_mode = 2
 
 [node name="Options" type="Panel" parent="." unique_id=1155802139]
 visible = false
-z_index = 4
+z_index = 5
 material = SubResource("ShaderMaterial_qta6b")
 anchors_preset = 15
 anchor_right = 1.0
@@ -2898,7 +2900,7 @@ metadata/_custom_type_script = "uid://c13wlkfaaoh5d"
 
 [node name="RunEnded" type="Panel" parent="." unique_id=1500415739]
 visible = false
-z_index = 2
+z_index = 6
 material = SubResource("ShaderMaterial_u7mjy")
 anchors_preset = 15
 anchor_right = 1.0
@@ -3059,7 +3061,7 @@ script = ExtResource("31_4yxf6")
 layout_mode = 2
 
 [node name="Splash" type="Panel" parent="." unique_id=528694775]
-z_index = 2
+z_index = 5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
