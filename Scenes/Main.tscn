@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b71vo1nc2ek5s" path="res://Assets/People/SeriousGuy.png" id="19_d8m2u"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
+[ext_resource type="PackedScene" uid="uid://dt8xwjydmeqno" path="res://Scenes/CardNode.tscn" id="21_clvyn"]
 [ext_resource type="Texture2D" uid="uid://do21dnk5dgk7g" path="res://Assets/UI/HandFingers.png" id="21_f7hdo"]
 [ext_resource type="Script" uid="uid://dr25sxmad7flb" path="res://Scripts/ChipShop.gd" id="23_u7mjy"]
 [ext_resource type="Texture2D" uid="uid://db127nn8s4i4g" path="res://Assets/UI/HandThumb.png" id="25_clvyn"]
@@ -42,85 +43,6 @@
 [ext_resource type="AudioStream" uid="uid://c6dn4nh6nww8g" path="res://Assets/Music/AnteUp.mp3" id="35_6heos"]
 [ext_resource type="AudioStream" uid="uid://dasa4ye7jh6w7" path="res://Assets/Music/HitMe.mp3" id="36_vvnwx"]
 [ext_resource type="Script" uid="uid://dlanw8aqnmihn" path="res://Scripts/ClickEffect.gd" id="37_vvnwx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
-atlas = ExtResource("10_aht7i")
-region = Rect2(0, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6heos"]
-atlas = ExtResource("10_aht7i")
-region = Rect2(159, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4yxf6"]
-atlas = ExtResource("10_aht7i")
-region = Rect2(0, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qta6b"]
-atlas = ExtResource("10_aht7i")
-region = Rect2(159, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vvnwx"]
-atlas = ExtResource("11_kpo4j")
-region = Rect2(0, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_btbly"]
-atlas = ExtResource("11_kpo4j")
-region = Rect2(159, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vs04g"]
-atlas = ExtResource("12_4n42c")
-region = Rect2(0, 0, 159, 153)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ehlx"]
-atlas = ExtResource("12_4n42c")
-region = Rect2(159, 0, 159, 153)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_x3rx7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x3rx7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6heos")
-}],
-"loop": true,
-"name": &"Double Down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4yxf6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qta6b")
-}],
-"loop": true,
-"name": &"Hit",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vvnwx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_btbly")
-}],
-"loop": true,
-"name": &"Out",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vs04g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6ehlx")
-}],
-"loop": true,
-"name": &"Stand",
-"speed": 2.5
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
 atlas = ExtResource("16_utia5")
@@ -199,6 +121,85 @@ animations = [{
 "loop": true,
 "name": &"3",
 "speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6heos"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yxf6"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qta6b"]
+atlas = ExtResource("10_aht7i")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvnwx"]
+atlas = ExtResource("11_kpo4j")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btbly"]
+atlas = ExtResource("11_kpo4j")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs04g"]
+atlas = ExtResource("12_4n42c")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ehlx"]
+atlas = ExtResource("12_4n42c")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3rx7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3rx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6heos")
+}],
+"loop": true,
+"name": &"Double Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yxf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qta6b")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvnwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btbly")
+}],
+"loop": true,
+"name": &"Out",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs04g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ehlx")
+}],
+"loop": true,
+"name": &"Stand",
+"speed": 2.5
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frkhe"]
@@ -1687,16 +1688,6 @@ grow_vertical = 2
 texture = ExtResource("4_1p5hy")
 expand_mode = 1
 
-[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 501.0
-offset_right = 1140.0
-offset_bottom = 565.0
-theme_override_constants/separation = 10
-alignment = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
 layout_mode = 1
 anchors_preset = 15
@@ -1711,6 +1702,7 @@ theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer" unique_id=511322114]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Bars" type="HBoxContainer" parent="Table/MarginContainer/VBoxContainer" unique_id=387158876]
 layout_mode = 2
@@ -1925,10 +1917,35 @@ offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_pbw6q")
+intent_positions = Array[Vector2]([Vector2(2, -178), Vector2(-1, -165), Vector2(-1, -206), Vector2(-8, -156)])
+
+[node name="Texture" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=716873650]
+unique_name_in_owner = true
+position = Vector2(2, -18)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_ep8v8")
+animation = &"3"
+
+[node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.57141
+offset_top = -167.14287
+offset_right = -316.57147
+offset_bottom = -348.7143
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "{name}[color=]
+---
+{name}[color=] {intent}[color=].
+{name}[color=] is betting {bet}[color=]."
+script = ExtResource("7_346fj")
 
 [node name="Intent" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=1535351640]
 unique_name_in_owner = true
-position = Vector2(5.9999924, -179)
+position = Vector2(-8, -156)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
 animation = &"Double Down"
@@ -1949,30 +1966,6 @@ tooltip_text = "Intent
 ---
 {name} {intent}."
 theme = ExtResource("1_grg3l")
-script = ExtResource("7_346fj")
-
-[node name="Texture" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=716873650]
-unique_name_in_owner = true
-position = Vector2(2, -24)
-scale = Vector2(0.7, 0.7)
-sprite_frames = SubResource("SpriteFrames_ep8v8")
-animation = &"3"
-
-[node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -218.57141
-offset_top = -167.14287
-offset_right = -316.57147
-offset_bottom = -348.7143
-grow_horizontal = 2
-grow_vertical = 2
-tooltip_text = "{name}[color=]
----
-{name}[color=] {intent}[color=].
-{name}[color=] is betting {bet}[color=]."
 script = ExtResource("7_346fj")
 
 [node name="PlayerHand" type="HBoxContainer" parent="Table/PlayerBox/Player" unique_id=897403238]
@@ -2035,6 +2028,28 @@ theme_override_font_sizes/font_size = 78
 text = "$500"
 horizontal_alignment = 1
 
+[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 501.0
+offset_right = 1140.0
+offset_bottom = 565.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CardNode" parent="Table/DealerHand" unique_id=1318736687 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode2" parent="Table/DealerHand" unique_id=933793376 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode3" parent="Table/DealerHand" unique_id=375409146 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
 [node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
 layout_mode = 1
 anchors_preset = 2
@@ -2047,7 +2062,7 @@ grow_vertical = 0
 texture = ExtResource("21_f7hdo")
 expand_mode = 1
 
-[node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668 node_paths=PackedStringArray("animator")]
+[node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668 node_paths=PackedStringArray("animator", "change_sfx", "flip_sfx")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 175)
 layout_mode = 1
@@ -2071,6 +2086,8 @@ texture = ExtResource("9_h1m7h")
 expand_mode = 1
 script = ExtResource("4_rgh2o")
 animator = NodePath("../ApplyAnimator")
+change_sfx = NodePath("../ApplySFX")
+flip_sfx = NodePath("../FlipSFX")
 FLIP_SPEED = 1100
 max_x = 205.608
 modifiable = true
@@ -2090,7 +2107,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ApplyAnimator" type="AnimatedSprite2D" parent="Table/Hand" unique_id=1749480393]
-unique_name_in_owner = true
 position = Vector2(179, -35)
 scale = Vector2(0.50173557, 0.5017354)
 sprite_frames = SubResource("SpriteFrames_u7mjy")
@@ -2120,6 +2136,12 @@ grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("25_clvyn")
 expand_mode = 1
+
+[node name="ApplySFX" type="AudioStreamPlayer" parent="Table/Hand" unique_id=1060068958]
+bus = &"SFX"
+
+[node name="FlipSFX" type="AudioStreamPlayer" parent="Table/Hand" unique_id=1394429020]
+bus = &"SFX"
 
 [node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
 unique_name_in_owner = true
@@ -2724,6 +2746,7 @@ theme_override_font_sizes/font_size = 18
 text = "Use the Scroll Wheel / Left & Right Arrow Keys to navigate."
 
 [node name="Menu" type="Panel" parent="." unique_id=1375457296]
+visible = false
 z_index = 4
 anchors_preset = 15
 anchor_right = 1.0

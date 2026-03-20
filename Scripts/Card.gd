@@ -3,8 +3,12 @@ class_name Card extends Resource
 
 signal value_changed(to:int)
 signal visibility_changed(to:bool)
+signal got_modified
 
-var modified := false ## Whether this card has been modified by a chip.
+var modified := false: ## Whether this card has been modified by a chip.
+	set(to):
+		if to: got_modified.emit()
+		modified = to
 
 ## If the card is face up or not.
 @export var visible := false:

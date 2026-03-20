@@ -2,6 +2,8 @@ class_name CardNode extends TextureRect
 ## Handles turning the card node into something readable.
 
 @export var animator:AnimatedSprite2D
+@export var change_sfx:AudioStreamPlayer
+@export var flip_sfx:AudioStreamPlayer
 
 const TEXTURE_DICT := {
 	false: {
@@ -26,9 +28,13 @@ var flipping = false
 	set(to):
 		if card:
 			card.value_changed.disconnect(flip)
+			if change_sfx:
+				card.got_modified.disconnect(change_sfx.play)
 		
 		card = to
 		card.value_changed.connect(flip)
+		if change_sfx:
+			card.got_modified.connect(change_sfx.play)
 		
 		flip(card.value)
 
@@ -74,6 +80,8 @@ func _update_texture(to:int = card.value):
 		label.visible = (card.visible or modifiable)
 	else:
 		out_of_date = true
+	
+	if flip_sfx: flip_sfx.play()
 	
 func flip(to:int): 
 	if not card.modified:

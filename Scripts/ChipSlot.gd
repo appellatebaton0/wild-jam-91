@@ -40,8 +40,11 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		count -= 1
 		
 		new.dropped.connect(_on_chip_dropped)
+		Global.chips_changed.emit()
 
-func _on_chip_dropped(): count += 1
+func _on_chip_dropped(): 
+	count += 1
+	Global.chips_changed.emit()
 
 ## Custom Tooltippin'
 func _make_custom_tooltip(for_text: String) -> Object:

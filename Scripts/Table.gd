@@ -242,5 +242,6 @@ func _on_clear_cards(_cards:Array[Card]):
 		if len(bag) == 0: bag = range(4)
 		
 		player.texture.play(str(bag.pop_at(randi_range(0, len(bag) - 1))))
+		player.intent_rect.position = player.texture.position - Vector2(0, 147)
 #
 #const PLAYER_TEXTURES:Array[Texture2D]

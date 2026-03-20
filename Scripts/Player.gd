@@ -7,15 +7,12 @@ class_name Player extends Control
 @onready var bet_box     := %BetBox     ## The VBox holding bet information.
 @onready var texture     := %Texture    ## The TextureRect with this player's texture.
 
-@export var player_names:Dictionary[int, StringName] = {
-	0: &"Sarah",
-	1: &"Bethany",
-	2: &"Avery",
-	3: &"Carl"
-}
+@export var player_names := [&"Sarah", &"Bethany", &"Steven", &"Carl"]
+
+@export var intent_positions:Array[Vector2]
 
 var player_name:StringName:
-	get(): return player_names[int(texture.animation)] if texture.is_playing() else "This player"
+	get(): return player_names[int(texture.animation)] if texture.is_playing() else &"This player"
 
 enum INTENT {HIT, STAND, OUT, DOUBLE_DOWN}
 @export var intent := INTENT.HIT
