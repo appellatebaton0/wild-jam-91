@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Randomizer" format=3 uid="uid://cs44tie8jr8or"]
 
 [ext_resource type="Script" uid="uid://cxaj2uo15x408" path="res://Scripts/Chips/Randomizer.gd" id="1_7y2k5"]
-[ext_resource type="Texture2D" uid="uid://dl8xwirs5xrlx" path="res://Assets/Chips/DraftChip.png" id="2_j2ctn"]
+[ext_resource type="Texture2D" uid="uid://bmn230uh10o1t" path="res://Assets/Chips/RedWhiteChip.png" id="2_j2ctn"]
 
 [resource]
 script = ExtResource("1_7y2k5")

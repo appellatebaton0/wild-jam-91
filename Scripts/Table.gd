@@ -234,12 +234,13 @@ func _on_clear_cards(_cards:Array[Card]):
 		child.queue_free()
 	
 	
-	## Shhh, we're just gonna sneak randomizing the player textures in here too. Nobody needs to know. Our secret.
-	#var bag = PLAYER_TEXTURES.duplicate()
-	#for player in players.values(): if player is Player:
-		#
-		#if len(bag) == 0: bag = PLAYER_TEXTURES.duplicate()
-		#
-		#player.texture.texture = bag.pop_at(randi_range(0, len(bag) - 1))
+	
+	# Shhh, we're just gonna sneak randomizing the player textures in here too. Nobody needs to know. Our secret.
+	var bag = range(4)
+	for player in players.values(): if player is Player:
+		
+		if len(bag) == 0: bag = range(4)
+		
+		player.texture.play(str(bag.pop_at(randi_range(0, len(bag) - 1))))
 #
 #const PLAYER_TEXTURES:Array[Texture2D]

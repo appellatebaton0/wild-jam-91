@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://dwq3j5upcifut" path="res://Scenes/ShopEntry.tscn" id="9_4kpch"]
 [ext_resource type="Texture2D" uid="uid://b00dkt83a24ij" path="res://Assets/Cards/RegularCard.png" id="9_h1m7h"]
 [ext_resource type="Script" uid="uid://bg0bdv01qtkqa" path="res://Scripts/Bank.gd" id="9_u7mjy"]
-[ext_resource type="Texture2D" uid="uid://botm0p64oeyob" path="res://Assets/UI/Hand.png" id="10_3tgeq"]
 [ext_resource type="Texture2D" uid="uid://v3jcaa2qgx2i" path="res://Assets/UI/RaiseIntent.png" id="10_aht7i"]
 [ext_resource type="Texture2D" uid="uid://dypsx17qmxhng" path="res://Assets/UI/StopIntent.png" id="11_kpo4j"]
 [ext_resource type="Texture2D" uid="uid://ry4ppqjm8qud" path="res://Assets/UI/HoldIntent.png" id="12_4n42c"]
@@ -25,11 +24,17 @@
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
 [ext_resource type="Script" uid="uid://bnwhldl3cqlor" path="res://Scripts/TutorialFocus.gd" id="16_erwvk"]
+[ext_resource type="Texture2D" uid="uid://dct7mmqo4c34s" path="res://Assets/People/Girl.png" id="16_utia5"]
+[ext_resource type="Texture2D" uid="uid://cmyknb8mfilrb" path="res://Assets/People/Grandma.png" id="17_f7hdo"]
 [ext_resource type="Script" uid="uid://cput2ojqmwnu3" path="res://Scripts/RoundOverPopup.gd" id="18_4n42c"]
+[ext_resource type="Texture2D" uid="uid://dvjp8cptn4g1f" path="res://Assets/People/Guy.png" id="18_clvyn"]
 [ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://b71vo1nc2ek5s" path="res://Assets/People/SeriousGuy.png" id="19_d8m2u"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
+[ext_resource type="Texture2D" uid="uid://do21dnk5dgk7g" path="res://Assets/UI/HandFingers.png" id="21_f7hdo"]
 [ext_resource type="Script" uid="uid://dr25sxmad7flb" path="res://Scripts/ChipShop.gd" id="23_u7mjy"]
+[ext_resource type="Texture2D" uid="uid://db127nn8s4i4g" path="res://Assets/UI/HandThumb.png" id="25_clvyn"]
 [ext_resource type="Script" uid="uid://ck5b0qf3f6jqk" path="res://Scripts/BusSlider.gd" id="28_c5snn"]
 [ext_resource type="Script" uid="uid://deibrokcxof6g" path="res://Scripts/WindowSetter.gd" id="29_xvtyr"]
 [ext_resource type="Script" uid="uid://c13wlkfaaoh5d" path="res://Scripts/QuitButton.gd" id="31_4yxf6"]
@@ -117,12 +122,84 @@ animations = [{
 "speed": 2.5
 }]
 
-[sub_resource type="Gradient" id="Gradient_r150o"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 0.2901961)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
+atlas = ExtResource("16_utia5")
+region = Rect2(0, 0, 518, 593)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_idj7w"]
-gradient = SubResource("Gradient_r150o")
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4llh"]
+atlas = ExtResource("16_utia5")
+region = Rect2(518, 0, 518, 593)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lac6x"]
+atlas = ExtResource("17_f7hdo")
+region = Rect2(0, 0, 518, 593)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpjjw"]
+atlas = ExtResource("17_f7hdo")
+region = Rect2(518, 0, 518, 593)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_off7b"]
+atlas = ExtResource("18_clvyn")
+region = Rect2(0, 0, 518, 593)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfh1j"]
+atlas = ExtResource("18_clvyn")
+region = Rect2(518, 0, 518, 593)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sj7i"]
+atlas = ExtResource("19_d8m2u")
+region = Rect2(0, 0, 518, 593)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_semxg"]
+atlas = ExtResource("19_d8m2u")
+region = Rect2(518, 0, 518, 593)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ep8v8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5psol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4llh")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lac6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpjjw")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_off7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfh1j")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sj7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_semxg")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frkhe"]
 atlas = ExtResource("7_frkhe")
@@ -214,10 +291,6 @@ animations = [{
 "name": &"ignite",
 "speed": 8.0
 }]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_utia5"]
-atlas = ExtResource("10_3tgeq")
-region = Rect2(189.727, 171.91, 148, 153)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
 bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
@@ -1839,16 +1912,23 @@ offset_right = 1142.0
 offset_bottom = 349.0
 
 [node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234]
-anchors_preset = 0
-offset_left = 467.0
-offset_top = 126.0
-offset_right = 592.0
-offset_bottom = 462.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = 28.0
+offset_right = -9.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_pbw6q")
 
 [node name="Intent" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=1535351640]
 unique_name_in_owner = true
-position = Vector2(98.99999, -139)
+position = Vector2(5.9999924, -179)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
 animation = &"Double Down"
@@ -1871,28 +1951,28 @@ tooltip_text = "Intent
 theme = ExtResource("1_grg3l")
 script = ExtResource("7_346fj")
 
-[node name="Texture" type="TextureRect" parent="Table/PlayerBox/Player" unique_id=393034014]
+[node name="Texture" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=716873650]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -112.0
-offset_right = 150.0
-offset_bottom = 181.0
+position = Vector2(2, -24)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_ep8v8")
+animation = &"3"
+
+[node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -218.57141
+offset_top = -167.14287
+offset_right = -316.57147
+offset_bottom = -348.7143
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 tooltip_text = "{name}[color=]
 ---
 {name}[color=] {intent}[color=].
 {name}[color=] is betting {bet}[color=]."
-texture = SubResource("GradientTexture2D_idj7w")
 script = ExtResource("7_346fj")
 
 [node name="PlayerHand" type="HBoxContainer" parent="Table/PlayerBox/Player" unique_id=897403238]
@@ -1904,16 +1984,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -111.0
-offset_top = 33.0
+offset_top = 163.0
 offset_right = 111.0
-offset_bottom = 97.0
+offset_bottom = 227.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=973104317]
-position = Vector2(252.99997, -107)
+position = Vector2(161.99997, -140.99998)
 scale = Vector2(0.56198347, 0.56198347)
 sprite_frames = SubResource("SpriteFrames_h1m7h")
 autoplay = "default"
@@ -1964,7 +2044,7 @@ offset_left = 176.0
 offset_top = -247.0
 offset_right = 430.7851
 grow_vertical = 0
-texture = ExtResource("10_3tgeq")
+texture = ExtResource("21_f7hdo")
 expand_mode = 1
 
 [node name="NextCard" type="TextureRect" parent="Table/Hand" unique_id=1571961668 node_paths=PackedStringArray("animator")]
@@ -1976,10 +2056,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 42.607468
-offset_top = -188.5
-offset_right = 229.83554
-offset_bottom = 31.289474
+offset_left = 32.607452
+offset_top = -178.5
+offset_right = 219.83554
+offset_bottom = 41.289474
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.4225
@@ -2011,24 +2091,34 @@ vertical_alignment = 1
 
 [node name="ApplyAnimator" type="AnimatedSprite2D" parent="Table/Hand" unique_id=1749480393]
 unique_name_in_owner = true
-position = Vector2(189, -44.999996)
+position = Vector2(179, -35)
 scale = Vector2(0.50173557, 0.5017354)
 sprite_frames = SubResource("SpriteFrames_u7mjy")
-animation = &"ignite"
-frame = 6
-frame_progress = 1.0
 
-[node name="Thumb" type="TextureRect" parent="Table/Hand" unique_id=1346448168]
+[node name="Control" type="Control" parent="Table/Hand" unique_id=30853080]
+clip_contents = true
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 134.0
-offset_top = -123.0
-offset_right = 239.2149
-offset_bottom = -21.0
+offset_left = 132.0
+offset_top = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Thumb" type="TextureRect" parent="Table/Hand/Control" unique_id=1346448168]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -254.7851
+offset_top = -247.0
+grow_horizontal = 0
 grow_vertical = 0
-texture = SubResource("AtlasTexture_utia5")
+mouse_filter = 2
+texture = ExtResource("25_clvyn")
 expand_mode = 1
 
 [node name="RoundOverPopup" type="Control" parent="Table" unique_id=910195914]
@@ -3324,7 +3414,7 @@ theme = ExtResource("1_grg3l")
 
 [node name="TransitionOverlay" type="Control" parent="." unique_id=130434851]
 visible = false
-z_index = 5
+z_index = 7
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

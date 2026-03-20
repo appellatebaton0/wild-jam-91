@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Duplicator" format=3 uid="uid://dvss8pav153io"]
 
 [ext_resource type="Script" uid="uid://dopv253g53em5" path="res://Scripts/Chips/Duplicator.gd" id="1_sm584"]
-[ext_resource type="Texture2D" uid="uid://dl8xwirs5xrlx" path="res://Assets/Chips/DraftChip.png" id="2_22kjy"]
+[ext_resource type="Texture2D" uid="uid://dl2hh42ff1fqi" path="res://Assets/Chips/BlackChip.png" id="2_22kjy"]
 
 [resource]
 script = ExtResource("1_sm584")
