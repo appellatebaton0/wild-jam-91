@@ -13,22 +13,27 @@ const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
 		texture = chip.texture if chip else EMPTY_TEXTURE
 
 @onready var label := $Label
+@onready var highlight := $Highlight
 
-@export var count := 0: ## How many of the chip there are.
-	set(to):
-		count = to
-		if label: label.text = str(count)
-		
-		if count == 0: chip = null
-	
+var mouse_over := false
+
+func mouse_enter() -> void: mouse_over = true
+func mouse_exit()  -> void: mouse_over = false
+
+const HIGHLIGHT_TEXTURE := preload("res://Assets/Chips/ChipHighlight.png")
 
 const CHIP_NODE_SCENE := preload("res://Scenes/ChipNode.tscn")
 
-func _ready() -> void:
-	if label: label.text = str(count)
+func _ready() -> void: 
+	mouse_entered.connect(mouse_enter)
+	mouse_exited.connect(mouse_exit)
+
+func _process(_delta: float) -> void:
+	if label: label.text = str(Global.chips[chip]) if Global.chips.has(chip) else ""
+	highlight.texture = HIGHLIGHT_TEXTURE if usable and mouse_over and chip else null
 
 func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton and usable:
-	if event.is_pressed() and not Global.held_chip and count > 0:
+	if event.is_pressed() and not Global.held_chip and chip:
 		## Create a new chip, and pick it up.
 		var new:ChipNode = CHIP_NODE_SCENE.instantiate()
 		
@@ -37,13 +42,13 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		
 		Global.held_chip = new
 		
-		count -= 1
+		Global.chips[chip] -= 1
+		Global.chips_changed.emit(Global.chips)
 		
 		new.dropped.connect(_on_chip_dropped)
-		Global.chips_changed.emit()
 
 func _on_chip_dropped(): 
-	count += 1
+	Global.chips[chip] += 1
 	Global.chips_changed.emit()
 
 ## Custom Tooltippin'

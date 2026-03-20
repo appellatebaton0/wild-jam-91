@@ -29,12 +29,4 @@ var modified := false: ## Whether this card has been modified by a chip.
 func low() -> int: return clamp(value, 1, 10) # clamp to 10, since face cards will be higher.
 func high() -> int: return 11 if value == 1 else clamp(value, 1, 10)
 
-func character(for_val:int = value) -> String:
-	match for_val:
-		1: return "A"
-		11: return "J"
-		12: return "Q"
-		13: return "K"
-		_: return str(value)
-
 func name() -> String: return ["", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"][value]

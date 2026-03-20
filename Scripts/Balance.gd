@@ -23,3 +23,9 @@ func as_digits() -> String:
 
 func as_tenth() -> int:
 	return 1 * floori(pow(10, str(abs(max(Global.money,0) - display_value)).length()))
+
+## Custom Tooltippin'
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip = preload("res://Scenes/Tooltip.tscn").instantiate()
+	tooltip.text = for_text
+	return tooltip

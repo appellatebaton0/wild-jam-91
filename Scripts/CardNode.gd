@@ -36,7 +36,7 @@ var flipping = false
 		if change_sfx:
 			card.got_modified.connect(change_sfx.play)
 		
-		flip(card.value)
+		flip(to.value)
 
 var belongs_to:Hand ## The hand this card belongs to.
 
@@ -64,7 +64,8 @@ func _process(delta: float) -> void:
 		label.pivot_offset.x = label.size.x / 2
 		
 		if out_of_date:
-			label.text = card.character()
+			print('setting to ', character(), " from ", card.value)
+			label.text = character()
 			label.visible = (card.visible or modifiable)
 			out_of_date = false
 	
@@ -76,7 +77,8 @@ var out_of_date := false
 func _update_texture(to:int = card.value): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
 	if label:
-		label.text = card.character(to)
+		print('setting to ', character(to), " from (to) ", to)
+		label.text = character(to)
 		label.visible = (card.visible or modifiable)
 	else:
 		out_of_date = true
@@ -91,6 +93,14 @@ func flip(to:int):
 
 func _on_mouse_entered() -> void: Global.hovered_card = self
 func _on_mouse_exited()  -> void: if Global.hovered_card == self: Global.hovered_card = null
+
+func character(for_val:int = card.value) -> String:
+	match for_val:
+		1: return "A"
+		11: return "J"
+		12: return "Q"
+		13: return "K"
+		_: return str(for_val)
 
 ## Custom Tooltippin'
 func _make_custom_tooltip(for_text: String) -> Object:
@@ -112,6 +122,3 @@ func _get_tooltip(_at_position: Vector2) -> String:
 	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible or modifiable else "??")
 	
 	return response
-	
-	
-	

@@ -22,36 +22,18 @@ var deal_index := 0
 
 func _ready() -> void:
 	## Connect the signals.
-	Global.chips_changed.connect(_on_chips_changed)
 	cont_button.pressed.connect(_on_next_pressed)
 	
 	Global.dealer_hand.new_card.connect(_on_new_card)
 	Global.dealer_hand.cleared.connect(_on_clear_cards)
 	
-	#Global.run_ended.connect(_on_run_ended)
-	
 	for player in players:
 		deal_cycle.append(player)
 	deal_cycle.append(&"Dealer")
 	
+	deal_index = deal_cycle.find(&"Dealer")
+	
 	draw_new()
-
-const CHIP_SLOT_SCENE := preload("res://Scenes/ChipSlot.tscn")
-## Update the chips in the chip_bar to the new set.
-func _on_chips_changed(to:Dictionary[Chip, int]) -> void:
-	
-	## Get rid of the existing chips.
-	for child in chip_bar.get_children():
-		child.queue_free()
-	
-	## Add in the new chips.
-	for chip in to:
-		var new:ChipSlot = CHIP_SLOT_SCENE.instantiate()
-		
-		new.chip = chip
-		new.count = to[chip]
-		
-		chip_bar.add_child(new)
 
 func _on_next_pressed() -> void:
 	
@@ -60,15 +42,15 @@ func _on_next_pressed() -> void:
 	
 	if target == &"Dealer":
 		var dealer_cards := Global.dealer_hand.cards
-		if len(dealer_cards) > 0: # Flip over the previous card.
-			var prev := dealer_cards[len(dealer_cards) - 1]
-			prev.visible = true
+		if len(dealer_cards) > 0: 
+			# Flip over any face down cards
+			for card in dealer_cards: if not card.visible: card.visible = true
 			
 			var flipping_card := dealer_hand.get_child(len(dealer_cards) - 1)
 			if flipping_card is CardNode:
 				flipping_card.flipping = true
 		
-		Global.dealer_hand.deal(next_card.card, false)
+		Global.dealer_hand.deal(next_card.card, not len(Global.dealer_hand.cards) == 1)
 		draw_new()
 	else:
 		target = players[target]
@@ -83,6 +65,8 @@ func _on_next_pressed() -> void:
 					target.bet *= 2
 					target.hand.deal(next_card.card, false)
 					target.intent = Player.INTENT.STAND
+				_: ## Something went wrong.
+					cycle_deal_index()
 	
 	## Cycle the dealing index.
 	cycle_deal_index()
@@ -116,23 +100,27 @@ func _on_next_pressed() -> void:
 		return
 	
 	## IF no chips remaining, just go again.
-	var has_chips_remaining = false
-	for chip_slot in chip_bar.get_children(): if chip_slot is ChipSlot:
-		if chip_slot.count > 0: has_chips_remaining = true
-	if not has_chips_remaining: _on_next_pressed()
+	for count in Global.chips.values(): if count > 0: return # If there are any chips left, cut.
+	_on_next_pressed() # No more chips, go again
 
 func cycle_deal_index() -> void: 
 	var started_at := deal_index
 	while true:
+		
+		
+		
+		# If the next player's intent is to HIT, it'll be their turn to draw, duh.
+		if deal_cycle[deal_index] != &"Dealer" and players[deal_cycle[deal_index]].intent != Player.INTENT.STAND and players[deal_cycle[deal_index]].intent != Player.INTENT.OUT:
+			break 
+		
+		if deal_cycle[deal_index] == &"Dealer" and len(Global.dealer_hand.cards) < 2:
+			break ## If the dealer has less than two cards, keep drawing.
+		
 		# Cycle the deal index until a new valid target is found.
 		deal_index = wrap(deal_index + 1, 0, len(deal_cycle))
 		
 		if deal_index == started_at:
 			break # Looped around. The game's probably over.
-		
-		# If the next player's intent is to HIT, it'll be their turn to draw, duh.
-		if deal_cycle[deal_index] != &"Dealer" and players[deal_cycle[deal_index]].intent == Player.INTENT.HIT:
-			break 
 		
 		# If the dealer has an ace, and counting it as 11 would bring
 		# the total to 17 or more (but not over 21), the dealer must 
@@ -164,7 +152,7 @@ func round_over():
 	var round_data := get_round_data()
 	ropopup.round_ended(players.values(), round_data["winners"], round_data["draws"], round_data["naturals"])
 	
-	cycle_deal_index()
+	deal_index = deal_cycle.find(&"Dealer")
 	
 	if anim_player: 
 		anim_player.play("Table->EndPopup" if not Global.losing() else "RunEnded")

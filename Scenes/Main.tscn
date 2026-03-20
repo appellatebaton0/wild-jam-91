@@ -87,7 +87,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"0",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -98,7 +98,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"1",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -109,7 +109,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"2",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -120,7 +120,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"3",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
@@ -166,7 +166,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Double Down",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -177,7 +177,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Hit",
-"speed": 3.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -188,7 +188,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Out",
-"speed": 2.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -199,7 +199,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Stand",
-"speed": 2.5
+"speed": 1.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_frkhe"]
@@ -379,17 +379,23 @@ shader_parameter/dark = 0.0
 shader_parameter/color = Color(0, 0.36862746, 0.2901961, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3rx7"]
-bg_color = Color(0.55, 0.28599998, 0.28599998, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.39, 0.1911, 0.1911, 1)
+bg_color = Color(0.85, 0.30458334, 0.19550002, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.41, 0.14691667, 0.09430001, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 corner_detail = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_clvyn"]
+color = Color(0.4117647, 0.14509805, 0.09411765, 1)
+grow_begin = -20.0
+grow_end = -20.0
+thickness = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6heos"]
 bg_color = Color(0.05, 0.010499999, 0.010499999, 0.6)
@@ -1688,6 +1694,28 @@ grow_vertical = 2
 texture = ExtResource("4_1p5hy")
 expand_mode = 1
 
+[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 501.0
+offset_right = 1140.0
+offset_bottom = 565.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CardNode" parent="Table/DealerHand" unique_id=1318736687 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode2" parent="Table/DealerHand" unique_id=933793376 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode3" parent="Table/DealerHand" unique_id=375409146 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
 layout_mode = 1
 anchors_preset = 15
@@ -1886,14 +1914,41 @@ patch_margin_bottom = 20
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="Button" type="Button" parent="Table/MarginContainer" unique_id=2064214925]
+[node name="OptionsButton" type="Button" parent="Table/MarginContainer" unique_id=556578660]
+z_index = 1
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_horizontal = 2
+size_flags_vertical = 10
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Deal your next [color=#5a9634]Card[color=]."
 focus_mode = 0
+theme_override_font_sizes/font_size = 20
 text = "Options"
+flat = true
 script = ExtResource("7_vy5pj")
 anim_name = &"OpenOptions"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Table/MarginContainer/OptionsButton" unique_id=1331955276]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 4.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.701614, 5.644291, 634.44574, 129.77386)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="PlayerBox" type="Control" parent="Table" unique_id=667759408]
 unique_name_in_owner = true
@@ -1925,6 +1980,7 @@ position = Vector2(2, -18)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_ep8v8")
 animation = &"3"
+frame_progress = 0.25637582
 
 [node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
 layout_mode = 3
@@ -1949,7 +2005,7 @@ position = Vector2(-8, -156)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
 animation = &"Double Down"
-frame_progress = 0.17236556
+frame_progress = 0.61446226
 
 [node name="ToolTip" type="Control" parent="Table/PlayerBox/Player/Intent" unique_id=1955527303]
 layout_mode = 3
@@ -2028,36 +2084,14 @@ theme_override_font_sizes/font_size = 78
 text = "$500"
 horizontal_alignment = 1
 
-[node name="DealerHand" type="HBoxContainer" parent="Table" unique_id=597211976]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 501.0
-offset_right = 1140.0
-offset_bottom = 565.0
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="CardNode" parent="Table/DealerHand" unique_id=1318736687 instance=ExtResource("21_clvyn")]
-custom_minimum_size = Vector2(54.4, 64)
-layout_mode = 2
-
-[node name="CardNode2" parent="Table/DealerHand" unique_id=933793376 instance=ExtResource("21_clvyn")]
-custom_minimum_size = Vector2(54.4, 64)
-layout_mode = 2
-
-[node name="CardNode3" parent="Table/DealerHand" unique_id=375409146 instance=ExtResource("21_clvyn")]
-custom_minimum_size = Vector2(54.4, 64)
-layout_mode = 2
-
 [node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 176.0
+offset_left = 112.0
 offset_top = -247.0
-offset_right = 430.7851
+offset_right = 366.7851
 grow_vertical = 0
 texture = ExtResource("21_f7hdo")
 expand_mode = 1
@@ -2352,18 +2386,23 @@ usable = false
 
 [node name="ChipSlot" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1909970247 instance=ExtResource("2_kln2b")]
 layout_mode = 2
+usable = false
 
 [node name="ChipSlot2" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1158282121 instance=ExtResource("2_kln2b")]
 layout_mode = 2
+usable = false
 
 [node name="ChipSlot3" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=645527073 instance=ExtResource("2_kln2b")]
 layout_mode = 2
+usable = false
 
 [node name="ChipSlot4" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1962112460 instance=ExtResource("2_kln2b")]
 layout_mode = 2
+usable = false
 
 [node name="ChipSlot5" parent="Shop/MarginContainer/HBoxContainer/ChipBarParent/MarginContainer/ChipBar" unique_id=1847388981 instance=ExtResource("2_kln2b")]
 layout_mode = 2
+usable = false
 
 [node name="Control" type="Control" parent="Shop/MarginContainer/HBoxContainer" unique_id=1909514259]
 layout_mode = 2
@@ -2388,6 +2427,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Your [color=#d18f38]Money[color=]. Used to buy [color=#e93816]Coins[color=]."
+mouse_filter = 1
 theme_override_font_sizes/font_size = 55
 text = "$24520"
 horizontal_alignment = 1
@@ -2562,10 +2603,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
+offset_left = 23.0
 offset_top = 550.0
-offset_right = -1052.0
-offset_bottom = -2.0
+offset_right = -997.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2660,8 +2701,8 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(329, 151),
 "tip_text": "This number below your money is the casino's [color=#e6b743]Bank[color=]. Any losses will take from here, and only cut into your [color=#d18f38]Money[color=] if the [color=#e6b743]Bank[color=] is empty. When both are empty, you [color=#e93816]lose."
 }), Dictionary[String, Variant]({
-"position": Vector2(3, 550),
-"size": Vector2(97, 96),
+"position": Vector2(23, 550),
+"size": Vector2(132, 80),
 "tip_position": Vector2(6, 440),
 "tip_size": Vector2(361, 102),
 "tip_text": "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
@@ -2672,6 +2713,7 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(1, 102),
 "tip_text": ""
 })])
+save_index = 13
 interpolating = false
 interpolation_time = 0.75
 next_index = 13
@@ -3241,6 +3283,7 @@ horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=952900057]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_clvyn")
 
 [node name="Label3" type="Label" parent="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=2036194875]
 layout_mode = 2
