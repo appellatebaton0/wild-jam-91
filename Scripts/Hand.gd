@@ -30,6 +30,11 @@ func closest(visible_only := false) -> int:
 	var l = low(visible_only)
 	return h if abs(h - 21) < abs(l - 21) else l 
 
+func best(visible_only := false) -> int:
+	var h = high(visible_only)
+	var l = low(visible_only)
+	return l if h > 21 else h
+
 ## Whether the current hand is losing.
 func is_over() -> bool: return low() > 21
 

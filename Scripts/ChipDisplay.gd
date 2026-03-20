@@ -11,6 +11,7 @@ const SLOT_SCENE := preload("res://Scenes/ChipSlot.tscn")
 
 ## Update the contents of this display.
 func _on_chips_changed(to:Dictionary[Chip, int]):
+	print(to)
 	
 	while get_child_count() < len(to):
 		var new:ChipSlot = SLOT_SCENE.instantiate()
@@ -21,11 +22,11 @@ func _on_chips_changed(to:Dictionary[Chip, int]):
 	for child in get_children(): if child is ChipSlot: slots.append(child)
 	
 	var keys = to.keys()
-	var vals = to.values()
 	
 	for i in range(len(slots)):
-		if len(keys) > i:
-			slots[i].chip  = keys[i]
-			slots[i].count = vals[i]
-		else:
-			slots[i].count = 0
+		var next_chip = keys.pop_front()
+		if next_chip: if to[next_chip] != 0:
+			slots[i].chip = next_chip
+			continue
+		
+		slots[i].chip = null

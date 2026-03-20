@@ -27,6 +27,9 @@ func _input(event: InputEvent) -> void:
 					if card.card: 
 						card.card.modified = true
 						chip.apply(card.card)
+						if card.animator: card.animator.play("ignite")
+						
+						
 					
 					## Some particle effect before this?
 					queue_free()

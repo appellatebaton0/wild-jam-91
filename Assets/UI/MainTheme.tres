@@ -2,6 +2,12 @@
 
 [ext_resource type="FontFile" uid="uid://d17x7kygo258p" path="res://Assets/Fonts/WinkyRough-VariableFont_wght.ttf" id="1_15feo"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_15feo"]
+color = Color(0.7411765, 0.7176471, 0.6627451, 1)
+grow_begin = -15.0
+grow_end = -15.0
+thickness = 3
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15feo"]
 bg_color = Color(0.30588236, 0.28235295, 0.5372549, 1)
 border_width_left = 3
@@ -17,8 +23,11 @@ corner_radius_bottom_left = 6
 [resource]
 Button/colors/font_color = Color(0.95686275, 0.91764706, 0.8352941, 1)
 Button/fonts/font = ExtResource("1_15feo")
+HSeparator/styles/separator = SubResource("StyleBoxLine_15feo")
 Label/colors/font_color = Color(0.95686275, 0.91764706, 0.84313726, 1)
+Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_15feo")
 RichTextLabel/colors/default_color = Color(0.95686275, 0.91764706, 0.8352941, 1)
+RichTextLabel/font_sizes/normal_font_size = 20
 RichTextLabel/fonts/normal_font = ExtResource("1_15feo")
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_15feo")

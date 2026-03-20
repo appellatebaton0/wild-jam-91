@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Duplicator" format=3 uid="uid://dvss8pav153io"]
+
+[ext_resource type="Script" uid="uid://dopv253g53em5" path="res://Scripts/Chips/Duplicator.gd" id="1_sm584"]
+[ext_resource type="Texture2D" uid="uid://dl2hh42ff1fqi" path="res://Assets/Chips/BlackChip.png" id="2_22kjy"]
+
+[resource]
+script = ExtResource("1_sm584")
+color = Color(0.3315, 0.65, 0.52259994, 1)
+name = "Duplicator"
+info = "Turns the card into the last card placed into the hand it's going into. If the hand is empty, randomizes the card."
+texture = ExtResource("2_22kjy")
+metadata/_custom_type_script = "uid://dopv253g53em5"

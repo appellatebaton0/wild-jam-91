@@ -1,6 +1,10 @@
 class_name CardNode extends TextureRect
 ## Handles turning the card node into something readable.
 
+@export var animator:AnimatedSprite2D
+@export var change_sfx:AudioStreamPlayer
+@export var flip_sfx:AudioStreamPlayer
+
 const TEXTURE_DICT := {
 	false: {
 		true: preload("res://Assets/Cards/RegularCard.png"),
@@ -24,11 +28,15 @@ var flipping = false
 	set(to):
 		if card:
 			card.value_changed.disconnect(flip)
+			if change_sfx:
+				card.got_modified.disconnect(change_sfx.play)
 		
 		card = to
 		card.value_changed.connect(flip)
+		if change_sfx:
+			card.got_modified.connect(change_sfx.play)
 		
-		flip()
+		flip(to.value)
 
 var belongs_to:Hand ## The hand this card belongs to.
 
@@ -52,20 +60,47 @@ func _process(delta: float) -> void:
 		custom_minimum_size.x = move_toward(custom_minimum_size.x, max_x, delta * FLIP_SPEED)
 	
 	if label:
-		label.add_theme_font_size_override("font_size", custom_minimum_size.x / 1.2)
+		label.scale.x = custom_minimum_size.x / max_x
+		label.pivot_offset.x = label.size.x / 2
+		
+		if out_of_date:
+			print('setting to ', character(), " from ", card.value)
+			label.text = character()
+			label.visible = (card.visible or modifiable)
+			out_of_date = false
 	
 	if modifiable:
 		size.x = custom_minimum_size.x
 		global_position = start_pos - Vector2(custom_minimum_size.x / 2,0)
 
-func _update_texture(_a = null): 
+var out_of_date := false
+func _update_texture(to:int = card.value): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
-	label.text = card.character()
-	label.visible = (card.visible or modifiable)
-func flip(): flipping = true
+	if label:
+		print('setting to ', character(to), " from (to) ", to)
+		label.text = character(to)
+		label.visible = (card.visible or modifiable)
+	else:
+		out_of_date = true
+	
+	if flip_sfx: flip_sfx.play()
+	
+func flip(to:int): 
+	if not card.modified:
+		flipping = true
+	else:
+		_update_texture(to)
 
 func _on_mouse_entered() -> void: Global.hovered_card = self
 func _on_mouse_exited()  -> void: if Global.hovered_card == self: Global.hovered_card = null
+
+func character(for_val:int = card.value) -> String:
+	match for_val:
+		1: return "A"
+		11: return "J"
+		12: return "Q"
+		13: return "K"
+		_: return str(for_val)
 
 ## Custom Tooltippin'
 func _make_custom_tooltip(for_text: String) -> Object:
@@ -74,6 +109,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	tooltip.text = for_text
 	
 	return tooltip
+
 
 func _get_tooltip(_at_position: Vector2) -> String:
 	
@@ -86,6 +122,3 @@ func _get_tooltip(_at_position: Vector2) -> String:
 	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible or modifiable else "??")
 	
 	return response
-	
-	
-	

@@ -7,7 +7,12 @@ class_name Player extends Control
 @onready var bet_box     := %BetBox     ## The VBox holding bet information.
 @onready var texture     := %Texture    ## The TextureRect with this player's texture.
 
-@export var player_name := &"Sarah"
+@export var player_names := [&"Sarah", &"Bethany", &"Steven", &"Carl"]
+
+@export var intent_positions:Array[Vector2]
+
+var player_name:StringName:
+	get(): return player_names[int(texture.animation)] if texture.is_playing() else &"This player"
 
 enum INTENT {HIT, STAND, OUT, DOUBLE_DOWN}
 @export var intent := INTENT.HIT
@@ -25,14 +30,16 @@ func _ready() -> void:
 	
 	# debug label
 	add_child(lab)
-func _process(delta: float) -> void: 
+func _process(_delta: float) -> void: 
 	
 	lab.text = str(intent)
 	
-	for tooltipper in [intent_rect, bet_box, texture]: if tooltipper is FancyTooltip:
+	intent_rect.play(intent_string())
+	
+	for tooltipper in [bet_box, $Texture/ToolTip2, $Intent/ToolTip]: if tooltipper is FancyTooltip:
 		tooltipper.special_properties["{name}"] = player_name
 		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + intent_string() if intent != INTENT.OUT else " is out"
-		tooltipper.special_properties["{bet}"] = "[color=#" + Color(0.82, 0.561, 0.221, 1.0).to_html() + "]$" + str(bet)
+		tooltipper.special_properties["{bet}"] = "[color=#d18f38]$" + str(bet)
 
 const CARD_NODE_SCENE := preload("res://Scenes/CardNode.tscn")
 ## Add a new card to the hand.

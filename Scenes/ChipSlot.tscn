@@ -20,6 +20,16 @@ texture = SubResource("GradientTexture2D_dnpdf")
 expand_mode = 1
 script = ExtResource("1_587vt")
 
+[node name="Highlight" type="TextureRect" parent="." unique_id=1994674738]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+
 [node name="Label" type="Label" parent="." unique_id=1552364337]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1

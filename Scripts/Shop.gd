@@ -9,13 +9,13 @@ func _ready() -> void:
 	buy_button.pressed.connect(_on_buy)
 
 func _process(_delta: float) -> void:
-	buy_button.disabled = not Global.selected_shop_item or Global.money < Global.selected_shop_item.cost
+	buy_button.disabled = not Global.selected_shop_item or Global.money < Global.selected_shop_item.chip.cost
 
 func _on_continue(): Global.end_game()
 
 func _on_buy():
 	
-	if Global.money < Global.selected_shop_item.cost:
+	if Global.money < Global.selected_shop_item.chip.cost:
 		$Fail.play()
 	
 	elif empty_slot():
@@ -26,6 +26,8 @@ func _on_buy():
 		else:
 			Global.chips[Global.selected_shop_item.chip] = 1
 		Global.chips_changed.emit(Global.chips)
+		
+		Global.money -= Global.selected_shop_item.chip.cost
 	else:
 		$Fail.play()
 

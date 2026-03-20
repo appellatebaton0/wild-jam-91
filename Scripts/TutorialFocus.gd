@@ -26,7 +26,7 @@ var interpolation_timer := 0.0
 ## Lock moving forwards by the normal inputs - has to be a signal.
 @export var front_locks:Array[int]
 
-func save_key():
+func save_key(): if Engine.is_editor_hint():
 	var unre := EditorInterface.get_editor_undo_redo()
 	unre.create_action("Add Transform Key")
 	

@@ -6,20 +6,28 @@ signal run_ended
 
 signal chips_changed(to:Array[Chip]) ## Emitted when the dealer's chips change.
 
-var total_score := 0 ## The score of all games combined
-var game_score := 0 ## The score for the current game.
-
 var game_count := 0 ## The current game count.
 
 var quota := 0 ## The quota for the current game.
 
-var money := 0 ## How much money the player has.
+var money := 60 ## How much money the player has.
+var bank := 5000: ## How much money the casino bank has.
+	set(to):
+		
+		if to < 0:
+			money += to
+			bank = 0
+		else:
+			bank = to
 
 var selected_shop_item:ShopEntry
 
 const MAX_CHIP_SLOTS = 5
 
+## The dealer's (player's) hand.
 var dealer_hand := Hand.new()
+## The hand the next card is going into.
+var next_hand:Hand
 
 var chips:Dictionary[Chip, int]: ## The chips the player has.
 	set(to):
@@ -37,21 +45,23 @@ var held_offset:Vector2 ## The offset of the chip on the mouse.
 
 var hovered_card:CardNode ## The current CardNode being hovered over, if any.
 
+func losing() -> bool:
+	return bank <=0 and money <= 0
+
 ## End the current game. Ran before entering the shop.
 func end_game():
-	total_score += game_score
-	game_score = 0
 	game_count += 1
 	
 	dealer_hand.clear()
 	
 	game_ended.emit()
 
-## End the current run. Ran when the dealer doesn't meet quota.
+## End the current run. Ran when the dealer goes bankrupt.
+@onready var starting_money := money 
+@onready var starting_bank := bank 
 func end_run():
-	money = 0
-	game_score = 0
+	money = starting_money
+	bank = starting_bank
 	game_count = 0
-	total_score = 0
 	chips.clear()
 	run_ended.emit()

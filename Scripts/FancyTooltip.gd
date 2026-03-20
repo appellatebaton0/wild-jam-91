@@ -9,7 +9,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	tooltip.text = for_text
 	return tooltip
 
-func _get_tooltip(at_position: Vector2) -> String:
+func _get_tooltip(_at_position: Vector2) -> String:
 	var response = tooltip_text
 	
 	for key in special_properties:

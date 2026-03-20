@@ -2,6 +2,7 @@ class_name AnimatorButton extends Button
 ## Plays an animation off an AnimationPlayer when pressed.
 
 @onready var tut_overlay:TutorialFocus = get_tree().get_first_node_in_group("TutOverlay")
+@onready var down_sfx
 
 ## If the tut current index is [key], move in [value] direction when pressed.
 @export var tutorial_progressor:Dictionary[int, int]
