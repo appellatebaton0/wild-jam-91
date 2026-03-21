@@ -462,6 +462,13 @@ func _toggled(toggled_on: bool) -> void:
 	Global.show_total_tooltips = toggled_on
 "
 
+[sub_resource type="GDScript" id="GDScript_as1io"]
+script/source = "extends CheckButton
+
+func _toggled(toggled_on: bool) -> void:
+	Global.fast_forward_on_empty = toggled_on
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u7mjy"]
 shader = SubResource("Shader_xvtyr")
 shader_parameter/lod = 2.0870000991325
@@ -2761,7 +2768,6 @@ theme_override_font_sizes/font_size = 68
 text = "Continue"
 flat = true
 script = ExtResource("7_vy5pj")
-pressed_sfx = null
 tutorial_progressor = Dictionary[int, int]({
 -1: 6
 })
@@ -2842,7 +2848,7 @@ keys = Array[Dictionary]([Dictionary[String, Variant]({
 "size": Vector2(0, 0),
 "tip_position": Vector2(408, 220.5),
 "tip_size": Vector2(336, 207),
-"tip_text": "Welcome to [color=#e93816]Devil's Deal[color=]!
+"tip_text": "Welcome to [color=#e93816]The Devil's Deal[color=]!
 Use the Scroll Wheel or Left/Right Arrow Keys to navigate the [color=#5a9634]Tutorial[color=].
 
 Scroll Up/Right Arrow to [color=#e93816]continue[color=].
@@ -3277,7 +3283,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
-pivot_offset = Vector2(576, 324)
 theme = ExtResource("1_grg3l")
 
 [node name="MarginContainer" type="MarginContainer" parent="Options" unique_id=1724927493]
@@ -3444,6 +3449,13 @@ tooltip_text = "Toggle on and off an extra tip to show each hand's total value, 
 theme_override_font_sizes/font_size = 20
 text = "SHOW HAND TOTALS"
 script = SubResource("GDScript_j7e3e")
+
+[node name="CheckButton2" type="CheckButton" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1288912570]
+layout_mode = 2
+tooltip_text = "If you don't have any chips left, pressing continue will instantly play out the rest of the round."
+theme_override_font_sizes/font_size = 20
+text = "AUTO-CONTINUE IF NO CHIPS LEFT"
+script = SubResource("GDScript_as1io")
 
 [node name="Panel2" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=851581354]
 layout_mode = 2
