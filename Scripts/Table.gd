@@ -10,8 +10,10 @@ class_name Table extends Control
 @onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
 @onready var turn_indic  := %TurnIndicator  # The indicator for who's turn it is.
 @onready var ropopup     := %RoundOverPopup # The round over popup.
+@onready var total_label := $TotalTooltip
 
 @export var anim_player:AnimationPlayer
+@export var deal_sfx:AudioStreamPlayer
 
 @export var players:Dictionary[StringName, Player] = {
 	&"Player1": null
@@ -33,7 +35,7 @@ func _ready() -> void:
 	
 	deal_index = deal_cycle.find(&"Dealer")
 	
-	draw_new()
+	draw_new(true)
 
 func _on_next_pressed() -> void:
 	
@@ -56,17 +58,24 @@ func _on_next_pressed() -> void:
 		target = players[target]
 		if target is Player: # Deal the card to the player, face down if they're doubling down.
 			
-			match target.intent:
-				Player.INTENT.HIT:
-					target.hand.deal(next_card.card)
-					target.renew_intent()
-					draw_new()
-				Player.INTENT.DOUBLE_DOWN:
-					target.bet *= 2
-					target.hand.deal(next_card.card, false)
-					target.intent = Player.INTENT.STAND
-				_: ## Something went wrong.
-					cycle_deal_index()
+			if len(target.hand.cards) < 2:
+				target.hand.deal(next_card.card)
+				target.renew_intent()
+				draw_new()
+			else:
+				match target.intent:
+					Player.INTENT.HIT:
+						target.hand.deal(next_card.card)
+						target.renew_intent()
+						draw_new()
+					Player.INTENT.DOUBLE_DOWN:
+						target.bet *= 2
+						target.hand.deal(next_card.card, false)
+						target.intent = Player.INTENT.STAND
+						draw_new()
+					_: ## Something went wrong.
+						push_warning("Deal index error, Table:76")
+						cycle_deal_index()
 	
 	## Cycle the dealing index.
 	cycle_deal_index()
@@ -74,6 +83,7 @@ func _on_next_pressed() -> void:
 	## Check for any met round end conditions.
 	
 	var all_standing := true
+	var all_out = true
 	
 	# Dealer is visibly winning.
 	if Global.dealer_hand.is_winning():
@@ -81,12 +91,13 @@ func _on_next_pressed() -> void:
 		return
 	
 	# Is one of the players winning?
-	for player in players.values():
+	for player in players.values(): if player is Player:
 		if player.hand.is_winning():
 			round_over()
 			return
 		if not player.intent == Player.INTENT.STAND and not player.intent == Player.INTENT.OUT:
 			all_standing = false
+		if not player.hand.is_over(): all_out = false	
 	
 	# IF the dealer is over, all the players win.
 	if Global.dealer_hand.is_over(): 
@@ -95,7 +106,7 @@ func _on_next_pressed() -> void:
 	
 	# IF all the players are standing or out, figure out who's won.
 	
-	if (all_standing and Global.dealer_hand.high() >= 17): 
+	if (all_standing and Global.dealer_hand.high() >= 17) or all_out: 
 		round_over()
 		return
 	
@@ -107,20 +118,17 @@ func cycle_deal_index() -> void:
 	var started_at := deal_index
 	while true:
 		
-		
+		var target := deal_cycle[deal_index]
 		
 		# If the next player's intent is to HIT, it'll be their turn to draw, duh.
-		if deal_cycle[deal_index] != &"Dealer" and players[deal_cycle[deal_index]].intent != Player.INTENT.STAND and players[deal_cycle[deal_index]].intent != Player.INTENT.OUT:
-			break 
+		if target != &"Dealer": 
+			if len(players[target].hand.cards) < 2 or (players[target].intent != Player.INTENT.STAND and players[target].intent != Player.INTENT.OUT):
+				print("stopped @ player: ", len(players[target].hand.cards) < 2, "/",(players[target].intent != Player.INTENT.STAND and players[target].intent != Player.INTENT.OUT))
+				break 
 		
-		if deal_cycle[deal_index] == &"Dealer" and len(Global.dealer_hand.cards) < 2:
+		if target == &"Dealer" and len(Global.dealer_hand.cards) < 2:
+			print("stopped @ dealer: ", len(Global.dealer_hand.cards) < 2)
 			break ## If the dealer has less than two cards, keep drawing.
-		
-		# Cycle the deal index until a new valid target is found.
-		deal_index = wrap(deal_index + 1, 0, len(deal_cycle))
-		
-		if deal_index == started_at:
-			break # Looped around. The game's probably over.
 		
 		# If the dealer has an ace, and counting it as 11 would bring
 		# the total to 17 or more (but not over 21), the dealer must 
@@ -128,8 +136,21 @@ func cycle_deal_index() -> void:
 		
 		# IE, if the HIGH is under 17, the dealer hits.
 		
-		if deal_cycle[deal_index] == &"Dealer" and Global.dealer_hand.high() < 17:
+		if target == &"Dealer" and Global.dealer_hand.high() < 17 and no_players_waiting():
+			print("Stopped @ dealer, hand under 17.")
 			break # The next turn belongs to the dealer.
+		
+		# Cycle the deal index until a new valid target is found.
+		deal_index = wrap(deal_index + 1, 0, len(deal_cycle))
+		
+		if deal_index == started_at:
+			print("looped")
+			break # Looped around. The game's probably over.
+
+func no_players_waiting() -> bool: # Are any players with less than 2 cards?
+	for player in players.values(): if player is Player:
+		if len(player.hand.cards) < 2: return false
+	return true
 
 func _process(_delta: float) -> void:
 	var next := deal_cycle[deal_index]
@@ -139,9 +160,15 @@ func _process(_delta: float) -> void:
 	
 	turn_indic.reparent(next_node)
 	next_node.move_child(turn_indic, -1)
+	
+	total_label.visible = Global.show_total_tooltips
+	total_label.text = "CURRENT TOTAL: " + str(Global.dealer_hand.best())
+	if Global.next_hand == Global.dealer_hand: total_label.text += " - AFTER CARD: " + str(Global.dealer_hand.best_after(next_card.card))
 
 # Draw a new card into the dealer's hand.
-func draw_new() -> void:
+func draw_new(muted := false) -> void:
+	if deal_sfx and not muted: deal_sfx.play() # If we're getting a new card, one was dealt. Play that sound.
+	
 	var new = Card.new()
 	new.value = randi_range(1, 12)
 	
@@ -154,6 +181,7 @@ func round_over():
 	
 	deal_index = deal_cycle.find(&"Dealer")
 	
+
 	if anim_player: 
 		anim_player.play("Table->EndPopup" if not Global.losing() else "RunEnded")
 
@@ -174,6 +202,10 @@ func get_round_data() -> Dictionary[String, Array]:
 		
 		var best = player.hand.best()
 		
+		# Hand is over 21. Player loses.
+		if player.hand.is_over():
+			continue
+		
 		# Hand is 21, and dealer's isn't. Natural.
 		if player.hand.is_winning() and not Global.dealer_hand.is_winning():
 			response["naturals"].append(player)
@@ -185,6 +217,9 @@ func get_round_data() -> Dictionary[String, Array]:
 		# Player draws w/ dealer.
 		elif (player.hand.best() == dealer_value):
 			response["draws"].append(player)
+		
+		print("Player hand: ", player.hand.as_values(), " -> ", player.hand.is_winning())
+	print("Dealer hand: ", Global.dealer_hand.as_values(), " -> ", Global.dealer_hand.is_winning())
 	
 	return response
 	
@@ -231,5 +266,5 @@ func _on_clear_cards(_cards:Array[Card]):
 		
 		player.texture.play(str(bag.pop_at(randi_range(0, len(bag) - 1))))
 		player.intent_rect.position = player.texture.position - Vector2(0, 147)
-#
-#const PLAYER_TEXTURES:Array[Texture2D]
+
+func end_game() -> void: Global.end_game()

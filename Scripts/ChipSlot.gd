@@ -1,7 +1,7 @@
 class_name ChipSlot extends TextureRect
 ## Provides a control the player can interact with for a chip.
 
-const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
+#const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
 
 @export var usable := true ## WHether this slot allows for its chip to be dragged out of it.
 
@@ -10,7 +10,7 @@ const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
 		
 		chip = to
 		
-		texture = chip.texture if chip else EMPTY_TEXTURE
+		texture = chip.texture if chip else null
 
 @onready var label := $Label
 @onready var highlight := $Highlight
@@ -32,6 +32,7 @@ func _process(_delta: float) -> void:
 	if label: label.text = str(Global.chips[chip]) if Global.chips.has(chip) else ""
 	highlight.texture = HIGHLIGHT_TEXTURE if usable and mouse_over and chip else null
 
+var last_chip:Chip
 func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton and usable:
 	if event.is_pressed() and not Global.held_chip and chip:
 		## Create a new chip, and pick it up.
@@ -43,12 +44,20 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		Global.held_chip = new
 		
 		Global.chips[chip] -= 1
+		last_chip = chip
 		Global.chips_changed.emit(Global.chips)
 		
 		new.dropped.connect(_on_chip_dropped)
 
 func _on_chip_dropped(): 
-	Global.chips[chip] += 1
+	
+	if not chip: chip = last_chip
+	
+	if Global.chips.has(chip):
+		Global.chips[chip] += 1
+	else:
+		Global.chips[chip] = 1
+	
 	Global.chips_changed.emit()
 
 ## Custom Tooltippin'

@@ -1,24 +1,20 @@
 class_name Shop extends Control
 
-@onready var cont_button := %Continue
 @onready var buy_button := %BuyButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cont_button.pressed.connect(_on_continue)
 	buy_button.pressed.connect(_on_buy)
 
 func _process(_delta: float) -> void:
-	buy_button.disabled = not Global.selected_shop_item or Global.money < Global.selected_shop_item.chip.cost
-
-func _on_continue(): Global.end_game()
+	buy_button.disabled = (not Global.selected_shop_item or Global.money < Global.selected_shop_item.chip.cost) or not (empty_slot() or Global.chips.has(Global.selected_shop_item.chip))
 
 func _on_buy():
 	
 	if Global.money < Global.selected_shop_item.chip.cost:
 		$Fail.play()
 	
-	elif empty_slot():
+	elif empty_slot() or Global.chips.has(Global.selected_shop_item.chip):
 		$Suceed.play()
 		
 		if Global.chips.has(Global.selected_shop_item.chip):
@@ -33,12 +29,13 @@ func _on_buy():
 
 ## Returns if the bar has an empty slot, clearing a space if needed and possible.
 func empty_slot() -> bool:
-	if len(Global.chips.keys()) < Global.MAX_CHIP_SLOTS: return true
 	
 	for key in Global.chips:
 		# Found an empty slot - erase its contents, return true.
-		if Global.chips[key] == 0:
+		if Global.chips[key] == 0 or key == null:
 			Global.chips.erase(key)
 			return true
+	
+	if len(Global.chips.keys()) < Global.MAX_CHIP_SLOTS: return true
 	
 	return false

@@ -3,15 +3,13 @@ class_name ChipShop extends GridContainer
 
 const CHIP_PATH := "res://Assets/ChipResources/"
 
-@onready var chip_bag := get_chips() ## The chips available to sell.
+@export var chip_bag:Array[Chip] ## The chips available to sell.
 @onready var slots    := get_slots() ## The ShopEntries in this container.
 
 func _ready() -> void: reload_shop()
 
 ## Reload the contents of the shop.
 func reload_shop() -> void:
-	print("!?")
-	
 	var bag := chip_bag.duplicate()
 	
 	for slot in slots:
@@ -19,11 +17,8 @@ func reload_shop() -> void:
 		## Refill the bag if it's empty.
 		if len(bag) == 0: bag = chip_bag.duplicate()
 		
-		#if slot.chip:
-			#print(slot.name, ": ", slot.chip.name, " -> ")
 		# Pop a random chip from the bag, and stuff it in the slot.
-		slot.chip = bag.pop_at(randi_range(0, len(bag) - 1))
-		#print(slot.chip.name)
+		slot.chip = bag.pop_front()
 
 ## Get various lists.
 func get_slots() -> Array[ShopEntry]:

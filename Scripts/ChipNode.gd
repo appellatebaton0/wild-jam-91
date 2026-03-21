@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 						chip.apply(card.card)
 						if card.animator: card.animator.play("ignite")
 						
-						
+						Global.chips_used += 1
 					
 					## Some particle effect before this?
 					queue_free()

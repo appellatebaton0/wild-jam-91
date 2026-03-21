@@ -8,11 +8,11 @@ class_name CardNode extends TextureRect
 const TEXTURE_DICT := {
 	false: {
 		true: preload("res://Assets/Cards/RegularCard.png"),
-		false: preload("res://Assets/Cards/Back.png")
+		false: preload("res://Assets/Cards/CardBack.png")
 	},
 	true: {
 		true: preload("res://Assets/Cards/EvilCard.png"),
-		false: preload("res://Assets/Cards/Back.png")
+		false: preload("res://Assets/Cards/CardBack.png")
 	}
 }
 @onready var label := $Label
@@ -38,8 +38,6 @@ var flipping = false
 		
 		flip(to.value)
 
-var belongs_to:Hand ## The hand this card belongs to.
-
 @export var modifiable := false ## Whether a token can be dragged onto this card.
 
 var lab:Label
@@ -51,6 +49,7 @@ func _ready() -> void:
 		_update_texture()
 
 func _process(delta: float) -> void:
+	
 	if flipping:
 		custom_minimum_size.x = move_toward(custom_minimum_size.x, 0, delta * FLIP_SPEED)
 		if custom_minimum_size.x == 0:
@@ -64,7 +63,6 @@ func _process(delta: float) -> void:
 		label.pivot_offset.x = label.size.x / 2
 		
 		if out_of_date:
-			print('setting to ', character(), " from ", card.value)
 			label.text = character()
 			label.visible = (card.visible or modifiable)
 			out_of_date = false
@@ -77,7 +75,6 @@ var out_of_date := false
 func _update_texture(to:int = card.value): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
 	if label:
-		print('setting to ', character(to), " from (to) ", to)
 		label.text = character(to)
 		label.visible = (card.visible or modifiable)
 	else:
@@ -118,7 +115,7 @@ func _get_tooltip(_at_position: Vector2) -> String:
 	var response:String = tooltip_text
 	
 	response = response.replace("{color}", "#E93816" if card.modified else "#5A9634")
-	response = response.replace("{name}", card.name() if card.visible or modifiable else "??")
-	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible or modifiable else "??")
+	response = response.replace("{name}", card.name())
+	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11"))
 	
 	return response

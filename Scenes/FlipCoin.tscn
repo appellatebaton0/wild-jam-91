@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://brkfcslpcl0oo"]
+
+[ext_resource type="Texture2D" uid="uid://d0fk3dc5kaikt" path="res://Assets/Chips/WrapChip.png" id="1_d6gbm"]
+[ext_resource type="Script" uid="uid://cdjal04xtp2fb" path="res://Scripts/FlipCoin.gd" id="2_y85oy"]
+[ext_resource type="Texture2D" uid="uid://dk8mnq2m76uxs" path="res://Assets/Chips/MenuChipOutline.png" id="3_gh36j"]
+
+[node name="FlipCoin" type="TextureRect" unique_id=2103607914]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("1_d6gbm")
+expand_mode = 1
+script = ExtResource("2_y85oy")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1978784622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gh36j")
+expand_mode = 1

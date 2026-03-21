@@ -17,4 +17,4 @@ func _on_slider_changed(to:float):
 	
 	AudioServer.set_bus_volume_db(bus_index, to)
 	
-	value.text = str(to)
+	value.text = str(round(to * 10) / 10)

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://c724nvjjfrjd4" path="res://Assets/UI/MainTheme.tres" id="1_grg3l"]
 [ext_resource type="Script" uid="uid://c7etl1ys6nxhx" path="res://Scripts/Table.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
-[ext_resource type="Texture2D" uid="uid://dccifra5kjsj2" path="res://Assets/Background.png" id="2_v1gob"]
+[ext_resource type="Texture2D" uid="uid://uibqdyqvcany" path="res://Assets/UI/CasinoBackground.png" id="3_lfh1j"]
 [ext_resource type="Texture2D" uid="uid://bvbl3jkqfugn2" path="res://Assets/Cards/NextCard.png" id="4_1p5hy"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 [ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://v3jcaa2qgx2i" path="res://Assets/UI/RaiseIntent.png" id="10_aht7i"]
 [ext_resource type="Texture2D" uid="uid://dypsx17qmxhng" path="res://Assets/UI/StopIntent.png" id="11_kpo4j"]
 [ext_resource type="Texture2D" uid="uid://ry4ppqjm8qud" path="res://Assets/UI/HoldIntent.png" id="12_4n42c"]
-[ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
 [ext_resource type="Texture2D" uid="uid://c2cpmvvjekqo" path="res://Assets/Cards/CardTransformation.png" id="14_c4ay3"]
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
@@ -28,21 +27,53 @@
 [ext_resource type="Texture2D" uid="uid://cmyknb8mfilrb" path="res://Assets/People/Grandma.png" id="17_f7hdo"]
 [ext_resource type="Script" uid="uid://cput2ojqmwnu3" path="res://Scripts/RoundOverPopup.gd" id="18_4n42c"]
 [ext_resource type="Texture2D" uid="uid://dvjp8cptn4g1f" path="res://Assets/People/Guy.png" id="18_clvyn"]
+[ext_resource type="Texture2D" uid="uid://bmbrtyif075o1" path="res://Assets/UI/DoubleDownIntent.png" id="18_eywpa"]
 [ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
 [ext_resource type="Texture2D" uid="uid://b71vo1nc2ek5s" path="res://Assets/People/SeriousGuy.png" id="19_d8m2u"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
+[ext_resource type="Texture2D" uid="uid://hy1rujm5yaro" path="res://Assets/UI/WaitIntent.png" id="21_7sj7i"]
 [ext_resource type="PackedScene" uid="uid://dt8xwjydmeqno" path="res://Scenes/CardNode.tscn" id="21_clvyn"]
 [ext_resource type="Texture2D" uid="uid://do21dnk5dgk7g" path="res://Assets/UI/HandFingers.png" id="21_f7hdo"]
 [ext_resource type="Script" uid="uid://dr25sxmad7flb" path="res://Scripts/ChipShop.gd" id="23_u7mjy"]
 [ext_resource type="Texture2D" uid="uid://db127nn8s4i4g" path="res://Assets/UI/HandThumb.png" id="25_clvyn"]
+[ext_resource type="AudioStream" uid="uid://dyrpylcky33rj" path="res://Assets/SFX/cardburn.mp3" id="27_lac6x"]
 [ext_resource type="Script" uid="uid://ck5b0qf3f6jqk" path="res://Scripts/BusSlider.gd" id="28_c5snn"]
+[ext_resource type="AudioStream" uid="uid://w5t4mprbreuq" path="res://Assets/SFX/cardshuffle.mp3" id="29_hpjjw"]
 [ext_resource type="Script" uid="uid://deibrokcxof6g" path="res://Scripts/WindowSetter.gd" id="29_xvtyr"]
+[ext_resource type="AudioStream" uid="uid://co6vnyr1f40xa" path="res://Assets/SFX/impact_click.mp3" id="30_7sj7i"]
+[ext_resource type="AudioStream" uid="uid://cvpclukx440q7" path="res://Assets/SFX/carddealt.mp3" id="30_off7b"]
 [ext_resource type="Script" uid="uid://c13wlkfaaoh5d" path="res://Scripts/QuitButton.gd" id="31_4yxf6"]
+[ext_resource type="AudioStream" uid="uid://ln63ly8madb8" path="res://Assets/SFX/aww.mp3" id="31_81ldr"]
 [ext_resource type="Script" uid="uid://bvbi0in1hw0x4" path="res://Scripts/ReplayButton.gd" id="31_qta6b"]
+[ext_resource type="AudioStream" uid="uid://cininco140ooe" path="res://Assets/SFX/cheering.mp3" id="32_eywpa"]
+[ext_resource type="Texture2D" uid="uid://dbc4p5uxyfu0j" path="res://Assets/UI/ShopBackground.png" id="33_semxg"]
+[ext_resource type="Texture2D" uid="uid://bmtt0ur440thg" path="res://Assets/People/Devil.png" id="34_ep8v8"]
 [ext_resource type="AudioStream" uid="uid://c6dn4nh6nww8g" path="res://Assets/Music/AnteUp.mp3" id="35_6heos"]
+[ext_resource type="AudioStream" uid="uid://s6lpvup4upqj" path="res://Assets/SFX/money.mp3" id="35_lfh1j"]
 [ext_resource type="AudioStream" uid="uid://dasa4ye7jh6w7" path="res://Assets/Music/HitMe.mp3" id="36_vvnwx"]
+[ext_resource type="Script" uid="uid://dwgdqhbvlly7t" path="res://Scripts/Chips/Chip.gd" id="37_js5gh"]
 [ext_resource type="Script" uid="uid://dlanw8aqnmihn" path="res://Scripts/ClickEffect.gd" id="37_vvnwx"]
+[ext_resource type="Resource" uid="uid://cs44tie8jr8or" path="res://Assets/ChipResources/Randomizer.tres" id="38_vvjo1"]
+[ext_resource type="Resource" uid="uid://dvss8pav153io" path="res://Assets/ChipResources/Duplicator.tres" id="39_yisvs"]
+[ext_resource type="Resource" uid="uid://c7mks5g0e4e5n" path="res://Assets/ChipResources/Modulo.tres" id="40_r6gtk"]
+[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/ChipResources/CoinFlip.tres" id="40_rgw24"]
+[ext_resource type="Resource" uid="uid://c1uit8n4gsx6f" path="res://Assets/ChipResources/Wrap.tres" id="41_81ldr"]
+[ext_resource type="Script" uid="uid://beiccmf2861ii" path="res://Scripts/RunOverStats.gd" id="42_hpjjw"]
+[ext_resource type="Resource" uid="uid://cy13qf4irnda6" path="res://Assets/ChipResources/AllIn.tres" id="43_eywpa"]
+[ext_resource type="Texture2D" uid="uid://dx2bub4ja6rn1" path="res://Assets/UI/MenuBackground.png" id="50_as1io"]
+[ext_resource type="Texture2D" uid="uid://dl8xwirs5xrlx" path="res://Assets/Chips/DraftChip.png" id="52_8n4h5"]
+[ext_resource type="Texture2D" uid="uid://djuvgsvir7uca" path="res://Assets/Chips/DuplicatorChip.png" id="53_as1io"]
+[ext_resource type="PackedScene" uid="uid://brkfcslpcl0oo" path="res://Scenes/FlipCoin.tscn" id="54_1bbis"]
+[ext_resource type="Texture2D" uid="uid://b44rj8y0dtmhs" path="res://Assets/Chips/BlackGreenChip.png" id="54_xd5mi"]
+[ext_resource type="Texture2D" uid="uid://bmn230uh10o1t" path="res://Assets/Chips/RedWhiteChip.png" id="56_tt1x2"]
+[ext_resource type="Texture2D" uid="uid://bgfa3uuasacgo" path="res://Assets/Chips/CoinFlipChip.png" id="57_2wrh7"]
+[ext_resource type="Texture2D" uid="uid://dl2hh42ff1fqi" path="res://Assets/Chips/BlackChip.png" id="58_atu2d"]
+[ext_resource type="Texture2D" uid="uid://cjdbipsviicek" path="res://Assets/UI/Logo.png" id="59_xd5mi"]
+[ext_resource type="Texture2D" uid="uid://blmy3pdu0g8ff" path="res://Assets/Chips/RandomChip.png" id="60_y2ulj"]
+[ext_resource type="AudioStream" uid="uid://bjo6rc37u7wnl" path="res://Assets/SFX/bankrupt.mp3" id="61_j7e3e"]
+[ext_resource type="AudioStream" uid="uid://dojg8pwkmdyff" path="res://Assets/Music/PlaceYourBets.mp3" id="62_j7e3e"]
+[ext_resource type="Script" uid="uid://c1bi17m44b6cr" path="res://Scripts/MusicHandler.gd" id="63_y2ulj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
 atlas = ExtResource("16_utia5")
@@ -123,12 +154,12 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
-atlas = ExtResource("10_aht7i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7e3e"]
+atlas = ExtResource("18_eywpa")
 region = Rect2(0, 0, 159, 153)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6heos"]
-atlas = ExtResource("10_aht7i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2ulj"]
+atlas = ExtResource("18_eywpa")
 region = Rect2(159, 0, 159, 153)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4yxf6"]
@@ -155,18 +186,34 @@ region = Rect2(0, 0, 159, 153)
 atlas = ExtResource("12_4n42c")
 region = Rect2(159, 0, 159, 153)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3133c"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js5gh"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvjo1"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(318, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yisvs"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(477, 0, 159, 153)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3rx7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x3rx7")
+"texture": SubResource("AtlasTexture_j7e3e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6heos")
+"texture": SubResource("AtlasTexture_y2ulj")
 }],
 "loop": true,
 "name": &"Double Down",
-"speed": 3.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -199,6 +246,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Stand",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3133c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js5gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvjo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yisvs")
+}],
+"loop": true,
+"name": &"Waiting",
 "speed": 1.0
 }]
 
@@ -293,6 +357,28 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgw24"]
+atlas = ExtResource("34_ep8v8")
+region = Rect2(0, 0, 778, 743)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gwyn"]
+atlas = ExtResource("34_ep8v8")
+region = Rect2(778, 0, 778, 743)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6gtk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgw24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gwyn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
 bg_color = Color(0.0074689654, 0.008411435, 0.039601132, 1)
 corner_radius_top_left = 20
@@ -336,9 +422,6 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgeq"]
-bg_color = Color(0.62560004, 0.67184, 0.68, 1)
-
 [sub_resource type="Shader" id="Shader_xvtyr"]
 code = "shader_type canvas_item;
 
@@ -371,6 +454,13 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 corner_detail = 20
+
+[sub_resource type="GDScript" id="GDScript_j7e3e"]
+script/source = "extends CheckButton
+
+func _toggled(toggled_on: bool) -> void:
+	Global.show_total_tooltips = toggled_on
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u7mjy"]
 shader = SubResource("Shader_xvtyr")
@@ -503,6 +593,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1e-05)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TutorialOverlay/Cutout:takes_input")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_c4ay3"]
 resource_name = "MainMenu->Shop"
@@ -571,14 +673,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Music:stream:stream_0/volume")
+tracks/5/path = NodePath("Music:current_track")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-60.0, 0.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TutorialOverlay/Cutout:takes_input")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_c5snn"]
@@ -631,6 +745,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TutorialOverlay/Cutout:takes_input")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_jw32o"]
@@ -926,98 +1052,122 @@ tracks/23/keys = {
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("TutorialOverlay:modulate")
+tracks/24/path = NodePath("Splash:visible")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("Splash:visible")
+tracks/25/path = NodePath("RunEnded:rotation")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [-0.34906584]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("RunEnded:rotation")
+tracks/26/path = NodePath("RunEnded:scale")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.34906584]
+"values": [Vector2(1, 1.001358e-05)]
 }
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("RunEnded:scale")
+tracks/27/path = NodePath("RunEnded:visible")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1.001358e-05)]
+"update": 1,
+"values": [false]
 }
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("RunEnded:visible")
+tracks/28/path = NodePath("Table/ShuffleDeck:playing")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("Music:stream:stream_0/volume")
+tracks/29/path = NodePath("Bankrupt:playing")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [false]
 }
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Music:stream:stream_1/volume")
+tracks/30/path = NodePath("Menu:visible")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [true]
 }
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("Music:stream:stream_2/volume")
+tracks/31/path = NodePath("Music:current_track")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Music:transition_speed")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-60.0]
+"values": [10.0]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("TutorialOverlay/Cutout:takes_input")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_qta6b"]
@@ -1158,6 +1308,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bankrupt:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bmxlf"]
 resource_name = "Shop->Table"
@@ -1234,29 +1396,43 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Music:stream:stream_0/volume")
+tracks/6/path = NodePath("Table")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -60.0]
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_game"
+}]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Music:stream:stream_1/volume")
+tracks/7/path = NodePath("Table/ShuffleDeck:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-60.0, 0.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Music:current_track")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_sxkr1"]
@@ -1409,38 +1585,38 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Music:stream:stream_0/volume")
+tracks/12/path = NodePath("Menu:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [true]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Music:stream:stream_1/volume")
+tracks/13/path = NodePath("Music:current_track")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"times": PackedFloat32Array(0, 2.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 2]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Music:stream:stream_2/volume")
+tracks/14/path = NodePath("Music:transition_speed")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(2.2333333, 7.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-60.0]
+"values": [2.0, 40.0]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -1563,26 +1739,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Music:stream:stream_1/volume")
+tracks/6/path = NodePath("Music:current_track")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -60.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Music:stream:stream_0/volume")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-60.0, 0.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_2w5on"]
@@ -1594,10 +1758,10 @@ tracks/0/path = NodePath("TutorialOverlay/Cutout:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [true, false]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1610,18 +1774,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TutorialOverlay:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
@@ -1645,12 +1797,13 @@ stream_0/stream = ExtResource("35_6heos")
 stream_0/volume = -60.0
 stream_1/stream = ExtResource("36_vvnwx")
 stream_1/volume = -60.0
+stream_2/stream = ExtResource("62_j7e3e")
 stream_2/volume = -60.0
 
 [node name="Main" type="Node" unique_id=1786674721]
 metadata/_edit_horizontal_guides_ = [-137.0]
 
-[node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("anim_player", "players")]
+[node name="Table" type="Control" parent="." unique_id=540207028 node_paths=PackedStringArray("anim_player", "deal_sfx", "players")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1661,6 +1814,7 @@ grow_vertical = 2
 theme = ExtResource("1_grg3l")
 script = ExtResource("1_r150o")
 anim_player = NodePath("../AnimationPlayer")
+deal_sfx = NodePath("DealCard")
 players = {
 &"Player1": NodePath("PlayerBox/Player")
 }
@@ -1673,7 +1827,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_v1gob")
+texture = ExtResource("3_lfh1j")
 expand_mode = 1
 
 [node name="TurnIndicator" type="TextureRect" parent="Table" unique_id=1691322789]
@@ -1716,6 +1870,46 @@ layout_mode = 2
 custom_minimum_size = Vector2(54.4, 64)
 layout_mode = 2
 
+[node name="ContinueButton" type="Button" parent="Table" unique_id=1802303539]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(390, 105)
+layout_mode = 0
+offset_left = 722.0
+offset_top = 513.0
+offset_right = 1112.0
+offset_bottom = 618.0
+size_flags_horizontal = 10
+size_flags_vertical = 10
+tooltip_text = "[color=#5a9634]Continue[color=]
+---
+Deal your next [color=#5a9634]Card[color=]."
+focus_mode = 0
+theme_override_font_sizes/font_size = 68
+text = "Continue"
+flat = true
+script = ExtResource("7_346fj")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Table/ContinueButton" unique_id=1851281024]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 4.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.701614, 5.644291, 634.44574, 129.77386)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="Table" unique_id=475158599]
 layout_mode = 1
 anchors_preset = 15
@@ -1723,6 +1917,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 40
@@ -1874,46 +2069,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_u7mjy")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Table/MarginContainer/VBoxContainer" unique_id=25904373]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="ContinueButton" type="Button" parent="Table/MarginContainer" unique_id=1802303539]
-unique_name_in_owner = true
-z_index = 1
-custom_minimum_size = Vector2(390, 105)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 10
-tooltip_text = "[color=#5a9634]Continue[color=]
----
-Deal your next [color=#5a9634]Card[color=]."
-focus_mode = 0
-theme_override_font_sizes/font_size = 68
-text = "Continue"
-flat = true
-script = ExtResource("7_346fj")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Table/MarginContainer/ContinueButton" unique_id=1851281024]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = 4.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("15_jyqft")
-region_rect = Rect2(8.701614, 5.644291, 634.44574, 129.77386)
-patch_margin_left = 20
-patch_margin_top = 20
-patch_margin_right = 20
-patch_margin_bottom = 20
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
 [node name="OptionsButton" type="Button" parent="Table/MarginContainer" unique_id=556578660]
 z_index = 1
 custom_minimum_size = Vector2(100, 60)
@@ -1958,7 +2113,7 @@ offset_top = 77.0
 offset_right = 1142.0
 offset_bottom = 349.0
 
-[node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234]
+[node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234 node_paths=PackedStringArray("next_card")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1972,6 +2127,7 @@ offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_pbw6q")
+next_card = NodePath("../../Hand/NextCard")
 intent_positions = Array[Vector2]([Vector2(2, -178), Vector2(-1, -165), Vector2(-1, -206), Vector2(-8, -156)])
 
 [node name="Texture" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=716873650]
@@ -1979,8 +2135,7 @@ unique_name_in_owner = true
 position = Vector2(2, -18)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_ep8v8")
-animation = &"3"
-frame_progress = 0.25637582
+animation = &"0"
 
 [node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
 layout_mode = 3
@@ -2001,11 +2156,10 @@ script = ExtResource("7_346fj")
 
 [node name="Intent" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=1535351640]
 unique_name_in_owner = true
-position = Vector2(-8, -156)
+position = Vector2(-1, -206)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
 animation = &"Double Down"
-frame_progress = 0.61446226
 
 [node name="ToolTip" type="Control" parent="Table/PlayerBox/Player/Intent" unique_id=1955527303]
 layout_mode = 3
@@ -2040,6 +2194,18 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
+
+[node name="CardNode" parent="Table/PlayerBox/Player/PlayerHand" unique_id=684736372 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode2" parent="Table/PlayerBox/Player/PlayerHand" unique_id=1600004864 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode3" parent="Table/PlayerBox/Player/PlayerHand" unique_id=956629120 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=973104317]
 position = Vector2(161.99997, -140.99998)
@@ -2082,6 +2248,38 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 78
 text = "$500"
+horizontal_alignment = 1
+
+[node name="TotalTooltip" type="Label" parent="Table/PlayerBox/Player" unique_id=2015784694]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = 229.0
+offset_right = 182.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CURRENT TOTAL: 20/21 - AFTER CARD: 25/21"
+horizontal_alignment = 1
+
+[node name="TotalTooltip" type="Label" parent="Table" unique_id=476507033]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -191.0
+offset_top = -31.0
+offset_right = 173.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CURRENT TOTAL: 20/21 - AFTER CARD: 25/21"
 horizontal_alignment = 1
 
 [node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
@@ -2172,6 +2370,7 @@ texture = ExtResource("25_clvyn")
 expand_mode = 1
 
 [node name="ApplySFX" type="AudioStreamPlayer" parent="Table/Hand" unique_id=1060068958]
+stream = ExtResource("27_lac6x")
 bus = &"SFX"
 
 [node name="FlipSFX" type="AudioStreamPlayer" parent="Table/Hand" unique_id=1394429020]
@@ -2190,6 +2389,7 @@ grow_vertical = 2
 script = ExtResource("18_4n42c")
 
 [node name="Panel" type="NinePatchRect" parent="Table/RoundOverPopup" unique_id=1978141765]
+modulate = Color(1, 1, 1, 0.93333334)
 custom_minimum_size = Vector2(600, 350)
 layout_mode = 1
 anchors_preset = 8
@@ -2311,10 +2511,26 @@ theme_override_font_sizes/font_size = 30
 text = "TO SHOP"
 flat = true
 script = ExtResource("7_vy5pj")
+pressed_sfx = ExtResource("30_7sj7i")
 tutorial_progressor = Dictionary[int, int]({
 -1: 1
 })
 anim_name = &"Table->Shop"
+
+[node name="Lose" type="AudioStreamPlayer" parent="Table/RoundOverPopup" unique_id=1327182465]
+stream = ExtResource("31_81ldr")
+bus = &"SFX"
+
+[node name="Win" type="AudioStreamPlayer" parent="Table/RoundOverPopup" unique_id=507072142]
+stream = ExtResource("32_eywpa")
+bus = &"SFX"
+
+[node name="ShuffleDeck" type="AudioStreamPlayer" parent="Table" unique_id=1099417764]
+stream = ExtResource("29_hpjjw")
+bus = &"SFX"
+
+[node name="DealCard" type="AudioStreamPlayer" parent="Table" unique_id=853608828]
+stream = ExtResource("30_off7b")
 
 [node name="Shop" type="Control" parent="." unique_id=1257850578]
 layout_mode = 3
@@ -2333,8 +2549,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("13_2w5on")
+texture = ExtResource("33_semxg")
 expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Shop" unique_id=1580017346]
+position = Vector2(886.00006, 294)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_r6gtk")
+autoplay = "default"
+frame_progress = 0.7714259
 
 [node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=27048741]
 layout_mode = 1
@@ -2468,8 +2691,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 50
-columns = 4
+columns = 3
 script = ExtResource("23_u7mjy")
+chip_bag = Array[ExtResource("37_js5gh")]([ExtResource("38_vvjo1"), ExtResource("39_yisvs"), ExtResource("40_r6gtk"), ExtResource("41_81ldr"), ExtResource("40_rgw24"), ExtResource("43_eywpa")])
 
 [node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
@@ -2487,12 +2711,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1728505108 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
 [node name="BuyButton" type="Button" parent="Shop/MarginContainer/VBoxContainer" unique_id=324959979]
@@ -2543,6 +2761,7 @@ theme_override_font_sizes/font_size = 68
 text = "Continue"
 flat = true
 script = ExtResource("7_vy5pj")
+pressed_sfx = null
 tutorial_progressor = Dictionary[int, int]({
 -1: 6
 })
@@ -2569,8 +2788,11 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [node name="Fail" type="AudioStreamPlayer" parent="Shop" unique_id=522220680]
+bus = &"SFX"
 
 [node name="Suceed" type="AudioStreamPlayer" parent="Shop" unique_id=1194004517]
+stream = ExtResource("35_lfh1j")
+bus = &"SFX"
 
 [node name="TutorialFocus" type="BackBufferCopy" parent="." unique_id=550124284]
 z_index = 2
@@ -2603,10 +2825,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = 550.0
-offset_right = -997.0
-offset_bottom = -18.0
+offset_left = 31.0
+offset_top = 161.0
+offset_right = -483.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2620,7 +2842,7 @@ keys = Array[Dictionary]([Dictionary[String, Variant]({
 "size": Vector2(0, 0),
 "tip_position": Vector2(408, 220.5),
 "tip_size": Vector2(336, 207),
-"tip_text": "Welcome to [color=#e93816][GAME NAME][color=]!
+"tip_text": "Welcome to [color=#e93816]Devil's Deal[color=]!
 Use the Scroll Wheel or Left/Right Arrow Keys to navigate the [color=#5a9634]Tutorial[color=].
 
 Scroll Up/Right Arrow to [color=#e93816]continue[color=].
@@ -2644,8 +2866,10 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "position": Vector2(31, 161),
 "size": Vector2(638, 465),
 "tip_position": Vector2(706, 172),
-"tip_size": Vector2(336, 100),
-"tip_text": "For now, buy some [color=#e93816]Chips[color=] with your starting money."
+"tip_size": Vector2(336, 232),
+"tip_text": "For now, buy a [color=#e93816]Chip[color=] with your starting [color=#d18f38]Money[color=].
+
+Hover over a [color=#e93816]Chip[color=] to see what it does, then click on it to select it. If you have enough [color=#d18f38]Money[color=] and space to buy it, you can click the Buy button to purchase it."
 }), Dictionary[String, Variant]({
 "position": Vector2(24, 19),
 "size": Vector2(418, 101),
@@ -2661,19 +2885,21 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 }), Dictionary[String, Variant]({
 "position": Vector2(0, 0),
 "size": Vector2(1152, 648),
-"tip_position": Vector2(408, 412),
+"tip_position": Vector2(408, 284),
 "tip_size": Vector2(336, 44),
 "tip_text": "This is the [color=#5a9634]Table[color=]."
 }), Dictionary[String, Variant]({
-"position": Vector2(180, 302),
-"size": Vector2(299, 347),
-"tip_position": Vector2(490, 412),
-"tip_size": Vector2(336, 130),
-"tip_text": "You're the dealer at a blackjack table in a casino. Your goal is to win every game by manipulating the values of the cards you deal."
+"position": Vector2(127, 302),
+"size": Vector2(309, 347),
+"tip_position": Vector2(446, 305),
+"tip_size": Vector2(307, 254),
+"tip_text": "You're the dealer at a blackjack table in a casino. 
+Before every [color=#5a9634]Card[color=] you deal, you can use special [color=#e93816]Chips[color=] to manipulate the [color=#5a9634]Card's[color=] value.
+Your goal is to win every game by manipulating the [color=#5a9634]Cards[color=] in your favor."
 }), Dictionary[String, Variant]({
 "position": Vector2(25, 16),
-"size": Vector2(444, 105),
-"tip_position": Vector2(65, 90),
+"size": Vector2(503, 607),
+"tip_position": Vector2(65, 149),
 "tip_size": Vector2(336, 130),
 "tip_text": "Drag a [color=#E93816]Chip[color=] from your bar onto the [color=#5a9634]Card[color=] you're about to deal to apply that [color=#E93816]Chip[color=]'s modification to it."
 }), Dictionary[String, Variant]({
@@ -2699,7 +2925,7 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "size": Vector2(276, 73),
 "tip_position": Vector2(796, 181),
 "tip_size": Vector2(329, 151),
-"tip_text": "This number below your money is the casino's [color=#e6b743]Bank[color=]. Any losses will take from here, and only cut into your [color=#d18f38]Money[color=] if the [color=#e6b743]Bank[color=] is empty. When both are empty, you [color=#e93816]lose."
+"tip_text": "This number below your [color=#d18f38]Money[color=] is the casino's [color=#e6b743]Bank[color=]. Any losses will take from here, and only cut into your [color=#d18f38]Money[color=] if the [color=#e6b743]Bank[color=] is empty. When both are empty, you [color=#e93816]lose."
 }), Dictionary[String, Variant]({
 "position": Vector2(23, 550),
 "size": Vector2(132, 80),
@@ -2713,10 +2939,11 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "tip_size": Vector2(1, 102),
 "tip_text": ""
 })])
-save_index = 13
+save_index = 3
 interpolating = false
 interpolation_time = 0.75
-next_index = 13
+current_index = 6
+next_index = 3
 front_locks = Array[int]([5])
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialOverlay/Cutout" unique_id=2082386551]
@@ -2741,15 +2968,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_346fj")
 [node name="RichTextLabel" type="RichTextLabel" parent="TutorialOverlay" unique_id=1039667690]
 z_index = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -570.0
-offset_top = 116.0
-offset_right = -209.0
-offset_bottom = 218.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 706.0
+offset_top = 172.0
+offset_right = -110.0
+offset_bottom = -244.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2757,11 +2982,11 @@ theme = ExtResource("1_grg3l")
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
-fit_content = true
+text = "For now, buy a [color=#e93816]Chip[color=] with your starting [color=#d18f38]Money[color=].
+
+Hover over a [color=#e93816]Chip[color=] to see what it does, then click on it to select it. If you have enough [color=#d18f38]Money[color=] and space to buy it, you can click the Buy button to purchase it."
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 91
 
 [node name="Panel" type="Panel" parent="TutorialOverlay/RichTextLabel" unique_id=1375269532]
 z_index = -1
@@ -2787,8 +3012,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 18
 text = "Use the Scroll Wheel / Left & Right Arrow Keys to navigate."
 
-[node name="Menu" type="Panel" parent="." unique_id=1375457296]
-visible = false
+[node name="Menu" type="TextureRect" parent="." unique_id=939474841]
 z_index = 4
 anchors_preset = 15
 anchor_right = 1.0
@@ -2796,7 +3020,93 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_grg3l")
-theme_override_styles/panel = SubResource("StyleBoxFlat_3tgeq")
+texture = ExtResource("50_as1io")
+expand_mode = 1
+
+[node name="FlipCoin2" parent="Menu" unique_id=2103607914 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 79.0
+offset_right = 387.0
+offset_bottom = 207.0
+texture = ExtResource("52_8n4h5")
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin3" parent="Menu" unique_id=1114693873 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 263.0
+offset_right = 142.0
+offset_bottom = 391.0
+rotation = 0.31564656
+texture = ExtResource("53_as1io")
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin4" parent="Menu" unique_id=325414286 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 125.00001
+offset_top = 547.0
+offset_right = 253.0
+offset_bottom = 675.0
+rotation = -0.3521119
+texture = ExtResource("54_xd5mi")
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin5" parent="Menu" unique_id=582771121 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 755.0
+offset_top = 317.0
+offset_right = 883.0
+offset_bottom = 445.00003
+texture = ExtResource("60_y2ulj")
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin6" parent="Menu" unique_id=1741850968 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 169.0
+offset_right = 960.0
+offset_bottom = 297.00003
+texture = ExtResource("56_tt1x2")
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin7" parent="Menu" unique_id=1025915243 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 1020.00006
+offset_top = 122.00004
+offset_right = 1148.0
+offset_bottom = 250.00006
+rotation = -0.719906
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin8" parent="Menu" unique_id=1308142394 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 382.0
+offset_right = 1181.0
+offset_bottom = 510.00003
+rotation = 1.0026911
+texture = ExtResource("57_2wrh7")
+wait_range = Vector2(1, 5)
+
+[node name="FlipCoin" parent="Menu" unique_id=696495829 instance=ExtResource("54_1bbis")]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 24.0
+offset_right = 345.0
+offset_bottom = 152.0
+texture = ExtResource("58_atu2d")
+wait_range = Vector2(1, 5)
+
+[node name="Logo" type="TextureRect" parent="Menu" unique_id=415920104]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 7.0
+offset_right = 756.0
+offset_bottom = 316.0
+texture = ExtResource("59_xd5mi")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Control" type="Control" parent="Menu" unique_id=881711370]
 z_index = 2
@@ -2816,7 +3126,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 95.000854
+offset_right = 95.00098
 offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2
@@ -2834,7 +3144,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 94.99951
+offset_right = 94.99939
 offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2
@@ -2861,67 +3171,97 @@ pivot_offset = Vector2(122, 26)
 theme_override_font_sizes/font_size = 39
 text = "Used Wildcards"
 
-[node name="Label" type="Label" parent="Menu" unique_id=1136547222]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -303.0
-offset_top = -254.0
-offset_right = 303.0
-offset_bottom = -111.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 107
-text = "[Game Name]"
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=1386670045]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 318.0
+offset_right = 786.0
+offset_bottom = 608.0
+theme_override_constants/separation = 16
 
-[node name="Button" type="Button" parent="Menu" unique_id=766904342]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -73.5
-offset_right = 162.0
-offset_bottom = 73.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Button" type="Button" parent="Menu/VBoxContainer" unique_id=766904342]
+z_index = 1
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 41
 text = "Start"
+flat = true
 script = ExtResource("7_vy5pj")
+pressed_sfx = ExtResource("30_7sj7i")
 anim_name = &"MainMenu->Shop"
 
-[node name="Button2" type="Button" parent="Menu" unique_id=580172976]
+[node name="NinePatchRect2" type="NinePatchRect" parent="Menu/VBoxContainer/Button" unique_id=520880841]
+z_index = -1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -259.0
-offset_top = 147.0
-offset_right = 65.0
-offset_bottom = 294.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.702576, 6.492485, 633.1712, 129.34976)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Button2" type="Button" parent="Menu/VBoxContainer" unique_id=580172976]
+z_index = 1
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 41
 text = "Options"
+flat = true
 script = ExtResource("7_vy5pj")
 anim_name = &"OpenOptions"
 
-[node name="QuitButton" type="Button" parent="Menu" unique_id=1490910983]
-layout_mode = 0
-offset_left = 716.0
-offset_top = 515.0
-offset_right = 963.0
-offset_bottom = 625.0
+[node name="NinePatchRect2" type="NinePatchRect" parent="Menu/VBoxContainer/Button2" unique_id=1321005421]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.702576, 6.492485, 633.1712, 129.34976)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer" unique_id=1490910983]
+z_index = 1
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
 text = "Quit"
+flat = true
 script = ExtResource("31_4yxf6")
 metadata/_custom_type_script = "uid://c13wlkfaaoh5d"
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Menu/VBoxContainer/QuitButton" unique_id=1200710976]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_jyqft")
+region_rect = Rect2(8.702576, 6.492485, 633.1712, 129.34976)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=346560414]
 z_index = 5
@@ -3091,6 +3431,19 @@ text = "WINDOW MODE"
 layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("29_xvtyr")
+
+[node name="Label3" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1034309475]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "ACCESSIBILITY"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1998326104]
+layout_mode = 2
+tooltip_text = "Toggle on and off an extra tip to show each hand's total value, as well as how much it'll have after the next card is dealt."
+theme_override_font_sizes/font_size = 20
+text = "SHOW HAND TOTALS"
+script = SubResource("GDScript_j7e3e")
 
 [node name="Panel2" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=851581354]
 layout_mode = 2
@@ -3274,6 +3627,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RunEnded/MarginContainer/Panel/MarginContainer" unique_id=447827829]
 layout_mode = 2
+script = ExtResource("42_hpjjw")
 
 [node name="Label" type="Label" parent="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=534654787]
 layout_mode = 2
@@ -3596,3 +3950,12 @@ autoplay = &"Splash->MainMenu"
 stream = SubResource("AudioStreamSynchronized_2w5on")
 autoplay = true
 bus = &"Music"
+script = ExtResource("63_y2ulj")
+transition_speed = 10.0
+
+[node name="Bankrupt" type="AudioStreamPlayer" parent="." unique_id=411208121]
+stream = ExtResource("61_j7e3e")
+bus = &"SFX"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" method="_on_animation_finished"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" method="_on_current_animation_changed"]

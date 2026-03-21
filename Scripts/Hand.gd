@@ -47,3 +47,19 @@ func low(visible_only := false) -> int:
 	var total := 0
 	for card in cards: if card.visible or not visible_only: total += card.low()
 	return total
+
+func as_values() -> Array[int]:
+	var vals:Array[int]
+	
+	for card in cards: vals.append(card.value)
+	
+	return vals
+
+## This is slow. But, functional.
+func best_after(try_card:Card) -> int:
+	var try_hand := Hand.new()
+	try_hand.cards = cards.duplicate()
+	
+	try_hand.deal(try_card)
+	
+	return try_hand.best()
