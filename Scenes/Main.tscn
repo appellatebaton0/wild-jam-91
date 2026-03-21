@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cmyknb8mfilrb" path="res://Assets/People/Grandma.png" id="17_f7hdo"]
 [ext_resource type="Script" uid="uid://cput2ojqmwnu3" path="res://Scripts/RoundOverPopup.gd" id="18_4n42c"]
 [ext_resource type="Texture2D" uid="uid://dvjp8cptn4g1f" path="res://Assets/People/Guy.png" id="18_clvyn"]
+[ext_resource type="Texture2D" uid="uid://bmbrtyif075o1" path="res://Assets/UI/DoubleDownIntent.png" id="18_eywpa"]
 [ext_resource type="Texture2D" uid="uid://by2gjrob7mxet" path="res://Assets/UI/heads-or-tails.png" id="18_fq0cl"]
 [ext_resource type="Texture2D" uid="uid://b71vo1nc2ek5s" path="res://Assets/People/SeriousGuy.png" id="19_d8m2u"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
@@ -61,6 +62,7 @@
 [ext_resource type="Script" uid="uid://beiccmf2861ii" path="res://Scripts/RunOverStats.gd" id="42_hpjjw"]
 [ext_resource type="Resource" uid="uid://cy13qf4irnda6" path="res://Assets/ChipResources/AllIn.tres" id="43_eywpa"]
 [ext_resource type="AudioStream" uid="uid://bjo6rc37u7wnl" path="res://Assets/SFX/bankrupt.mp3" id="61_j7e3e"]
+[ext_resource type="AudioStream" uid="uid://dojg8pwkmdyff" path="res://Assets/Music/PlaceYourBets.mp3" id="62_j7e3e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
 atlas = ExtResource("16_utia5")
@@ -141,12 +143,12 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3rx7"]
-atlas = ExtResource("10_aht7i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7e3e"]
+atlas = ExtResource("18_eywpa")
 region = Rect2(0, 0, 159, 153)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6heos"]
-atlas = ExtResource("10_aht7i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2ulj"]
+atlas = ExtResource("18_eywpa")
 region = Rect2(159, 0, 159, 153)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4yxf6"]
@@ -193,14 +195,14 @@ region = Rect2(477, 0, 159, 153)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x3rx7")
+"texture": SubResource("AtlasTexture_j7e3e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6heos")
+"texture": SubResource("AtlasTexture_y2ulj")
 }],
 "loop": true,
 "name": &"Double Down",
-"speed": 3.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -652,6 +654,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-60.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Music:stream:stream_2/volume")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -60.0]
 }
 
 [sub_resource type="Animation" id="Animation_c5snn"]
@@ -1572,10 +1586,10 @@ tracks/14/path = NodePath("Music:stream:stream_2/volume")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-60.0]
+"values": [-30.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -1780,6 +1794,7 @@ stream_0/stream = ExtResource("35_6heos")
 stream_0/volume = -60.0
 stream_1/stream = ExtResource("36_vvnwx")
 stream_1/volume = -60.0
+stream_2/stream = ExtResource("62_j7e3e")
 stream_2/volume = -60.0
 
 [node name="Main" type="Node" unique_id=1786674721]
@@ -2140,7 +2155,7 @@ unique_name_in_owner = true
 position = Vector2(-8, -156)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
-animation = &"Waiting"
+animation = &"Double Down"
 
 [node name="ToolTip" type="Control" parent="Table/PlayerBox/Player/Intent" unique_id=1955527303]
 layout_mode = 3
@@ -2973,7 +2988,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 95.000854
+offset_right = 95.000916
 offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2
@@ -2991,7 +3006,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 94.99951
+offset_right = 94.99939
 offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2

@@ -47,3 +47,10 @@ func low(visible_only := false) -> int:
 	var total := 0
 	for card in cards: if card.visible or not visible_only: total += card.low()
 	return total
+
+func as_values() -> Array[int]:
+	var vals:Array[int]
+	
+	for card in cards: vals.append(card.value)
+	
+	return vals

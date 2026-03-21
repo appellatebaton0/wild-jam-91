@@ -32,8 +32,9 @@ func empty_slot() -> bool:
 	if len(Global.chips.keys()) < Global.MAX_CHIP_SLOTS: return true
 	
 	for key in Global.chips:
+		print("CHIPSLOTKEY ", key)
 		# Found an empty slot - erase its contents, return true.
-		if Global.chips[key] == 0:
+		if Global.chips[key] == 0 or key == null:
 			Global.chips.erase(key)
 			return true
 	

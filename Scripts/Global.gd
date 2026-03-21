@@ -46,6 +46,10 @@ var next_hand:Hand
 
 var chips:Dictionary[Chip, int]: ## The chips the player has.
 	set(to):
+		for key in to:
+			if key == null:
+				to.erase(key) # Eradicate empty keys.
+		
 		chips = to
 		chips_changed.emit(chips)
 		
