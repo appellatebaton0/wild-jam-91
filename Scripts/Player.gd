@@ -140,7 +140,12 @@ func invert_intent(def := intent):
 			intent = def
 
 func renew_bet() -> int:
-	bet = randi_range(5, 50) * 10
+	bet = 50
+	
+	while true:
+		if randf() > 0.88 or bet >= 500: break
+		bet += 10
+	
 	bet_lab.text = "$" + str(bet)
 	return bet
 

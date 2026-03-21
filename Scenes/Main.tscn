@@ -2159,6 +2159,7 @@ tooltip_text = "{name}[color=]
 ---
 {name}[color=] {intent}[color=].
 {name}[color=] is betting {bet}[color=]."
+theme = ExtResource("1_grg3l")
 script = ExtResource("7_346fj")
 
 [node name="Intent" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=1535351640]
