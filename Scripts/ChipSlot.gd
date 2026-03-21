@@ -1,7 +1,7 @@
 class_name ChipSlot extends TextureRect
 ## Provides a control the player can interact with for a chip.
 
-const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
+#const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
 
 @export var usable := true ## WHether this slot allows for its chip to be dragged out of it.
 
@@ -10,7 +10,7 @@ const EMPTY_TEXTURE:Texture2D = preload("res://Assets/Chips/EmptyChip.png")
 		
 		chip = to
 		
-		texture = chip.texture if chip else EMPTY_TEXTURE
+		texture = chip.texture if chip else null
 
 @onready var label := $Label
 @onready var highlight := $Highlight
@@ -53,13 +53,9 @@ func _on_chip_dropped():
 	
 	if not chip: chip = last_chip
 	
-	print("dropped ", chip)
-	
 	if Global.chips.has(chip):
-		print("has, adding")
 		Global.chips[chip] += 1
 	else:
-		print("hasn't, creating.")
 		Global.chips[chip] = 1
 	
 	Global.chips_changed.emit()

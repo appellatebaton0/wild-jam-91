@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 	
 	lab.text = str(intent)
 	
-	intent_rect.play(intent_string())
+	intent_rect.play(intent_string() if len(hand.cards) > 1 else "Waiting")
 	
 	for tooltipper in [bet_box, $Texture/ToolTip2, $Intent/ToolTip]: if tooltipper is FancyTooltip:
 		tooltipper.special_properties["{name}"] = player_name

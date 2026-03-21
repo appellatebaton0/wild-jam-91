@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk3wygw3rgc75"
-path="res://.godot/imported/Back.png-565b9fc04bc687a6f3aed1538bfc2c57.ctex"
+uid="uid://djuvgsvir7uca"
+path="res://.godot/imported/DuplicatorChip.png-f5021c447aeec1286e3ac0ef2838db98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Back.png"
-dest_files=["res://.godot/imported/Back.png-565b9fc04bc687a6f3aed1538bfc2c57.ctex"]
+source_file="res://Assets/Chips/DuplicatorChip.png"
+dest_files=["res://.godot/imported/DuplicatorChip.png-f5021c447aeec1286e3ac0ef2838db98.ctex"]
 
 [params]
 

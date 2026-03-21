@@ -26,9 +26,11 @@ func _process(_delta: float) -> void: if chip:
 	chip_texture.disabled = Global.money < chip.cost and open()
 	$Highlight/ChipTexture/Label.text = ("$" + str(chip.cost)) if open() else ""
 	
-	highlight.texture = HIGHLIGHT_TEXTURE if mouse_over and open() else null
+	highlight.texture = HIGHLIGHT_TEXTURE if (mouse_over and open()) or Global.selected_shop_item == self else null
 
-func _on_pressed() -> void: if open(): Global.selected_shop_item = self
+func _on_pressed() -> void: if open(): 
+	Global.selected_shop_item = self
+	$AudioStreamPlayer.play()
 
 func open() -> bool: return get_index() <= Global.round_count
 

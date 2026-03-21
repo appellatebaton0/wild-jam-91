@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duimuudn5aea4"
-path="res://.godot/imported/ShopBackground.png-078610d9a5590e0723701ebfd5240123.ctex"
+uid="uid://blmy3pdu0g8ff"
+path="res://.godot/imported/RandomChip.png-c7eaa01b8088c4e97d3a496850df8824.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ShopBackground.png"
-dest_files=["res://.godot/imported/ShopBackground.png-078610d9a5590e0723701ebfd5240123.ctex"]
+source_file="res://Assets/Chips/RandomChip.png"
+dest_files=["res://.godot/imported/RandomChip.png-c7eaa01b8088c4e97d3a496850df8824.ctex"]
 
 [params]
 

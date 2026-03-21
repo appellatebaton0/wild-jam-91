@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Wrap" format=3 uid="uid://c1uit8n4gsx6f"]
+
+[ext_resource type="Script" uid="uid://6frqnkdd2jdn" path="res://Scripts/Chips/Wrap.gd" id="1_gal25"]
+[ext_resource type="Texture2D" uid="uid://d0fk3dc5kaikt" path="res://Assets/Chips/WrapChip.png" id="2_47kxh"]
+
+[resource]
+script = ExtResource("1_gal25")
+color = Color(0.45334882, 0.13617966, 0.07121479, 1)
+name = "Wrap"
+cost = 120
+info = "Adds 3 to the card's value, minus 10 if over 10. 
+For example, a 9 would become 9+3 = 13, -10 = 3."
+texture = ExtResource("2_47kxh")
+metadata/_custom_type_script = "uid://6frqnkdd2jdn"

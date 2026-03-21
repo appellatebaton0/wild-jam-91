@@ -2,7 +2,15 @@ class_name AnimatorButton extends Button
 ## Plays an animation off an AnimationPlayer when pressed.
 
 @onready var tut_overlay:TutorialFocus = get_tree().get_first_node_in_group("TutOverlay")
-@onready var down_sfx
+@export var pressed_sfx:AudioStream = preload("res://Assets/SFX/click_mallet.mp3")
+var sfx_player:AudioStreamPlayer
+
+func _ready() -> void:
+	sfx_player = AudioStreamPlayer.new()
+	add_child(sfx_player)
+	sfx_player.bus = &"SFX"
+	sfx_player.stream = pressed_sfx
+	pressed.connect(sfx_player.play)
 
 ## If the tut current index is [key], move in [value] direction when pressed.
 @export var tutorial_progressor:Dictionary[int, int]

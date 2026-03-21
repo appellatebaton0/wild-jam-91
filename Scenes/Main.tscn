@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://c724nvjjfrjd4" path="res://Assets/UI/MainTheme.tres" id="1_grg3l"]
 [ext_resource type="Script" uid="uid://c7etl1ys6nxhx" path="res://Scripts/Table.gd" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://bkxoekvv2efke" path="res://Scenes/ChipSlot.tscn" id="2_kln2b"]
-[ext_resource type="Texture2D" uid="uid://dccifra5kjsj2" path="res://Assets/Background.png" id="2_v1gob"]
+[ext_resource type="Texture2D" uid="uid://uibqdyqvcany" path="res://Assets/UI/CasinoBackground.png" id="3_lfh1j"]
 [ext_resource type="Texture2D" uid="uid://bvbl3jkqfugn2" path="res://Assets/Cards/NextCard.png" id="4_1p5hy"]
 [ext_resource type="Script" uid="uid://5tl1kqw1dydx" path="res://Scripts/CardNode.gd" id="4_rgh2o"]
 [ext_resource type="Script" uid="uid://ma7eerowatkx" path="res://Scripts/Player.gd" id="5_pbw6q"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://v3jcaa2qgx2i" path="res://Assets/UI/RaiseIntent.png" id="10_aht7i"]
 [ext_resource type="Texture2D" uid="uid://dypsx17qmxhng" path="res://Assets/UI/StopIntent.png" id="11_kpo4j"]
 [ext_resource type="Texture2D" uid="uid://ry4ppqjm8qud" path="res://Assets/UI/HoldIntent.png" id="12_4n42c"]
-[ext_resource type="Texture2D" uid="uid://duimuudn5aea4" path="res://Assets/ShopBackground.png" id="13_2w5on"]
 [ext_resource type="Texture2D" uid="uid://c2cpmvvjekqo" path="res://Assets/Cards/CardTransformation.png" id="14_c4ay3"]
 [ext_resource type="Texture2D" uid="uid://c1pe5k420utq2" path="res://Assets/UI/Box.png" id="15_jyqft"]
 [ext_resource type="Script" uid="uid://c7qqf7e0bqs72" path="res://Scripts/Balance.gd" id="16_3tgeq"]
@@ -32,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://b71vo1nc2ek5s" path="res://Assets/People/SeriousGuy.png" id="19_d8m2u"]
 [ext_resource type="Texture2D" uid="uid://b8habxtuxnl5e" path="res://Assets/UI/whats-your-fav-flavor.png" id="19_hwpts"]
 [ext_resource type="Texture2D" uid="uid://bsr028a28j8ff" path="res://Assets/UI/Wildling.png" id="20_jyqft"]
+[ext_resource type="Texture2D" uid="uid://hy1rujm5yaro" path="res://Assets/UI/WaitIntent.png" id="21_7sj7i"]
 [ext_resource type="PackedScene" uid="uid://dt8xwjydmeqno" path="res://Scenes/CardNode.tscn" id="21_clvyn"]
 [ext_resource type="Texture2D" uid="uid://do21dnk5dgk7g" path="res://Assets/UI/HandFingers.png" id="21_f7hdo"]
 [ext_resource type="Script" uid="uid://dr25sxmad7flb" path="res://Scripts/ChipShop.gd" id="23_u7mjy"]
@@ -40,14 +40,27 @@
 [ext_resource type="Script" uid="uid://ck5b0qf3f6jqk" path="res://Scripts/BusSlider.gd" id="28_c5snn"]
 [ext_resource type="AudioStream" uid="uid://w5t4mprbreuq" path="res://Assets/SFX/cardshuffle.mp3" id="29_hpjjw"]
 [ext_resource type="Script" uid="uid://deibrokcxof6g" path="res://Scripts/WindowSetter.gd" id="29_xvtyr"]
+[ext_resource type="AudioStream" uid="uid://co6vnyr1f40xa" path="res://Assets/SFX/impact_click.mp3" id="30_7sj7i"]
 [ext_resource type="AudioStream" uid="uid://cvpclukx440q7" path="res://Assets/SFX/carddealt.mp3" id="30_off7b"]
 [ext_resource type="Script" uid="uid://c13wlkfaaoh5d" path="res://Scripts/QuitButton.gd" id="31_4yxf6"]
+[ext_resource type="AudioStream" uid="uid://ln63ly8madb8" path="res://Assets/SFX/aww.mp3" id="31_81ldr"]
 [ext_resource type="Script" uid="uid://bvbi0in1hw0x4" path="res://Scripts/ReplayButton.gd" id="31_qta6b"]
+[ext_resource type="AudioStream" uid="uid://cininco140ooe" path="res://Assets/SFX/cheering.mp3" id="32_eywpa"]
+[ext_resource type="Texture2D" uid="uid://dbc4p5uxyfu0j" path="res://Assets/UI/ShopBackground.png" id="33_semxg"]
+[ext_resource type="Texture2D" uid="uid://bmtt0ur440thg" path="res://Assets/People/Devil.png" id="34_ep8v8"]
 [ext_resource type="AudioStream" uid="uid://c6dn4nh6nww8g" path="res://Assets/Music/AnteUp.mp3" id="35_6heos"]
 [ext_resource type="AudioStream" uid="uid://s6lpvup4upqj" path="res://Assets/SFX/money.mp3" id="35_lfh1j"]
 [ext_resource type="AudioStream" uid="uid://dasa4ye7jh6w7" path="res://Assets/Music/HitMe.mp3" id="36_vvnwx"]
+[ext_resource type="Script" uid="uid://dwgdqhbvlly7t" path="res://Scripts/Chips/Chip.gd" id="37_js5gh"]
 [ext_resource type="Script" uid="uid://dlanw8aqnmihn" path="res://Scripts/ClickEffect.gd" id="37_vvnwx"]
+[ext_resource type="Resource" uid="uid://cs44tie8jr8or" path="res://Assets/ChipResources/Randomizer.tres" id="38_vvjo1"]
+[ext_resource type="Resource" uid="uid://dvss8pav153io" path="res://Assets/ChipResources/Duplicator.tres" id="39_yisvs"]
+[ext_resource type="Resource" uid="uid://c7mks5g0e4e5n" path="res://Assets/ChipResources/Modulo.tres" id="40_r6gtk"]
+[ext_resource type="Resource" uid="uid://8oc0dynbaij0" path="res://Assets/ChipResources/CoinFlip.tres" id="40_rgw24"]
+[ext_resource type="Resource" uid="uid://c1uit8n4gsx6f" path="res://Assets/ChipResources/Wrap.tres" id="41_81ldr"]
 [ext_resource type="Script" uid="uid://beiccmf2861ii" path="res://Scripts/RunOverStats.gd" id="42_hpjjw"]
+[ext_resource type="Resource" uid="uid://cy13qf4irnda6" path="res://Assets/ChipResources/AllIn.tres" id="43_eywpa"]
+[ext_resource type="AudioStream" uid="uid://bjo6rc37u7wnl" path="res://Assets/SFX/bankrupt.mp3" id="61_j7e3e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
 atlas = ExtResource("16_utia5")
@@ -160,6 +173,22 @@ region = Rect2(0, 0, 159, 153)
 atlas = ExtResource("12_4n42c")
 region = Rect2(159, 0, 159, 153)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3133c"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(0, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js5gh"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(159, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvjo1"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(318, 0, 159, 153)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yisvs"]
+atlas = ExtResource("21_7sj7i")
+region = Rect2(477, 0, 159, 153)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3rx7"]
 animations = [{
 "frames": [{
@@ -204,6 +233,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Stand",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3133c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js5gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvjo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yisvs")
+}],
+"loop": true,
+"name": &"Waiting",
 "speed": 1.0
 }]
 
@@ -296,6 +342,28 @@ animations = [{
 "loop": false,
 "name": &"ignite",
 "speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgw24"]
+atlas = ExtResource("34_ep8v8")
+region = Rect2(0, 0, 778, 743)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gwyn"]
+atlas = ExtResource("34_ep8v8")
+region = Rect2(778, 0, 778, 743)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6gtk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgw24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gwyn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1m7h"]
@@ -1036,6 +1104,18 @@ tracks/32/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Bankrupt:playing")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qta6b"]
 resource_name = "Replay"
@@ -1170,6 +1250,18 @@ tracks/2/path = NodePath("RunEnded:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bankrupt:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1717,7 +1809,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_v1gob")
+texture = ExtResource("3_lfh1j")
 expand_mode = 1
 
 [node name="TurnIndicator" type="TextureRect" parent="Table" unique_id=1691322789]
@@ -2023,8 +2115,8 @@ unique_name_in_owner = true
 position = Vector2(2, -18)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_ep8v8")
-animation = &"3"
-frame_progress = 0.25637582
+animation = &"0"
+frame_progress = 0.07349372
 
 [node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
 layout_mode = 3
@@ -2048,8 +2140,7 @@ unique_name_in_owner = true
 position = Vector2(-8, -156)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
-animation = &"Double Down"
-frame_progress = 0.61446226
+animation = &"Waiting"
 
 [node name="ToolTip" type="Control" parent="Table/PlayerBox/Player/Intent" unique_id=1955527303]
 layout_mode = 3
@@ -2235,6 +2326,7 @@ grow_vertical = 2
 script = ExtResource("18_4n42c")
 
 [node name="Panel" type="NinePatchRect" parent="Table/RoundOverPopup" unique_id=1978141765]
+modulate = Color(1, 1, 1, 0.93333334)
 custom_minimum_size = Vector2(600, 350)
 layout_mode = 1
 anchors_preset = 8
@@ -2356,10 +2448,19 @@ theme_override_font_sizes/font_size = 30
 text = "TO SHOP"
 flat = true
 script = ExtResource("7_vy5pj")
+pressed_sfx = ExtResource("30_7sj7i")
 tutorial_progressor = Dictionary[int, int]({
 -1: 1
 })
 anim_name = &"Table->Shop"
+
+[node name="Lose" type="AudioStreamPlayer" parent="Table/RoundOverPopup" unique_id=1327182465]
+stream = ExtResource("31_81ldr")
+bus = &"SFX"
+
+[node name="Win" type="AudioStreamPlayer" parent="Table/RoundOverPopup" unique_id=507072142]
+stream = ExtResource("32_eywpa")
+bus = &"SFX"
 
 [node name="ShuffleDeck" type="AudioStreamPlayer" parent="Table" unique_id=1099417764]
 stream = ExtResource("29_hpjjw")
@@ -2385,8 +2486,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("13_2w5on")
+texture = ExtResource("33_semxg")
 expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Shop" unique_id=1580017346]
+position = Vector2(886.00006, 294)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_r6gtk")
+frame_progress = 0.37322524
 
 [node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=27048741]
 layout_mode = 1
@@ -2520,8 +2627,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 50
-columns = 4
+columns = 3
 script = ExtResource("23_u7mjy")
+chip_bag = Array[ExtResource("37_js5gh")]([ExtResource("38_vvjo1"), ExtResource("39_yisvs"), ExtResource("40_r6gtk"), ExtResource("41_81ldr"), ExtResource("40_rgw24"), ExtResource("43_eywpa")])
 
 [node name="ShopEntry" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=871977367 instance=ExtResource("9_4kpch")]
 layout_mode = 2
@@ -2539,12 +2647,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ShopEntry6" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1314000620 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry7" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1852596064 instance=ExtResource("9_4kpch")]
-layout_mode = 2
-
-[node name="ShopEntry8" parent="Shop/MarginContainer/VBoxContainer/ShopContainer/MarginContainer/GridContainer" unique_id=1728505108 instance=ExtResource("9_4kpch")]
 layout_mode = 2
 
 [node name="BuyButton" type="Button" parent="Shop/MarginContainer/VBoxContainer" unique_id=324959979]
@@ -2595,6 +2697,7 @@ theme_override_font_sizes/font_size = 68
 text = "Continue"
 flat = true
 script = ExtResource("7_vy5pj")
+pressed_sfx = null
 tutorial_progressor = Dictionary[int, int]({
 -1: 6
 })
@@ -2843,7 +2946,6 @@ theme_override_font_sizes/font_size = 18
 text = "Use the Scroll Wheel / Left & Right Arrow Keys to navigate."
 
 [node name="Menu" type="Panel" parent="." unique_id=1375457296]
-visible = false
 z_index = 4
 anchors_preset = 15
 anchor_right = 1.0
@@ -2948,6 +3050,7 @@ grow_vertical = 2
 focus_mode = 0
 text = "Start"
 script = ExtResource("7_vy5pj")
+pressed_sfx = ExtResource("30_7sj7i")
 anim_name = &"MainMenu->Shop"
 
 [node name="Button2" type="Button" parent="Menu" unique_id=580172976]
@@ -3652,6 +3755,10 @@ autoplay = &"Splash->MainMenu"
 stream = SubResource("AudioStreamSynchronized_2w5on")
 autoplay = true
 bus = &"Music"
+
+[node name="Bankrupt" type="AudioStreamPlayer" parent="." unique_id=411208121]
+stream = ExtResource("61_j7e3e")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" method="_on_animation_finished"]
 [connection signal="current_animation_changed" from="AnimationPlayer" to="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" method="_on_current_animation_changed"]

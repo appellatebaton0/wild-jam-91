@@ -8,11 +8,11 @@ class_name CardNode extends TextureRect
 const TEXTURE_DICT := {
 	false: {
 		true: preload("res://Assets/Cards/RegularCard.png"),
-		false: preload("res://Assets/Cards/Back.png")
+		false: preload("res://Assets/Cards/CardBack.png")
 	},
 	true: {
 		true: preload("res://Assets/Cards/EvilCard.png"),
-		false: preload("res://Assets/Cards/Back.png")
+		false: preload("res://Assets/Cards/CardBack.png")
 	}
 }
 @onready var label := $Label

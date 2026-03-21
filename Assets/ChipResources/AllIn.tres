@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AllIn" format=3 uid="uid://cy13qf4irnda6"]
+
+[ext_resource type="Script" uid="uid://cqi6uswrei3lx" path="res://Scripts/Chips/AllIn.gd" id="1_mdem0"]
+[ext_resource type="Texture2D" uid="uid://b44rj8y0dtmhs" path="res://Assets/Chips/BlackGreenChip.png" id="2_nik42"]
+
+[resource]
+script = ExtResource("1_mdem0")
+color = Color(0.5019608, 0.72156864, 0.2627451, 1)
+name = "All In"
+cost = 160
+info = "[color=#e93816]50% chance to become the worst possible card for the hand - an instant loss, Ace if it's worth 1, or a Two.
+[color=#5a9634]50% chance to become the best possible card for the hand - an instant win, or Ace."
+texture = ExtResource("2_nik42")
+metadata/_custom_type_script = "uid://cqi6uswrei3lx"

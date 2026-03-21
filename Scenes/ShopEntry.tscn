@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwq3j5upcifut"]
 
 [ext_resource type="Script" uid="uid://l8y45y7ghahy" path="res://Scripts/ShopEntry.gd" id="1_tuy2o"]
+[ext_resource type="AudioStream" uid="uid://cf6gc21trw1nb" path="res://Assets/SFX/click_mallet.mp3" id="2_wnijs"]
 
 [sub_resource type="Gradient" id="Gradient_tuy2o"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
@@ -55,3 +56,6 @@ theme_override_font_sizes/font_size = 20
 text = "$40"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2126199260]
+stream = ExtResource("2_wnijs")

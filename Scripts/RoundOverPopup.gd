@@ -67,4 +67,7 @@ func commit_payout() -> void:
 	Global.bank -= total_expenses
 	Global.money += total_income
 	
-	pass
+	if total_expenses > total_income:
+		$Lose.play()
+	elif not total_expenses == total_income:
+		$Win.play()
