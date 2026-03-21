@@ -10,6 +10,7 @@ class_name Table extends Control
 @onready var dealer_hand := %DealerHand     # The dealer's hand VBOX
 @onready var turn_indic  := %TurnIndicator  # The indicator for who's turn it is.
 @onready var ropopup     := %RoundOverPopup # The round over popup.
+@onready var total_label := $TotalTooltip
 
 @export var anim_player:AnimationPlayer
 @export var deal_sfx:AudioStreamPlayer
@@ -159,6 +160,10 @@ func _process(_delta: float) -> void:
 	
 	turn_indic.reparent(next_node)
 	next_node.move_child(turn_indic, -1)
+	
+	total_label.visible = Global.show_total_tooltips
+	total_label.text = "CURRENT TOTAL: " + str(Global.dealer_hand.best())
+	if Global.next_hand == Global.dealer_hand: total_label.text += " - AFTER CARD: " + str(Global.dealer_hand.best_after(next_card.card))
 
 # Draw a new card into the dealer's hand.
 func draw_new(muted := false) -> void:

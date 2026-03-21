@@ -10,7 +10,7 @@ signal last_key ## Emitted when moved to the last key in the list.
 @export var tooltip:RichTextLabel
 @export var keys:Array[Dictionary]
 
-@export_tool_button("Save Key") var save_button := save_key
+#@export_tool_button("Save Key") var save_button := save_key
 @export_tool_button("Clear Keys") var clear_button := clear_keys
 @export_tool_button("Reset Timer") var reset_button := reset_timer
 @export var save_index := -1
@@ -26,21 +26,21 @@ var interpolation_timer := 0.0
 ## Lock moving forwards by the normal inputs - has to be a signal.
 @export var front_locks:Array[int]
 
-func save_key(): if Engine.is_editor_hint():
-	var unre := EditorInterface.get_editor_undo_redo()
-	unre.create_action("Add Transform Key")
-	
-	var new_keys = keys.duplicate()
-	
-	if save_index >= 0 and save_index < len(keys):
-		new_keys[save_index] = new_key()
-	else:
-		new_keys.append(new_key())
-	
-	unre.add_do_property(self, "keys", new_keys)
-	unre.add_undo_property(self, "keys", keys)
-	
-	unre.commit_action()
+#func save_key(): if Engine.is_editor_hint():
+	#var unre := EditorInterface.get_editor_undo_redo()
+	#unre.create_action("Add Transform Key")
+	#
+	#var new_keys = keys.duplicate()
+	#
+	#if save_index >= 0 and save_index < len(keys):
+		#new_keys[save_index] = new_key()
+	#else:
+		#new_keys.append(new_key())
+	#
+	#unre.add_do_property(self, "keys", new_keys)
+	#unre.add_undo_property(self, "keys", keys)
+	#
+	#unre.commit_action()
 	
 func clear_keys(): keys.clear()
 func reset_timer(): interpolation_timer = 0

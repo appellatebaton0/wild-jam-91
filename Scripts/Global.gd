@@ -13,7 +13,9 @@ var chips_used := 0 ## How many chips have been used this run.
 var total_income := 0
 var total_expenses := 0
 
-var money := 60: ## How much money the player has.
+var show_total_tooltips := false
+
+var money := 6000: ## How much money the player has.
 	set(to):
 		if to > money:
 			total_income += to - money
@@ -46,9 +48,6 @@ var next_hand:Hand
 
 var chips:Dictionary[Chip, int]: ## The chips the player has.
 	set(to):
-		for key in to:
-			if key == null:
-				to.erase(key) # Eradicate empty keys.
 		
 		chips = to
 		chips_changed.emit(chips)

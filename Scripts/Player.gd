@@ -1,12 +1,14 @@
 class_name Player extends Control
 ## The class that encompasses and manages each player in the game.
 
-@onready var intent_rect := %Intent     ## The TextureRect to show intent.
-@onready var hand_box    := %PlayerHand ## The VBox holding the hand.
-@onready var bet_lab     := %Bet        ## The label showing the current bet.
-@onready var bet_box     := %BetBox     ## The VBox holding bet information.
-@onready var texture     := %Texture    ## The TextureRect with this player's texture.
+@onready var intent_rect := %Intent       ## The TextureRect to show intent.
+@onready var hand_box    := %PlayerHand   ## The VBox holding the hand.
+@onready var bet_lab     := %Bet          ## The label showing the current bet.
+@onready var bet_box     := %BetBox       ## The VBox holding bet information.
+@onready var texture     := %Texture      ## The TextureRect with this player's texture.
+@onready var total_label := $TotalTooltip ## Shows the current hand's total, and what it'll be after the card is dealt, if necessary.
 
+@export var next_card:CardNode
 @export var player_names := [&"Sarah", &"Bethany", &"Steven", &"Carl"]
 
 @export var intent_positions:Array[Vector2]
@@ -35,11 +37,16 @@ func _process(_delta: float) -> void:
 	lab.text = str(intent)
 	
 	intent_rect.play(intent_string() if len(hand.cards) > 1 else "Waiting")
+	intent_rect.position = intent_positions[int(texture.animation)]
 	
 	for tooltipper in [bet_box, $Texture/ToolTip2, $Intent/ToolTip]: if tooltipper is FancyTooltip:
 		tooltipper.special_properties["{name}"] = player_name
 		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + intent_string() if intent != INTENT.OUT else " is out"
 		tooltipper.special_properties["{bet}"] = "[color=#d18f38]$" + str(bet)
+	
+	total_label.visible = Global.show_total_tooltips
+	total_label.text = "CURRENT TOTAL: " + str(hand.best())
+	if Global.next_hand == hand: total_label.text += " - AFTER CARD: " + str(hand.best_after(next_card.card))
 
 const CARD_NODE_SCENE := preload("res://Scenes/CardNode.tscn")
 ## Add a new card to the hand.

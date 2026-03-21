@@ -63,6 +63,7 @@
 [ext_resource type="Resource" uid="uid://cy13qf4irnda6" path="res://Assets/ChipResources/AllIn.tres" id="43_eywpa"]
 [ext_resource type="AudioStream" uid="uid://bjo6rc37u7wnl" path="res://Assets/SFX/bankrupt.mp3" id="61_j7e3e"]
 [ext_resource type="AudioStream" uid="uid://dojg8pwkmdyff" path="res://Assets/Music/PlaceYourBets.mp3" id="62_j7e3e"]
+[ext_resource type="Script" uid="uid://c1bi17m44b6cr" path="res://Scripts/MusicHandler.gd" id="63_y2ulj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
 atlas = ExtResource("16_utia5")
@@ -447,6 +448,13 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 corner_detail = 20
 
+[sub_resource type="GDScript" id="GDScript_j7e3e"]
+script/source = "extends CheckButton
+
+func _toggled(toggled_on: bool) -> void:
+	Global.show_total_tooltips = toggled_on
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u7mjy"]
 shader = SubResource("Shader_xvtyr")
 shader_parameter/lod = 2.0870000991325
@@ -646,26 +654,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Music:stream:stream_0/volume")
+tracks/5/path = NodePath("Music:current_track")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-60.0, 0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Music:stream:stream_2/volume")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -60.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_c5snn"]
@@ -1013,122 +1009,110 @@ tracks/23/keys = {
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("TutorialOverlay:modulate")
+tracks/24/path = NodePath("Splash:visible")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("Splash:visible")
+tracks/25/path = NodePath("RunEnded:rotation")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [-0.34906584]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("RunEnded:rotation")
+tracks/26/path = NodePath("RunEnded:scale")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.34906584]
+"values": [Vector2(1, 1.001358e-05)]
 }
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("RunEnded:scale")
+tracks/27/path = NodePath("RunEnded:visible")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1.001358e-05)]
+"update": 1,
+"values": [false]
 }
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("RunEnded:visible")
+tracks/28/path = NodePath("Table/ShuffleDeck:playing")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("Music:stream:stream_0/volume")
+tracks/29/path = NodePath("Bankrupt:playing")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [false]
 }
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Music:stream:stream_1/volume")
+tracks/30/path = NodePath("Menu:visible")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [true]
 }
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("Music:stream:stream_2/volume")
+tracks/31/path = NodePath("Music:current_track")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [-1]
 }
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("Table/ShuffleDeck:playing")
+tracks/32/path = NodePath("Music:transition_speed")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("Bankrupt:playing")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [10.0]
 }
 
 [sub_resource type="Animation" id="Animation_qta6b"]
@@ -1357,37 +1341,13 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Music:stream:stream_0/volume")
+tracks/6/path = NodePath("Table")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -60.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Music:stream:stream_1/volume")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-60.0, 0.0]
-}
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Table")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1395,17 +1355,29 @@ tracks/8/keys = {
 "method": &"end_game"
 }]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Table/ShuffleDeck:playing")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Table/ShuffleDeck:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Music:current_track")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_sxkr1"]
@@ -1558,38 +1530,38 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Music:stream:stream_0/volume")
+tracks/12/path = NodePath("Menu:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"update": 1,
+"values": [true]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Music:stream:stream_1/volume")
+tracks/13/path = NodePath("Music:current_track")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-60.0]
+"times": PackedFloat32Array(0, 2.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 2]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Music:stream:stream_2/volume")
+tracks/14/path = NodePath("Music:transition_speed")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 7.5),
+"times": PackedFloat32Array(2.2333333, 7.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-30.0, 0.0]
+"values": [2.0, 40.0]
 }
 
 [sub_resource type="Animation" id="Animation_50glp"]
@@ -1712,26 +1684,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Music:stream:stream_1/volume")
+tracks/6/path = NodePath("Music:current_track")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -60.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Music:stream:stream_0/volume")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-60.0, 0.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_2w5on"]
@@ -1743,10 +1703,10 @@ tracks/0/path = NodePath("TutorialOverlay/Cutout:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [true, false]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1759,18 +1719,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TutorialOverlay:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
@@ -2109,7 +2057,7 @@ offset_top = 77.0
 offset_right = 1142.0
 offset_bottom = 349.0
 
-[node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234]
+[node name="Player" type="Control" parent="Table/PlayerBox" unique_id=674930234 node_paths=PackedStringArray("next_card")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2123,6 +2071,7 @@ offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_pbw6q")
+next_card = NodePath("../../Hand/NextCard")
 intent_positions = Array[Vector2]([Vector2(2, -178), Vector2(-1, -165), Vector2(-1, -206), Vector2(-8, -156)])
 
 [node name="Texture" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=716873650]
@@ -2131,7 +2080,6 @@ position = Vector2(2, -18)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_ep8v8")
 animation = &"0"
-frame_progress = 0.07349372
 
 [node name="ToolTip2" type="Control" parent="Table/PlayerBox/Player/Texture" unique_id=2075260971]
 layout_mode = 3
@@ -2152,7 +2100,7 @@ script = ExtResource("7_346fj")
 
 [node name="Intent" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=1535351640]
 unique_name_in_owner = true
-position = Vector2(-8, -156)
+position = Vector2(-1, -206)
 scale = Vector2(0.5212418, 0.52124184)
 sprite_frames = SubResource("SpriteFrames_x3rx7")
 animation = &"Double Down"
@@ -2190,6 +2138,18 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
+
+[node name="CardNode" parent="Table/PlayerBox/Player/PlayerHand" unique_id=684736372 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode2" parent="Table/PlayerBox/Player/PlayerHand" unique_id=1600004864 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
+
+[node name="CardNode3" parent="Table/PlayerBox/Player/PlayerHand" unique_id=956629120 instance=ExtResource("21_clvyn")]
+custom_minimum_size = Vector2(54.4, 64)
+layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Table/PlayerBox/Player" unique_id=973104317]
 position = Vector2(161.99997, -140.99998)
@@ -2232,6 +2192,38 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 78
 text = "$500"
+horizontal_alignment = 1
+
+[node name="TotalTooltip" type="Label" parent="Table/PlayerBox/Player" unique_id=2015784694]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = 229.0
+offset_right = 182.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CURRENT TOTAL: 20/21 - AFTER CARD: 25/21"
+horizontal_alignment = 1
+
+[node name="TotalTooltip" type="Label" parent="Table" unique_id=476507033]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -191.0
+offset_top = -31.0
+offset_right = 173.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CURRENT TOTAL: 20/21 - AFTER CARD: 25/21"
 horizontal_alignment = 1
 
 [node name="Hand" type="TextureRect" parent="Table" unique_id=121759968]
@@ -2776,10 +2768,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = 550.0
-offset_right = -997.0
-offset_bottom = -18.0
+offset_left = -48.0
+offset_top = -47.0
+offset_right = 51.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2793,7 +2785,7 @@ keys = Array[Dictionary]([Dictionary[String, Variant]({
 "size": Vector2(0, 0),
 "tip_position": Vector2(408, 220.5),
 "tip_size": Vector2(336, 207),
-"tip_text": "Welcome to [color=#e93816][GAME NAME][color=]!
+"tip_text": "Welcome to [color=#e93816]Devil's Deal[color=]!
 Use the Scroll Wheel or Left/Right Arrow Keys to navigate the [color=#5a9634]Tutorial[color=].
 
 Scroll Up/Right Arrow to [color=#e93816]continue[color=].
@@ -2887,9 +2879,8 @@ Scroll Down/Left Arrow to skip the [color=#5a9634]Tutorial[color=].
 "tip_text": ""
 })])
 save_index = 13
-interpolating = false
 interpolation_time = 0.75
-next_index = 13
+next_index = 14
 front_locks = Array[int]([5])
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialOverlay/Cutout" unique_id=2082386551]
@@ -2914,15 +2905,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_346fj")
 [node name="RichTextLabel" type="RichTextLabel" parent="TutorialOverlay" unique_id=1039667690]
 z_index = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -570.0
-offset_top = 116.0
-offset_right = -209.0
-offset_bottom = 218.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = 440.0
+offset_right = -1170.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2930,11 +2919,9 @@ theme = ExtResource("1_grg3l")
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "If you're unfamiliar with the game of blackjack, there's a list of rules on the Pause Menu."
-fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-visible_characters = 91
+visible_characters = 0
 
 [node name="Panel" type="Panel" parent="TutorialOverlay/RichTextLabel" unique_id=1375269532]
 z_index = -1
@@ -2988,7 +2975,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
 offset_top = -133.0
-offset_right = 95.000916
+offset_right = 95.00098
 offset_bottom = 132.99951
 grow_horizontal = 2
 grow_vertical = 2
@@ -3047,7 +3034,8 @@ offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 107
-text = "[Game Name]"
+text = "Devil's Deal"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Menu" unique_id=766904342]
 layout_mode = 1
@@ -3264,6 +3252,19 @@ text = "WINDOW MODE"
 layout_mode = 2
 size_flags_horizontal = 8
 script = ExtResource("29_xvtyr")
+
+[node name="Label3" type="Label" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1034309475]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "ACCESSIBILITY"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Options/MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1998326104]
+layout_mode = 2
+tooltip_text = "Toggle on and off an extra tip to show each hand's total value, as well as how much it'll have after the next card is dealt."
+theme_override_font_sizes/font_size = 20
+text = "SHOW HAND TOTALS"
+script = SubResource("GDScript_j7e3e")
 
 [node name="Panel2" type="Panel" parent="Options/MarginContainer/HBoxContainer" unique_id=851581354]
 layout_mode = 2
@@ -3770,6 +3771,8 @@ autoplay = &"Splash->MainMenu"
 stream = SubResource("AudioStreamSynchronized_2w5on")
 autoplay = true
 bus = &"Music"
+script = ExtResource("63_y2ulj")
+transition_speed = 10.0
 
 [node name="Bankrupt" type="AudioStreamPlayer" parent="." unique_id=411208121]
 stream = ExtResource("61_j7e3e")
