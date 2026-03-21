@@ -38,8 +38,6 @@ var flipping = false
 		
 		flip(to.value)
 
-var belongs_to:Hand ## The hand this card belongs to.
-
 @export var modifiable := false ## Whether a token can be dragged onto this card.
 
 var lab:Label
@@ -51,6 +49,10 @@ func _ready() -> void:
 		_update_texture()
 
 func _process(delta: float) -> void:
+	
+	if card:
+		print(name, " -> ", _get_tooltip(Vector2.ZERO))
+	
 	if flipping:
 		custom_minimum_size.x = move_toward(custom_minimum_size.x, 0, delta * FLIP_SPEED)
 		if custom_minimum_size.x == 0:
@@ -116,7 +118,7 @@ func _get_tooltip(_at_position: Vector2) -> String:
 	var response:String = tooltip_text
 	
 	response = response.replace("{color}", "#E93816" if card.modified else "#5A9634")
-	response = response.replace("{name}", card.name() if card.visible or modifiable else "??")
-	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11") if card.visible or modifiable else "??")
+	response = response.replace("{name}", card.name())
+	response = response.replace("{value}", str(clamp(card.value, 2, 10) if card.value != 1 else "1 or 11"))
 	
 	return response
