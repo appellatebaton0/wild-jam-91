@@ -47,6 +47,7 @@
 [ext_resource type="AudioStream" uid="uid://s6lpvup4upqj" path="res://Assets/SFX/money.mp3" id="35_lfh1j"]
 [ext_resource type="AudioStream" uid="uid://dasa4ye7jh6w7" path="res://Assets/Music/HitMe.mp3" id="36_vvnwx"]
 [ext_resource type="Script" uid="uid://dlanw8aqnmihn" path="res://Scripts/ClickEffect.gd" id="37_vvnwx"]
+[ext_resource type="Script" uid="uid://beiccmf2861ii" path="res://Scripts/RunOverStats.gd" id="42_hpjjw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5psol"]
 atlas = ExtResource("16_utia5")
@@ -3328,6 +3329,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RunEnded/MarginContainer/Panel/MarginContainer" unique_id=447827829]
 layout_mode = 2
+script = ExtResource("42_hpjjw")
 
 [node name="Label" type="Label" parent="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=534654787]
 layout_mode = 2
@@ -3554,90 +3556,90 @@ x_size = 3000.0
 
 [node name="@TextureRect@105780" type="TextureRect" parent="TransitionOverlay" unique_id=2055780095]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = -150.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = -50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105781" type="TextureRect" parent="TransitionOverlay" unique_id=704584588]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = -50.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 50.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105782" type="TextureRect" parent="TransitionOverlay" unique_id=1756426644]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 50.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 150.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105783" type="TextureRect" parent="TransitionOverlay" unique_id=523827483]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 150.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 250.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105784" type="TextureRect" parent="TransitionOverlay" unique_id=1355427359]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 250.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 350.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105785" type="TextureRect" parent="TransitionOverlay" unique_id=1095719151]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 350.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 450.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105786" type="TextureRect" parent="TransitionOverlay" unique_id=1758827129]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 450.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 550.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105787" type="TextureRect" parent="TransitionOverlay" unique_id=1954291231]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 550.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 650.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105788" type="TextureRect" parent="TransitionOverlay" unique_id=208132844]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 650.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 750.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
 
 [node name="@TextureRect@105789" type="TextureRect" parent="TransitionOverlay" unique_id=1507693711]
 layout_mode = 0
-offset_left = 1776.0
+offset_left = -3624.0
 offset_top = 750.0
-offset_right = 4776.0
+offset_right = -624.0
 offset_bottom = 850.0
 texture = SubResource("GradientTexture2D_h1m7h")
 expand_mode = 1
@@ -3650,3 +3652,6 @@ autoplay = &"Splash->MainMenu"
 stream = SubResource("AudioStreamSynchronized_2w5on")
 autoplay = true
 bus = &"Music"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" method="_on_animation_finished"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="RunEnded/MarginContainer/Panel/MarginContainer/VBoxContainer" method="_on_current_animation_changed"]

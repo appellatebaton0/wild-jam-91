@@ -32,6 +32,7 @@ func _process(_delta: float) -> void:
 	if label: label.text = str(Global.chips[chip]) if Global.chips.has(chip) else ""
 	highlight.texture = HIGHLIGHT_TEXTURE if usable and mouse_over and chip else null
 
+var last_chip:Chip
 func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton and usable:
 	if event.is_pressed() and not Global.held_chip and chip:
 		## Create a new chip, and pick it up.
@@ -43,15 +44,22 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		Global.held_chip = new
 		
 		Global.chips[chip] -= 1
+		last_chip = chip
 		Global.chips_changed.emit(Global.chips)
 		
 		new.dropped.connect(_on_chip_dropped)
 
 func _on_chip_dropped(): 
 	
+	if not chip: chip = last_chip
+	
+	print("dropped ", chip)
+	
 	if Global.chips.has(chip):
+		print("has, adding")
 		Global.chips[chip] += 1
 	else:
+		print("hasn't, creating.")
 		Global.chips[chip] = 1
 	
 	Global.chips_changed.emit()

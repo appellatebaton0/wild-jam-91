@@ -8,11 +8,26 @@ signal chips_changed(to:Array[Chip]) ## Emitted when the dealer's chips change.
 
 var round_count := 0 ## The current game count.
 
-var quota := 0 ## The quota for the current game.
+var chips_used := 0 ## How many chips have been used this run.
 
-var money := 60 ## How much money the player has.
+var total_income := 0
+var total_expenses := 0
+
+var money := 60: ## How much money the player has.
+	set(to):
+		if to > money:
+			total_income += to - money
+		elif to < money:
+			total_expenses += money - to
+		
+		money = to
 var bank := 5000: ## How much money the casino bank has.
 	set(to):
+		
+		if to > bank:
+			total_income += to - bank
+		elif to < bank:
+			total_expenses += bank - to
 		
 		if to < 0:
 			money += to
@@ -65,3 +80,7 @@ func end_run():
 	round_count = 0
 	chips.clear()
 	run_ended.emit()
+	chips_used = 0
+	
+	total_income = 0
+	total_expenses = 0
