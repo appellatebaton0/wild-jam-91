@@ -50,9 +50,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if card:
-		print(name, " -> ", _get_tooltip(Vector2.ZERO))
-	
 	if flipping:
 		custom_minimum_size.x = move_toward(custom_minimum_size.x, 0, delta * FLIP_SPEED)
 		if custom_minimum_size.x == 0:

@@ -61,7 +61,7 @@
 [ext_resource type="Resource" uid="uid://c1uit8n4gsx6f" path="res://Assets/ChipResources/Wrap.tres" id="41_81ldr"]
 [ext_resource type="Script" uid="uid://beiccmf2861ii" path="res://Scripts/RunOverStats.gd" id="42_hpjjw"]
 [ext_resource type="Resource" uid="uid://cy13qf4irnda6" path="res://Assets/ChipResources/AllIn.tres" id="43_eywpa"]
-[ext_resource type="Texture2D" uid="uid://cawklwqoi2h1f" path="res://Assets/UI/MenuScreen.png" id="50_t3x2a"]
+[ext_resource type="Texture2D" uid="uid://dx2bub4ja6rn1" path="res://Assets/UI/MenuBackground.png" id="50_as1io"]
 [ext_resource type="Texture2D" uid="uid://dl8xwirs5xrlx" path="res://Assets/Chips/DraftChip.png" id="52_8n4h5"]
 [ext_resource type="Texture2D" uid="uid://djuvgsvir7uca" path="res://Assets/Chips/DuplicatorChip.png" id="53_as1io"]
 [ext_resource type="PackedScene" uid="uid://brkfcslpcl0oo" path="res://Scenes/FlipCoin.tscn" id="54_1bbis"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://bmn230uh10o1t" path="res://Assets/Chips/RedWhiteChip.png" id="56_tt1x2"]
 [ext_resource type="Texture2D" uid="uid://bgfa3uuasacgo" path="res://Assets/Chips/CoinFlipChip.png" id="57_2wrh7"]
 [ext_resource type="Texture2D" uid="uid://dl2hh42ff1fqi" path="res://Assets/Chips/BlackChip.png" id="58_atu2d"]
+[ext_resource type="Texture2D" uid="uid://cjdbipsviicek" path="res://Assets/UI/Logo.png" id="59_xd5mi"]
 [ext_resource type="Texture2D" uid="uid://blmy3pdu0g8ff" path="res://Assets/Chips/RandomChip.png" id="60_y2ulj"]
 [ext_resource type="AudioStream" uid="uid://bjo6rc37u7wnl" path="res://Assets/SFX/bankrupt.mp3" id="61_j7e3e"]
 [ext_resource type="AudioStream" uid="uid://dojg8pwkmdyff" path="res://Assets/Music/PlaceYourBets.mp3" id="62_j7e3e"]
@@ -2555,7 +2556,8 @@ expand_mode = 1
 position = Vector2(886.00006, 294)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_r6gtk")
-frame_progress = 0.37322524
+autoplay = "default"
+frame_progress = 0.7714259
 
 [node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=27048741]
 layout_mode = 1
@@ -3018,7 +3020,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_grg3l")
-texture = ExtResource("50_t3x2a")
+texture = ExtResource("50_as1io")
 expand_mode = 1
 
 [node name="FlipCoin2" parent="Menu" unique_id=2103607914 instance=ExtResource("54_1bbis")]
@@ -3078,7 +3080,6 @@ rotation = -0.719906
 wait_range = Vector2(1, 5)
 
 [node name="FlipCoin8" parent="Menu" unique_id=1308142394 instance=ExtResource("54_1bbis")]
-modulate = Color(1, 1, 1, 0.6)
 layout_mode = 0
 offset_left = 1053.0
 offset_top = 382.0
@@ -3096,6 +3097,16 @@ offset_right = 345.0
 offset_bottom = 152.0
 texture = ExtResource("58_atu2d")
 wait_range = Vector2(1, 5)
+
+[node name="Logo" type="TextureRect" parent="Menu" unique_id=415920104]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 7.0
+offset_right = 756.0
+offset_bottom = 316.0
+texture = ExtResource("59_xd5mi")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Control" type="Control" parent="Menu" unique_id=881711370]
 z_index = 2

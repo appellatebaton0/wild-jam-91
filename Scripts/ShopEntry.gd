@@ -32,7 +32,8 @@ func _on_pressed() -> void: if open():
 	Global.selected_shop_item = self
 	$AudioStreamPlayer.play()
 
-func open() -> bool: return get_index() <= Global.round_count
+@warning_ignore("integer_division")
+func open() -> bool: return get_index() <= (Global.round_count / 3)
 
 ## Custom Tooltippin'
 func _make_custom_tooltip(for_text: String) -> Object:
