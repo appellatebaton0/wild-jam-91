@@ -64,7 +64,6 @@ func _process(delta: float) -> void:
 		label.pivot_offset.x = label.size.x / 2
 		
 		if out_of_date:
-			print('setting to ', character(), " from ", card.value)
 			label.text = character()
 			label.visible = (card.visible or modifiable)
 			out_of_date = false
@@ -77,7 +76,6 @@ var out_of_date := false
 func _update_texture(to:int = card.value): 
 	texture = TEXTURE_DICT[card.modified][card.visible or modifiable]
 	if label:
-		print('setting to ', character(to), " from (to) ", to)
 		label.text = character(to)
 		label.visible = (card.visible or modifiable)
 	else:

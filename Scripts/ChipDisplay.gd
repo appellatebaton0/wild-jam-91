@@ -11,7 +11,6 @@ const SLOT_SCENE := preload("res://Scenes/ChipSlot.tscn")
 
 ## Update the contents of this display.
 func _on_chips_changed(to:Dictionary[Chip, int]):
-	print(to)
 	
 	while get_child_count() < len(to):
 		var new:ChipSlot = SLOT_SCENE.instantiate()

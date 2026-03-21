@@ -1,17 +1,13 @@
 class_name Shop extends Control
 
-@onready var cont_button := %Continue
 @onready var buy_button := %BuyButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cont_button.pressed.connect(_on_continue)
 	buy_button.pressed.connect(_on_buy)
 
 func _process(_delta: float) -> void:
 	buy_button.disabled = not Global.selected_shop_item or Global.money < Global.selected_shop_item.chip.cost
-
-func _on_continue(): Global.end_game()
 
 func _on_buy():
 	

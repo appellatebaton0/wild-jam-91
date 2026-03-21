@@ -48,7 +48,12 @@ func _on_gui_input(event: InputEvent) -> void: if event is InputEventMouseButton
 		new.dropped.connect(_on_chip_dropped)
 
 func _on_chip_dropped(): 
-	Global.chips[chip] += 1
+	
+	if Global.chips.has(chip):
+		Global.chips[chip] += 1
+	else:
+		Global.chips[chip] = 1
+	
 	Global.chips_changed.emit()
 
 ## Custom Tooltippin'

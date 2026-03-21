@@ -12,6 +12,7 @@ class_name Table extends Control
 @onready var ropopup     := %RoundOverPopup # The round over popup.
 
 @export var anim_player:AnimationPlayer
+@export var deal_sfx:AudioStreamPlayer
 
 @export var players:Dictionary[StringName, Player] = {
 	&"Player1": null
@@ -33,7 +34,7 @@ func _ready() -> void:
 	
 	deal_index = deal_cycle.find(&"Dealer")
 	
-	draw_new()
+	draw_new(true)
 
 func _on_next_pressed() -> void:
 	
@@ -65,6 +66,7 @@ func _on_next_pressed() -> void:
 					target.bet *= 2
 					target.hand.deal(next_card.card, false)
 					target.intent = Player.INTENT.STAND
+					draw_new()
 				_: ## Something went wrong.
 					cycle_deal_index()
 	
@@ -141,7 +143,9 @@ func _process(_delta: float) -> void:
 	next_node.move_child(turn_indic, -1)
 
 # Draw a new card into the dealer's hand.
-func draw_new() -> void:
+func draw_new(muted := false) -> void:
+	if deal_sfx and not muted: deal_sfx.play() # If we're getting a new card, one was dealt. Play that sound.
+	
 	var new = Card.new()
 	new.value = randi_range(1, 12)
 	
@@ -154,6 +158,7 @@ func round_over():
 	
 	deal_index = deal_cycle.find(&"Dealer")
 	
+
 	if anim_player: 
 		anim_player.play("Table->EndPopup" if not Global.losing() else "RunEnded")
 
@@ -231,5 +236,5 @@ func _on_clear_cards(_cards:Array[Card]):
 		
 		player.texture.play(str(bag.pop_at(randi_range(0, len(bag) - 1))))
 		player.intent_rect.position = player.texture.position - Vector2(0, 147)
-#
-#const PLAYER_TEXTURES:Array[Texture2D]
+
+func end_game() -> void: Global.end_game()

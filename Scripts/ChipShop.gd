@@ -10,8 +10,6 @@ func _ready() -> void: reload_shop()
 
 ## Reload the contents of the shop.
 func reload_shop() -> void:
-	print("!?")
-	
 	var bag := chip_bag.duplicate()
 	
 	for slot in slots:
@@ -19,11 +17,8 @@ func reload_shop() -> void:
 		## Refill the bag if it's empty.
 		if len(bag) == 0: bag = chip_bag.duplicate()
 		
-		#if slot.chip:
-			#print(slot.name, ": ", slot.chip.name, " -> ")
 		# Pop a random chip from the bag, and stuff it in the slot.
 		slot.chip = bag.pop_at(randi_range(0, len(bag) - 1))
-		#print(slot.chip.name)
 
 ## Get various lists.
 func get_slots() -> Array[ShopEntry]:

@@ -73,7 +73,7 @@ func renew_intent() -> INTENT:
 	var high = hand.high()
 	var low = hand.low()
 	## The chance to double down, if possible.
-	var double_chance:float = clamp((float(Global.game_count) / 10) - 1, 0, 0.8)
+	var double_chance:float = clamp((float(Global.round_count) / 10) - 1, 0, 0.8)
 	
 	## Whether or not this hand has an ace in it.
 	var soft = high != low

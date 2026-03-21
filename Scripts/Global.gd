@@ -6,7 +6,7 @@ signal run_ended
 
 signal chips_changed(to:Array[Chip]) ## Emitted when the dealer's chips change.
 
-var game_count := 0 ## The current game count.
+var round_count := 0 ## The current game count.
 
 var quota := 0 ## The quota for the current game.
 
@@ -50,7 +50,7 @@ func losing() -> bool:
 
 ## End the current game. Ran before entering the shop.
 func end_game():
-	game_count += 1
+	round_count += 1
 	
 	dealer_hand.clear()
 	
@@ -62,6 +62,6 @@ func end_game():
 func end_run():
 	money = starting_money
 	bank = starting_bank
-	game_count = 0
+	round_count = 0
 	chips.clear()
 	run_ended.emit()

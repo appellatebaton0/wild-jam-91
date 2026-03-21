@@ -2,7 +2,7 @@ class_name ShopEntry extends Control
 ## Fully-contained shopfront for a single kind of chip.
 
 @export var chip:Chip ## The chip being sold.
-		
+
 @onready var tooltip_original := tooltip_text
 
 @onready var chip_texture := %ChipTexture
@@ -21,14 +21,16 @@ func _ready() -> void:
 	chip_texture.mouse_exited.connect(mouse_exit)
 
 func _process(_delta: float) -> void: if chip:
-	chip_texture.texture_normal = chip.texture
-	chip_texture.disabled = Global.money < chip.cost
-	$Highlight/ChipTexture/Label.text = "$" + str(chip.cost)
 	
-	highlight.texture = HIGHLIGHT_TEXTURE if mouse_over else null
+	chip_texture.texture_normal = chip.texture if open() else null
+	chip_texture.disabled = Global.money < chip.cost and open()
+	$Highlight/ChipTexture/Label.text = ("$" + str(chip.cost)) if open() else ""
+	
+	highlight.texture = HIGHLIGHT_TEXTURE if mouse_over and open() else null
 
-func _on_pressed() -> void: Global.selected_shop_item = self
+func _on_pressed() -> void: if open(): Global.selected_shop_item = self
 
+func open() -> bool: return get_index() <= Global.round_count
 
 ## Custom Tooltippin'
 func _make_custom_tooltip(for_text: String) -> Object:
@@ -38,7 +40,7 @@ func _make_custom_tooltip(for_text: String) -> Object:
 
 func _get_tooltip(_at_position: Vector2) -> String:
 	
-	if not chip: return "" 
+	if not chip or not open(): return "" 
 	
 	var response = tooltip_text
 	
