@@ -110,7 +110,11 @@ func _on_next_pressed() -> void:
 		round_over()
 		return
 	
+	
 	## IF no chips remaining, just go again.
+	
+	if not Global.fast_forward_on_empty: return # Don't if the setting is off, actually.
+	
 	for count in Global.chips.values(): if count > 0: return # If there are any chips left, cut.
 	_on_next_pressed() # No more chips, go again
 

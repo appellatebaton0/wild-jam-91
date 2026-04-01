@@ -14,8 +14,9 @@ var total_income := 0
 var total_expenses := 0
 
 var show_total_tooltips := false
+var fast_forward_on_empty := false
 
-var money := 6000: ## How much money the player has.
+var money := 60: ## How much money the player has.
 	set(to):
 		if to > money:
 			total_income += to - money
@@ -23,7 +24,7 @@ var money := 6000: ## How much money the player has.
 			total_expenses += money - to
 		
 		money = to
-var bank := 5000: ## How much money the casino bank has.
+var bank := 450: ## How much money the casino bank has.
 	set(to):
 		
 		if to > bank:

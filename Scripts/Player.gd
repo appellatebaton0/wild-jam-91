@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 	
 	for tooltipper in [bet_box, $Texture/ToolTip2, $Intent/ToolTip]: if tooltipper is FancyTooltip:
 		tooltipper.special_properties["{name}"] = player_name
-		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + (intent_string() if len(hand.cards) > 1 else "wait") if intent != INTENT.OUT else " is out"
+		tooltipper.special_properties["{intent}"] = "intends to [color=#" + intent_color().to_html() + "]" + (intent_string() if len(hand.cards) > 1 else "wait for you to deal") if intent != INTENT.OUT else " is out"
 		tooltipper.special_properties["{bet}"] = "[color=#d18f38]$" + str(bet)
 	
 	total_label.visible = Global.show_total_tooltips
@@ -140,7 +140,12 @@ func invert_intent(def := intent):
 			intent = def
 
 func renew_bet() -> int:
-	bet = randi_range(5, 50) * 10
+	bet = 50
+	
+	while true:
+		if randf() > 0.88 or bet >= 500: break
+		bet += 10
+	
 	bet_lab.text = "$" + str(bet)
 	return bet
 

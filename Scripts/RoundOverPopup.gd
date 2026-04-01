@@ -6,6 +6,8 @@ class_name RoundOverPopup extends Control
 @onready var total_income_lab := %TotalIncome
 @onready var total_expenses_lab := %TotalExpenses
 
+@onready var heading := $Panel/MarginContainer/VBoxContainer/Label
+
 var total_income:int = 0
 var total_expenses:int = 0
 
@@ -24,6 +26,9 @@ func round_ended(players:Array[Player], winners:Array, draws:Array, naturals:Arr
 	
 	commit_payout()
 	
+	if len(winners): heading.text = "LOSE"
+	elif len(draws): heading.text = "DRAW"
+	else:            heading.text = "WIN" 
 
 
 func clear_boxes():
